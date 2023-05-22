@@ -18,6 +18,10 @@
     <string name="err_open_camera">Failed to display camera</string>
     <string name="err_permission">Permission request denied</string>
 
+    <string name="placeholder_result">Result</string>
+
+    <string name="view_more">View more</string>
+
     <string name="err_capture_picture">Photo capture failed</string>
 
     <string name="content_description_button">To X-ray Detection Page</string>
