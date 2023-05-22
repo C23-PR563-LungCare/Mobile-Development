@@ -3,11 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/nav_home">
 
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.bangkit.lungcare.ui.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/nav_home"
+        android:name="com.bangkit.lungcare.ui.home.HomeFragment"
+        android:label="@string/label_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_nav_home_to_postXrayActivity"
+            app:destination="@id/nav_postxray" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_history"
+        android:name="com.bangkit.lungcare.ui.history.HistoryFragment"
+        android:label="@string/label_history"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.bangkit.lungcare.ui.profile.ProfileFragment"
+        android:label="@string/label_profile"
+        tools:layout="@layout/fragment_profile" />
+    <activity
+        android:id="@+id/nav_postxray"
+        android:name="com.bangkit.lungcare.ui.home.xray.post.PostXrayActivity"
+        android:label="activity_post_xray"
+        tools:layout="@layout/activity_post_xray" />
 </navigation>

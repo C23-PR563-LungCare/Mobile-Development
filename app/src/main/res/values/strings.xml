@@ -1,5 +1,29 @@
 <resources>
     <string name="app_name">LungCare</string>
+
+    <string name="label_home">Home</string>
+    <string name="label_history">History</string>
+    <string name="label_profile">Profile</string>
+
+    <string name="welcome_message">Hi, %1$s</string>
+
+    <string name="welcome_dummy_message">Hi, Muhammad Amirul Bimantoro</string>
+
+    <string name="gallery">Open File</string>
+    <string name="camera">Open Camera</string>
+    <string name="upload">Upload</string>
+
+    <string name="title_menu">Scan X-ray</string>
+
+    <string name="err_open_camera">Failed to display camera</string>
+    <string name="err_permission">Permission request denied</string>
+
+    <string name="err_capture_picture">Photo capture failed</string>
+
+    <string name="content_description_button">To X-ray Detection Page</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="article">Relate Articles</string>
+    <string name="dummy_title_article">Tips Menjaga Kesehatan Paru-paru</string>
 </resources>

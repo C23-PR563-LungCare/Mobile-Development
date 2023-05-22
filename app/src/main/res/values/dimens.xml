@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_size">0dp</dimen>
+    <dimen name="image_size">70dp</dimen>
+
+    <dimen name="padding_s">8dp</dimen>
+
+    <dimen name="margin_s">8dp</dimen>
+    <dimen name="margin_m">16dp</dimen>
+    <dimen name="margin_l">32dp</dimen>
+
+    <dimen name="text_size">20sp</dimen>
+</resources>
