@@ -16,7 +16,7 @@ import androidx.core.content.ContextCompat
 import com.bangkit.lungcare.R
 import com.bangkit.lungcare.createFile
 import com.bangkit.lungcare.databinding.ActivityCameraBinding
-import com.bangkit.lungcare.ui.home.xray.post.PostXrayActivity
+import com.bangkit.lungcare.ui.home.PostXrayActivity
 
 class CameraActivity : AppCompatActivity() {
 

@@ -26,7 +26,7 @@
         tools:layout="@layout/fragment_profile" />
     <activity
         android:id="@+id/nav_postxray"
-        android:name="com.bangkit.lungcare.ui.home.xray.post.PostXrayActivity"
+        android:name="com.bangkit.lungcare.ui.home.PostXrayActivity"
         android:label="activity_post_xray"
         tools:layout="@layout/activity_post_xray" />
 </navigation>

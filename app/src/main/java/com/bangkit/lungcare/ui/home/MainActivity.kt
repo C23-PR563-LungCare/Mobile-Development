@@ -1,12 +1,12 @@
-package com.bangkit.lungcare
+package com.bangkit.lungcare.ui.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.bangkit.lungcare.R
 import com.bangkit.lungcare.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 

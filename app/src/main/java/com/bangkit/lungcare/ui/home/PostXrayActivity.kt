@@ -1,4 +1,4 @@
-package com.bangkit.lungcare.ui.home.xray.post
+package com.bangkit.lungcare.ui.home
 
 import android.Manifest
 import android.content.Intent

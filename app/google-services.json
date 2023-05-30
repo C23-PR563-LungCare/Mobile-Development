@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "148769005743",
+    "project_id": "lungcare-5a564",
+    "storage_bucket": "lungcare-5a564.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:148769005743:android:a1158783c7752601d7345a",
+        "android_client_info": {
+          "package_name": "com.bangkit.lungcare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "148769005743-ul54d0mat9i50em4dcsfndkrjuep4bc5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBngSMHGYFWB6DoOE_QLwDD_PTzFKfAVc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "148769005743-ul54d0mat9i50em4dcsfndkrjuep4bc5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

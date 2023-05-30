@@ -6,7 +6,10 @@ buildscript {
         lifecycle_version = '2.6.1'
         room_version = '2.5.1'
         nav_version = '2.5.3'
-        camerax_version = '1.2.2'
+        camerax_version = '1.2.3'
+    }
+    dependencies {
+        classpath 'com.google.gms:google-services:4.3.15'
     }
 }
 plugins {
