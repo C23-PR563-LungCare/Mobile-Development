@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bangkit.lungcare.data.network.Result
-import com.bangkit.lungcare.data.network.response.XrayItem
+import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.databinding.FragmentHistoryBinding
 import com.bangkit.lungcare.ui.adapter.XrayAdapter
 

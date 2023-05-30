@@ -5,9 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bangkit.lungcare.data.network.Result
-import com.bangkit.lungcare.data.network.response.XrayItem
-import com.bangkit.lungcare.data.network.retrofit.ApiConfig
+import com.bangkit.lungcare.data.Result
+import com.bangkit.lungcare.data.remote.retrofit.ApiConfig
 import kotlinx.coroutines.launch
 
 class HistoryViewModel : ViewModel() {

@@ -15,9 +15,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bangkit.lungcare.R
 import com.bangkit.lungcare.databinding.ActivityPostXrayBinding
-import com.bangkit.lungcare.rotateFile
+import com.bangkit.lungcare.utils.rotateFile
 import com.bangkit.lungcare.ui.camera.CameraActivity
-import com.bangkit.lungcare.uriToFile
+import com.bangkit.lungcare.utils.uriToFile
 import java.io.File
 
 class PostXrayActivity : AppCompatActivity() {

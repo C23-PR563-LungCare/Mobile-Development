@@ -14,7 +14,7 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.bangkit.lungcare.R
-import com.bangkit.lungcare.createFile
+import com.bangkit.lungcare.utils.createFile
 import com.bangkit.lungcare.databinding.ActivityCameraBinding
 import com.bangkit.lungcare.ui.home.PostXrayActivity
 

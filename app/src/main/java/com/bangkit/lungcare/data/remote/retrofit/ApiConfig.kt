@@ -1,4 +1,4 @@
-package com.bangkit.lungcare.data.network.retrofit
+package com.bangkit.lungcare.data.remote.retrofit
 
 import com.bangkit.lungcare.BuildConfig
 import okhttp3.OkHttpClient

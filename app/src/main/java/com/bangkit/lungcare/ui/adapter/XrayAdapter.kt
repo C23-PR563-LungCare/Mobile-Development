@@ -5,9 +5,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bangkit.lungcare.data.network.response.XrayItem
 import com.bangkit.lungcare.databinding.ItemHistoryBinding
-import com.bangkit.lungcare.helper.XrayDiffCallback
+import com.bangkit.lungcare.utils.XrayDiffCallback
 import com.bumptech.glide.Glide
 
 class XrayAdapter(private val listDataXray: ArrayList<XrayItem>) :
