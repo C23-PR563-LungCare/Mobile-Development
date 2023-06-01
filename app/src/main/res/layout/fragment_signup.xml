@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.auth.signup.SignupFragment">
+    tools:context=".presentation.auth.signup.SignupFragment">
 
     <TextView
         android:id="@+id/titleTv"
@@ -23,11 +23,12 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/nameEdtLayout"
+        style="?attr/textInputFilledStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="24dp"
         app:boxBackgroundColor="@null"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,11 +48,12 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailEdtLayout"
+        style="?attr/textInputFilledStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
         android:hint="@string/email"
         app:boxBackgroundColor="@null"
         app:errorEnabled="true"
@@ -71,11 +73,12 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordEdtLayout"
+        style="?attr/textInputFilledStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
         android:hint="@string/password"
         app:boxBackgroundColor="@null"
         app:endIconMode="password_toggle"
@@ -99,10 +102,12 @@
         android:id="@+id/signupBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="24dp"
+        android:padding="14dp"
         android:text="@string/signup"
+        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordEdtLayout"

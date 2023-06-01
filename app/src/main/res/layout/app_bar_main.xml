@@ -17,6 +17,8 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_home" />
+    <include
+        android:id="@+id/contect_home"
+        layout="@layout/content_home" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

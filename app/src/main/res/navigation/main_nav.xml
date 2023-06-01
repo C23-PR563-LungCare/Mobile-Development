@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.bangkit.lungcare.ui.home.HomeFragment"
+        android:name="com.bangkit.lungcare.presentation.home.HomeFragment"
         android:label="@string/label_home"
         tools:layout="@layout/fragment_home">
         <action
@@ -16,17 +16,41 @@
     </fragment>
     <fragment
         android:id="@+id/nav_history"
-        android:name="com.bangkit.lungcare.ui.history.HistoryFragment"
+        android:name="com.bangkit.lungcare.presentation.history.HistoryFragment"
         android:label="@string/label_history"
         tools:layout="@layout/fragment_history" />
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.bangkit.lungcare.ui.profile.ProfileFragment"
+        android:name="com.bangkit.lungcare.presentation.profile.ProfileFragment"
         android:label="@string/label_profile"
         tools:layout="@layout/fragment_profile" />
     <activity
         android:id="@+id/nav_postxray"
-        android:name="com.bangkit.lungcare.ui.home.PostXrayActivity"
+        android:name="com.bangkit.lungcare.presentation.home.post.PostXrayActivity"
         android:label="activity_post_xray"
         tools:layout="@layout/activity_post_xray" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.bangkit.lungcare.presentation.auth.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_signupFragment"
+            app:destination="@id/signupFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.bangkit.lungcare.presentation.auth.signup.SignupFragment"
+        android:label="fragment_signup"
+        tools:layout="@layout/fragment_signup" >
+        <action
+            android:id="@+id/action_signupFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

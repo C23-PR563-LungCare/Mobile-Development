@@ -5,7 +5,7 @@
     <string name="label_history">History</string>
     <string name="label_profile">Profile</string>
 
-    <string name="login_title">Welcome Back</string>
+    <string name="login_title">Login</string>
     <string name="login_desc">Masukkan email dan Kata Sandi</string>
     <string name="login">Sign In</string>
 
@@ -21,6 +21,10 @@
     <string name="password">Password</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="or">OR</string>
+
+    <string name="err_name_field">Name Can\'t be blank</string>
+    <string name="err_email_field">Email Can\'t be blank</string>
+    <string name="err_password_field">Password Can\'t be blank</string>
 
     <string name="welcome_message">Hi, %1$s</string>
 

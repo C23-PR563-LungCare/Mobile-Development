@@ -13,7 +13,6 @@ import retrofit2.http.POST
 import retrofit2.http.Part
 
 interface XrayApiService {
-
     @FormUrlEncoded
     @POST("register")
     suspend fun signup(
@@ -31,13 +30,13 @@ interface XrayApiService {
 
     @Multipart
     @POST("insertImage")
-    suspend fun insertXrayImage(
+    suspend fun uploadXray(
         @Header("Authorization") token: String,
         @Part file: MultipartBody.Part,
     ): CommonResponse
 
-    @GET("/history")
-    suspend fun getHistoryXrayImage(
+    @GET("history")
+    suspend fun getAll(
         @Header("Authorization") token: String,
     ): XrayResponse
 }

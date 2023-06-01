@@ -8,6 +8,7 @@
     <uses-feature android:name="android.hardware.camera" />
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -18,16 +19,13 @@
         android:theme="@style/Theme.LungCare"
         tools:targetApi="31">
         <activity
-            android:name=".ui.auth.AuthActivity"
+            android:name=".presentation.camera.CameraActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.camera.CameraActivity"
+            android:name=".presentation.home.post.PostXrayActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.home.PostXrayActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.home.MainActivity"
+            android:name=".presentation.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

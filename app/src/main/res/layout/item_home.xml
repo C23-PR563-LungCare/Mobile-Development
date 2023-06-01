@@ -15,8 +15,8 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/lung_48px" />
@@ -26,8 +26,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/title_menu"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/toPostXrayBtn"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,13 +39,12 @@
             android:id="@+id/toPostXrayBtn"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginEnd="-5dp"
             android:background="@null"
             android:contentDescription="@string/content_description_button"
-            android:src="@drawable/baseline_arrow_circle_right_24"
+            android:src="@drawable/ic_arrow_circle_right"
             app:layout_constraintBottom_toBottomOf="@+id/titleTv"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/titleTv"
             app:layout_constraintTop_toTopOf="@+id/titleTv" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

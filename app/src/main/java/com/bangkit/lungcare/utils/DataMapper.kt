@@ -1,10 +1,18 @@
 package com.bangkit.lungcare.utils
 
+import android.util.Log
 import com.bangkit.lungcare.data.remote.response.CommonResponse
 import com.bangkit.lungcare.data.remote.response.LoginResponse
-import com.bangkit.lungcare.domain.entity.LoginEntity
-import com.bangkit.lungcare.domain.entity.SignupEntity
+import com.bangkit.lungcare.domain.model.Login
+import com.bangkit.lungcare.domain.model.Signup
 
-fun CommonResponse?.toSignupDomainEntity() = SignupEntity(this?.message)
+object DataMapper {
+    fun mapSignupResponseToDomain(input: CommonResponse?) = Signup(
+        message = input?.message
+    )
 
-fun LoginResponse?.toLoginDomainEntity() = LoginEntity(this?.message, this?.token)
+    fun mapLoginResponseToDomain(input: LoginResponse?) = Login(
+        message = input?.message,
+        token = input?.token
+    )
+}
