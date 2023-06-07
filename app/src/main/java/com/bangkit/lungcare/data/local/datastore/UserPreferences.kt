@@ -4,12 +4,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface UserPreferences {
     fun getToken(): Flow<String>
-
-    suspend fun saveToken(token: String)
-
-    suspend fun destroyToken()
-
-    suspend fun setLogin(session: Boolean)
-
-    fun getLogin(): Flow<Boolean>
+    suspend fun saveCredential(token: String)
+    suspend fun deleteCredential()
+    fun checkCredential(): Flow<Boolean>
 }

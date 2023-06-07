@@ -1,16 +1,17 @@
-package com.bangkit.lungcare.presentation.adapter
+package com.bangkit.lungcare.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bangkit.lungcare.data.remote.response.XrayResponseItem
+import com.bangkit.lungcare.data.remote.response.XrayItemResponse
+import com.bangkit.lungcare.data.remote.response.XrayResponse
 import com.bangkit.lungcare.databinding.ItemHistoryBinding
 import com.bangkit.lungcare.utils.XrayDiffCallback
 import com.bumptech.glide.Glide
 
-class XrayAdapter(private val listDataXray: ArrayList<XrayResponseItem>) :
+class XrayAdapter(private val listDataXray: ArrayList<XrayItemResponse>) :
     RecyclerView.Adapter<XrayAdapter.ListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ListViewHolder(
@@ -27,7 +28,7 @@ class XrayAdapter(private val listDataXray: ArrayList<XrayResponseItem>) :
     inner class ListViewHolder(private var binding: ItemHistoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: XrayResponseItem) {
+        fun bind(data: XrayItemResponse) {
             with(binding) {
                 resultTv.text = data.processResult
                 thumbnailTv.loadImage(data.gcsLink)
@@ -42,7 +43,7 @@ class XrayAdapter(private val listDataXray: ArrayList<XrayResponseItem>) :
             .into(this)
     }
 
-    fun setListXray(newListDataXray: List<XrayResponseItem>) {
+    fun setListXray(newListDataXray: List<XrayItemResponse>) {
         val diffCallback = XrayDiffCallback(listDataXray, newListDataXray)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         listDataXray.clear()

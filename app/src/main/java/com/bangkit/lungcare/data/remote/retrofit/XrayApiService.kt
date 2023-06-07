@@ -2,6 +2,7 @@ package com.bangkit.lungcare.data.remote.retrofit
 
 import com.bangkit.lungcare.data.remote.response.CommonResponse
 import com.bangkit.lungcare.data.remote.response.LoginResponse
+import com.bangkit.lungcare.data.remote.response.XrayItemResponse
 import com.bangkit.lungcare.data.remote.response.XrayResponse
 import okhttp3.MultipartBody
 import retrofit2.http.Field

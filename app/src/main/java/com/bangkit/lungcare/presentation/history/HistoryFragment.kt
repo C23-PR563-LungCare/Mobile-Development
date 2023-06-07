@@ -8,9 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.lungcare.data.Result
-import com.bangkit.lungcare.data.remote.response.XrayResponseItem
+import com.bangkit.lungcare.data.remote.response.XrayItemResponse
 import com.bangkit.lungcare.databinding.FragmentHistoryBinding
-import com.bangkit.lungcare.presentation.adapter.XrayAdapter
+import com.bangkit.lungcare.adapter.XrayAdapter
 
 
 class HistoryFragment : Fragment() {
@@ -18,7 +18,7 @@ class HistoryFragment : Fragment() {
     private val historyViewModel by viewModels<HistoryViewModel>()
 
     private lateinit var adapter: XrayAdapter
-    private val listXrayData = ArrayList<XrayResponseItem>()
+    private val listXrayData = ArrayList<XrayItemResponse>()
 
     private var _historyBinding: FragmentHistoryBinding? = null
     private val historyBinding get() = _historyBinding!!

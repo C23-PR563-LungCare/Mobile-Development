@@ -16,6 +16,8 @@
     <string name="signup_desc">Masukkan data untuk membuat akun</string>
     <string name="signup">Sign Up</string>
 
+    <string name="signup_success_message">Registration successful!</string>
+
     <string name="name">Name</string>
     <string name="email">Email</string>
     <string name="password">Password</string>

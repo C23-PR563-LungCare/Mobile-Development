@@ -1,11 +1,11 @@
 package com.bangkit.lungcare.utils
 
 import androidx.recyclerview.widget.DiffUtil
-import com.bangkit.lungcare.data.remote.response.XrayResponseItem
+import com.bangkit.lungcare.data.remote.response.XrayItemResponse
 
 class XrayDiffCallback(
-    private val oldXrayList: List<XrayResponseItem>,
-    private val newXrayList: List<XrayResponseItem>,
+    private val oldXrayList: List<XrayItemResponse>,
+    private val newXrayList: List<XrayItemResponse>,
 ) : DiffUtil.Callback() {
 
     override fun getOldListSize(): Int = oldXrayList.size

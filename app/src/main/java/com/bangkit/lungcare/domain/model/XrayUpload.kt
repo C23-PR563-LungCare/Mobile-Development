@@ -1,5 +1,7 @@
 package com.bangkit.lungcare.domain.model
 
+import java.io.File
+
 data class XrayUpload(
-    val message: String? = null
+    val photo: File,
 )

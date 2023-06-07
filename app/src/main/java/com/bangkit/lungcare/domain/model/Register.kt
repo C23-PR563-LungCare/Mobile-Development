@@ -1,5 +1,5 @@
 package com.bangkit.lungcare.domain.model
 
-data class Signup(
+data class Register(
     val message: String?
 )

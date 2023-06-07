@@ -13,33 +13,24 @@ import javax.inject.Singleton
 @Singleton
 class UserPreferencesImpl @Inject constructor(private val dataStore: DataStore<Preferences>) :
     UserPreferences {
+    override fun getToken(): Flow<String> = dataStore.data.map { it[TOKEN_KEY] ?: "" }
 
-    override fun getToken(): Flow<String> {
-        return dataStore.data.map { it[TOKEN_KEY] ?: "" }
-    }
-
-    override suspend fun saveToken(token: String) {
+    override suspend fun saveCredential(token: String) {
         dataStore.edit {
             it[TOKEN_KEY] = token
+            it[SESSION_KEY] = true
         }
     }
 
-    override suspend fun destroyToken() {
+    override suspend fun deleteCredential() {
         dataStore.edit {
             it.remove(TOKEN_KEY)
+            it[SESSION_KEY] = false
         }
     }
 
-    override suspend fun setLogin(session: Boolean) {
-        dataStore.edit {
-            it[SESSION_KEY] = session
-        }
-    }
-
-    override fun getLogin(): Flow<Boolean> {
-        return dataStore.data.map {
-            it[SESSION_KEY] ?: false
-        }
+    override fun checkCredential(): Flow<Boolean> = dataStore.data.map {
+        it[SESSION_KEY] ?: false
     }
 
     companion object {

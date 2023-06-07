@@ -1,7 +1,7 @@
 package com.bangkit.lungcare.di
 
-import com.bangkit.lungcare.domain.usecase.UserInteractor
-import com.bangkit.lungcare.domain.usecase.UserUseCase
+import com.bangkit.lungcare.domain.usecase.XrayInteractor
+import com.bangkit.lungcare.domain.usecase.XrayUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -13,5 +13,5 @@ import javax.inject.Singleton
 abstract class AppModule {
     @Binds
     @Singleton
-    abstract fun provideUserUseCase(userInteractor: UserInteractor): UserUseCase
+    abstract fun provideUserUseCase(xrayInteractor: XrayInteractor): XrayUseCase
 }
