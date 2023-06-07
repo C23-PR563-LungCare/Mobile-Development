@@ -10,7 +10,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.bangkit.lungcare.R
 import com.bangkit.lungcare.data.Result
@@ -61,7 +60,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun setupGoogleSignIn() {
-        binding.googleSignInBtn.setOnClickListener {
+        binding.googleLoginBtn.setOnClickListener {
             val signInClient = googleSignInClient.signInIntent
             resultLauncher.launch(signInClient)
         }

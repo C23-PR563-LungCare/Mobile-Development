@@ -7,18 +7,14 @@
     tools:context=".presentation.auth.login.LoginFragment">
 
     <TextView
-        android:id="@+id/titleTv"
-        android:layout_width="0dp"
+        android:id="@+id/headlineTv"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:text="@string/login_title"
-        android:textAlignment="center"
+        android:text="@string/headline_login_page"
         android:textColor="@color/blue_500"
         android:textSize="32sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/horizontalGuideline2" />
 
@@ -28,14 +24,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
         android:hint="@string/email"
         app:boxBackgroundColor="@null"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTv">
+        app:layout_constraintTop_toBottomOf="@+id/headlineTv">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailEdt"
@@ -93,7 +89,6 @@
         android:layout_marginEnd="24dp"
         android:padding="14dp"
         android:text="@string/login"
-        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/forgotPasswordTv"
@@ -104,7 +99,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="@string/or"
+        android:text="@string/option_auth"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/loginBtn" />
@@ -134,19 +129,25 @@
         app:layout_constraintStart_toEndOf="@id/optionTv"
         app:layout_constraintTop_toTopOf="@id/optionTv" />
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/googleSignInBtn"
-        android:layout_width="0dp"
+    <Button
+        android:id="@+id/googleLoginBtn"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="@dimen/default_size"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="24dp"
+        android:padding="14dp"
+        android:text="@string/continue_with_google"
+        android:textColor="@color/black"
+        app:icon="@drawable/googleg_standard_color_18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/optionTv" />
+        app:layout_constraintTop_toBottomOf="@+id/optionTv"
+        app:shapeAppearance="@style/roundCorner" />
 
     <TextView
-        android:id="@+id/dontHaveAccountTv"
+        android:id="@+id/footerTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -165,9 +166,9 @@
         android:layout_marginStart="8dp"
         android:text="@string/signup"
         android:textColor="@color/blue_500"
-        app:layout_constraintBottom_toBottomOf="@+id/dontHaveAccountTv"
-        app:layout_constraintStart_toEndOf="@+id/dontHaveAccountTv"
-        app:layout_constraintTop_toTopOf="@+id/dontHaveAccountTv" />
+        app:layout_constraintBottom_toBottomOf="@+id/footerTv"
+        app:layout_constraintStart_toEndOf="@+id/footerTv"
+        app:layout_constraintTop_toTopOf="@+id/footerTv" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progressbar"

@@ -7,17 +7,14 @@
     tools:context=".presentation.auth.register.RegisterFragment">
 
     <TextView
-        android:id="@+id/titleTv"
-        android:layout_width="0dp"
+        android:id="@+id/headlineTv"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/signup_title"
-        android:textAlignment="center"
+        android:layout_marginStart="24dp"
+        android:text="@string/headline_register_page"
         android:textColor="@color/blue_500"
         android:textSize="32sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/horizontalGuideline2" />
 
@@ -27,13 +24,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
         app:boxBackgroundColor="@null"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTv">
+        app:layout_constraintTop_toBottomOf="@+id/headlineTv">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/nameEdt"
@@ -107,45 +104,38 @@
         android:layout_marginEnd="24dp"
         android:padding="14dp"
         android:text="@string/signup"
-        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordEdtLayout"
         app:shapeAppearance="@style/roundCorner" />
 
-    <TextView
-        android:id="@+id/alreadyHaveAccountTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="24dp"
-        android:text="@string/already_have_account"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.3"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/loginTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/login"
-        android:textColor="@color/blue_500"
-        app:layout_constraintBottom_toBottomOf="@+id/alreadyHaveAccountTv"
-        app:layout_constraintStart_toEndOf="@+id/alreadyHaveAccountTv"
-        app:layout_constraintTop_toTopOf="@+id/alreadyHaveAccountTv" />
 
     <TextView
         android:id="@+id/optionTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="@string/or"
+        android:text="@string/option_auth"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/registerBtn" />
+
+    <Button
+        android:id="@+id/googleSignupBtn"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:padding="14dp"
+        android:text="@string/continue_with_google"
+        android:textColor="@color/black"
+        app:icon="@drawable/googleg_standard_color_18"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/optionTv"
+        app:shapeAppearance="@style/roundCorner" />
 
     <View
         android:id="@+id/line1"
@@ -172,16 +162,29 @@
         app:layout_constraintStart_toEndOf="@id/optionTv"
         app:layout_constraintTop_toTopOf="@id/optionTv" />
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/googleSignupBtn"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/footerTv"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/already_have_account"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/optionTv" />
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/loginTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/login"
+        android:textColor="@color/blue_500"
+        app:layout_constraintBottom_toBottomOf="@+id/footerTv"
+        app:layout_constraintStart_toEndOf="@+id/footerTv"
+        app:layout_constraintTop_toTopOf="@+id/footerTv" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progressbar"
@@ -214,6 +217,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
+        app:layout_constraintGuide_percent="0.15" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

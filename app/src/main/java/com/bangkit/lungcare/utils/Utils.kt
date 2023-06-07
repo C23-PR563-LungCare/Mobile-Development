@@ -9,6 +9,7 @@ import android.graphics.Matrix
 import android.net.Uri
 import android.os.Environment
 import com.bangkit.lungcare.R
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -17,6 +18,7 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 
 private const val FILENAME_FORMAT = "dd-MM-yyyy"
+private const val MAXIMAL_SIZE = 1000000
 
 val timeStamp: String = SimpleDateFormat(
     FILENAME_FORMAT,
@@ -27,7 +29,6 @@ fun createTempFile(context: Context): File {
     val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
     return File.createTempFile(timeStamp, ".jpg", storageDir)
 }
-
 
 fun createFile(application: Application): File {
     val mediaDir = application.externalMediaDirs.firstOrNull()?.let {
@@ -41,10 +42,10 @@ fun createFile(application: Application): File {
     return File(outputDirectory, "$timeStamp.jpg")
 }
 
-fun rotateFile(file: File) {
+fun rotateFile(file: File, isBackCamera: Boolean = false) {
     val matrix = Matrix()
     val bitmap = BitmapFactory.decodeFile(file.path)
-    val rotation = -90f
+    val rotation = 90f
     matrix.postRotate(rotation)
     val result = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
     result.compress(Bitmap.CompressFormat.JPEG, 100, FileOutputStream(file))
@@ -63,5 +64,42 @@ fun uriToFile(selectedImg: Uri, context: Context): File {
     inputStream.close()
 
     return myFile
+}
+
+fun reduceFileImage(file: File): File {
+    val bitmap = BitmapFactory.decodeFile(file.path)
+    var compressQuality = 100
+    var streamLength: Int
+    do {
+        val bmpStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, bmpStream)
+        val bmpPicByteArray = bmpStream.toByteArray()
+        streamLength = bmpPicByteArray.size
+        compressQuality -= 5
+    } while (streamLength > MAXIMAL_SIZE)
+    bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))
+    return file
+}
+
+fun rotateBitmap(bitmap: Bitmap, isBackCamera: Boolean = false): Bitmap {
+    val matrix = Matrix()
+    return if (isBackCamera) {
+        matrix.postRotate(90f)
+        Bitmap.createBitmap(
+            bitmap,
+            0,
+            0,
+            bitmap.width,
+            bitmap.height,
+            matrix,
+            true
+        )
+    } else {
+        matrix.postRotate(-90f)
+        matrix.postScale(-1f, 1f, bitmap.width / 2f, bitmap.height / 2f)
+        Bitmap.createBitmap(
+            bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true
+        )
+    }
 }
 

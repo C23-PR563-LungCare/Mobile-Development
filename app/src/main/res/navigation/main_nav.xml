@@ -11,8 +11,8 @@
         android:label="@string/label_home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_nav_home_to_postXrayActivity"
-            app:destination="@id/nav_postxray" />
+            android:id="@+id/action_nav_home_to_postXrayFragment"
+            app:destination="@id/postXrayFragment" />
     </fragment>
     <fragment
         android:id="@+id/nav_history"
@@ -24,11 +24,6 @@
         android:name="com.bangkit.lungcare.presentation.profile.ProfileFragment"
         android:label="@string/label_profile"
         tools:layout="@layout/fragment_profile" />
-    <activity
-        android:id="@+id/nav_postxray"
-        android:name="com.bangkit.lungcare.presentation.home.post.PostXrayActivity"
-        android:label="activity_post_xray"
-        tools:layout="@layout/activity_post_xray" />
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.bangkit.lungcare.presentation.auth.login.LoginFragment"
@@ -49,7 +44,13 @@
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment"
+            app:launchSingleTop="true"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/postXrayFragment"
+        android:name="com.bangkit.lungcare.presentation.home.post.PostXrayFragment"
+        android:label="fragment_post_xray"
+        tools:layout="@layout/fragment_post_xray" />
 </navigation>

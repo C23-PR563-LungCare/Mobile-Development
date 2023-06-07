@@ -5,16 +5,18 @@
     <string name="label_history">History</string>
     <string name="label_profile">Profile</string>
 
-    <string name="login_title">Login</string>
-    <string name="login_desc">Masukkan email dan Kata Sandi</string>
-    <string name="login">Sign In</string>
+    <string name="headline_login_page">Log in to your account</string>
+    <string name="login">Log In</string>
+
+    <string name="option_auth">OR</string>
+    <string name="continue_with_google">Continue with Google</string>
 
     <string name="dont_have_account">Don\'t have an account?</string>
     <string name="already_have_account">Already have an account?</string>
 
-    <string name="signup_title">Create your account</string>
-    <string name="signup_desc">Masukkan data untuk membuat akun</string>
+    <string name="headline_register_page">Create your account</string>
     <string name="signup">Sign Up</string>
+    <string name="options_register_page">Or register with</string>
 
     <string name="signup_success_message">Registration successful!</string>
 
@@ -22,35 +24,36 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="forgot_password">Forgot password?</string>
-    <string name="or">OR</string>
 
     <string name="err_name_field">Name Can\'t be blank</string>
     <string name="err_email_field">Email Can\'t be blank</string>
     <string name="err_password_field">Password Can\'t be blank</string>
 
+    <string name="note_post_xray">Note: You need to upload first the X-ray image through a camera or gallery.</string>
+
     <string name="welcome_message">Hi, %1$s</string>
 
-    <string name="welcome_dummy_message">Hi, Muhammad Amirul Bimantoro</string>
-
-    <string name="gallery">Open File</string>
-    <string name="camera">Open Camera</string>
-    <string name="upload">Upload</string>
+    <string name="gallery">Select from Gallery</string>
+    <string name="camera">Use Camera</string>
+    <string name="detect">Detect X-ray</string>
 
     <string name="title_menu">Scan X-ray</string>
 
-    <string name="err_open_camera">Failed to display camera</string>
+    <string name="err_open_camera">Failed to open camera</string>
     <string name="err_permission">Permission request denied</string>
+    <string name="err_take_picture">Failed to take picture</string>
+    <string name="err_capture_picture">Photo capture failed</string>
+
+    <string name="choose_picture">Choose a picture</string>
 
     <string name="placeholder_result">Result</string>
 
+    <string name="content_desc_to_post_xray_page">Redirect to X-ray detection page</string>
+    <string name="content_desc_image_preview">Preview image to be detect</string>
+    <string name="content_desc_capture">Take photo</string>
+
     <string name="view_more">View more</string>
 
-    <string name="err_capture_picture">Photo capture failed</string>
-
-    <string name="content_description_button">To X-ray Detection Page</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="article">Relate Articles</string>
     <string name="dummy_title_article">Tips Menjaga Kesehatan Paru-paru</string>
 </resources>

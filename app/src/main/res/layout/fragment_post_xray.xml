@@ -4,63 +4,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.home.post.PostXrayActivity">
+    tools:context=".presentation.home.post.PostXrayFragment">
 
     <ImageView
         android:id="@+id/previewIv"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
+        android:contentDescription="@string/content_desc_image_preview"
+        android:padding="16dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/placeholder_24" />
+
+    <TextView
+        android:id="@+id/noteTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/note_post_xray"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/horizontalGuideline" />
+
 
     <Button
         android:id="@+id/openCameraBtn"
+        style="?attr/materialButtonOutlinedStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="24dp"
+        android:padding="16dp"
         android:text="@string/camera"
-        app:icon="@drawable/add_a_photo_24"
-        app:iconGravity="textStart"
-        app:layout_constraintEnd_toStartOf="@+id/verticalGuideline"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/horizontalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/noteTv"
         app:shapeAppearance="@style/roundCorner" />
 
     <Button
         android:id="@+id/openGalleryBtn"
+        style="?attr/materialButtonOutlinedStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:padding="16dp"
         android:text="@string/gallery"
-        app:icon="@drawable/folder_24"
-        app:iconGravity="textStart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/verticalGuideline"
-        app:layout_constraintTop_toTopOf="@+id/horizontalGuideline"
+        app:layout_constraintEnd_toEndOf="@+id/openCameraBtn"
+        app:layout_constraintStart_toStartOf="@+id/openCameraBtn"
+        app:layout_constraintTop_toBottomOf="@+id/openCameraBtn"
         app:shapeAppearance="@style/roundCorner" />
 
     <Button
         android:id="@+id/uploadBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/upload"
-        app:icon="@drawable/upload_24px"
-        app:iconGravity="textStart"
+        android:padding="16dp"
+        android:text="@string/detect"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4" />
+        app:layout_constraintGuide_percent="0.45" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/verticalGuideline"

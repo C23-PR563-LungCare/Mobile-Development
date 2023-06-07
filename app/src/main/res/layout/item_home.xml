@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_home"
+    style="@style/Widget.Material3.CardView.Outlined"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
@@ -22,18 +23,27 @@
             app:srcCompat="@drawable/lung_48px" />
 
         <TextView
-            android:id="@+id/titleTv"
+            android:id="@+id/headlineTv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
             android:text="@string/title_menu"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/toPostXrayBtn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Scan X-ray" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/headlineTv"
+            app:layout_constraintStart_toStartOf="@+id/headlineTv"
+            app:layout_constraintTop_toBottomOf="@+id/headlineTv"
+            tools:text="Detect your lung problem" />
 
         <ImageButton
             android:id="@+id/toPostXrayBtn"
@@ -41,11 +51,11 @@
             android:layout_height="50dp"
             android:layout_marginEnd="-5dp"
             android:background="@null"
-            android:contentDescription="@string/content_description_button"
+            android:contentDescription="@string/content_desc_to_post_xray_page"
             android:src="@drawable/ic_arrow_circle_right"
-            app:layout_constraintBottom_toBottomOf="@+id/titleTv"
+            app:layout_constraintBottom_toBottomOf="@+id/headlineTv"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/titleTv" />
+            app:layout_constraintTop_toTopOf="@+id/headlineTv" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

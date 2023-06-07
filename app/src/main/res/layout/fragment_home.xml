@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_m"
         android:layout_marginEnd="@dimen/margin_m"
-        android:text="@string/welcome_dummy_message"
         android:textColor="@color/black"
         android:textSize="@dimen/text_size"
         android:textStyle="bold"
@@ -21,7 +20,7 @@
         app:layout_constraintEnd_toStartOf="@+id/profileIv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/profileIv"
-        tools:text="@string/welcome_dummy_message" />
+        tools:text="Hi, Muhammad Amirul Bimantoro" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/profileIv"

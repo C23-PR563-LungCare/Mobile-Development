@@ -43,6 +43,10 @@ class RegisterFragment : Fragment() {
     }
 
     private fun setupAction() {
+        binding.loginTv.setOnClickListener {
+            findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
+        }
+
         binding.registerBtn.setOnClickListener {
             val username = binding.nameEdt.text.toString()
             val email = binding.emailEdt.text.toString()
