@@ -3,9 +3,9 @@ package com.bangkit.lungcare.domain.usecase
 import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.domain.model.Login
 import com.bangkit.lungcare.domain.model.Register
-import com.bangkit.lungcare.domain.model.XrayItem
 import com.bangkit.lungcare.domain.model.Xray
 import com.bangkit.lungcare.domain.model.XrayUpload
+import com.bangkit.lungcare.domain.model.XrayUploadRequest
 import kotlinx.coroutines.flow.Flow
 
 interface XrayUseCase {
@@ -14,9 +14,9 @@ interface XrayUseCase {
 
     fun login(email: String, password: String): Flow<Result<Login>>
 
-    fun uploadXray(xray: XrayUpload): Flow<Result<Xray>>
+    fun uploadXray(xray: XrayUploadRequest): Flow<Result<XrayUpload>>
 
-    fun getAllXray(): Flow<Result<List<XrayItem>>>
+    fun getAllXray(): Flow<Result<List<Xray>>>
 
     suspend fun saveCredential(token: String)
 

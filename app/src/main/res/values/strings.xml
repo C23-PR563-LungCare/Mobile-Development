@@ -18,8 +18,6 @@
     <string name="signup">Sign Up</string>
     <string name="options_register_page">Or register with</string>
 
-    <string name="signup_success_message">Registration successful!</string>
-
     <string name="name">Name</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -43,6 +41,13 @@
     <string name="err_permission">Permission request denied</string>
     <string name="err_take_picture">Failed to take picture</string>
     <string name="err_capture_picture">Photo capture failed</string>
+    <string name="err_image_field">Picture can\'t be blank</string>
+
+    <string name="signup_success_message">Registration successful!</string>
+
+    <string name="date">Date:</string>
+    <string name="dummy_date">08–06–2023 06:05</string>
+    <string name="dummy_result">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consequat mollis augue, eget lobortis eros condimentum sed. Sed iaculis nunc ante, non faucibus libero laoreet eu. Sed sodales luctus tempus. Nulla facilisi. Phasellus feugiat pellentesque elit, id suscipit mi aliquam sed. Aenean ultrices, sem condimentum dapibus pellentesque, velit nunc dapibus leo, eget fermentum augue augue at nulla. Donec tempor felis et mi convallis dapibus.</string>
 
     <string name="choose_picture">Choose a picture</string>
 
@@ -56,4 +61,7 @@
 
     <string name="article">Relate Articles</string>
     <string name="dummy_title_article">Tips Menjaga Kesehatan Paru-paru</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="diagnosis">Diagnosis</string>
 </resources>

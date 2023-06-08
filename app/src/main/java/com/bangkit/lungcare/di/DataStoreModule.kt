@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
-import com.bangkit.lungcare.data.local.datastore.UserPreferences
-import com.bangkit.lungcare.data.local.datastore.UserPreferencesImpl
+import com.bangkit.lungcare.data.source.local.datastore.UserPreferences
+import com.bangkit.lungcare.data.source.local.datastore.UserPreferencesImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

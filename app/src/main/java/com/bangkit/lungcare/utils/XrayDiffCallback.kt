@@ -1,7 +1,7 @@
 package com.bangkit.lungcare.utils
 
 import androidx.recyclerview.widget.DiffUtil
-import com.bangkit.lungcare.data.remote.response.XrayItemResponse
+import com.bangkit.lungcare.data.source.remote.response.XrayItemResponse
 
 class XrayDiffCallback(
     private val oldXrayList: List<XrayItemResponse>,

@@ -1,4 +1,4 @@
-package com.bangkit.lungcare.data.remote.response
+package com.bangkit.lungcare.data.source.remote.response
 
 import com.google.gson.annotations.SerializedName
 

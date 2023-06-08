@@ -1,13 +1,13 @@
-package com.bangkit.lungcare.data.repository
+package com.bangkit.lungcare.data
 
-import com.bangkit.lungcare.data.Result
-import com.bangkit.lungcare.data.local.datastore.UserPreferences
-import com.bangkit.lungcare.data.remote.RemoteDataSource
+import android.util.Log
+import com.bangkit.lungcare.data.source.local.datastore.UserPreferences
+import com.bangkit.lungcare.data.source.remote.RemoteDataSource
 import com.bangkit.lungcare.domain.model.Login
 import com.bangkit.lungcare.domain.model.Register
-import com.bangkit.lungcare.domain.model.Xray
-import com.bangkit.lungcare.domain.model.XrayItem
 import com.bangkit.lungcare.domain.model.XrayUpload
+import com.bangkit.lungcare.domain.model.Xray
+import com.bangkit.lungcare.domain.model.XrayUploadRequest
 import com.bangkit.lungcare.domain.repository.XrayRepository
 import com.bangkit.lungcare.utils.DataMapper
 import kotlinx.coroutines.Dispatchers
@@ -52,24 +52,26 @@ class XrayRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
-    override fun uploadXray(xray: XrayUpload): Flow<Result<Xray>> = flow {
+    override fun uploadXray(xray: XrayUploadRequest): Flow<Result<XrayUpload>> = flow {
         emit(Result.Loading)
         try {
             val token = userPreferences.getToken().first()
             val response = remoteDataSource.uploadXray("Bearer $token", xray)
+            val result = DataMapper.mapXrayResponseToDomain(response)
 
-            emit(Result.Success(DataMapper.mapXrayResponseToDomain(response)))
+            emit(Result.Success(result))
 
         } catch (e: Exception) {
+            Log.d("UploadXray", "uploadXray: ${e.message}")
             emit(Result.Error(e.message.toString()))
         }
     }.flowOn(Dispatchers.IO)
 
-    override fun getAllXray(): Flow<Result<List<XrayItem>>> = flow {
+    override fun getAllXray(): Flow<Result<List<Xray>>> = flow {
         emit(Result.Loading)
         try {
             val token = userPreferences.getToken().first()
-            val response = remoteDataSource.getAllXray("Bearer $token")
+            val response = remoteDataSource.getAllXray(token)
             val result = DataMapper.mapXrayItemResponseToDomain(response.XrayResponse)
 
             emit(Result.Success(result))

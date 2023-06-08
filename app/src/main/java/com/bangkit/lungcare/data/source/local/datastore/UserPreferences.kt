@@ -1,4 +1,4 @@
-package com.bangkit.lungcare.data.local.datastore
+package com.bangkit.lungcare.data.source.local.datastore
 
 import kotlinx.coroutines.flow.Flow
 

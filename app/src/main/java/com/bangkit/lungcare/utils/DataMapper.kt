@@ -1,12 +1,12 @@
 package com.bangkit.lungcare.utils
 
-import com.bangkit.lungcare.data.remote.response.CommonResponse
-import com.bangkit.lungcare.data.remote.response.LoginResponse
-import com.bangkit.lungcare.data.remote.response.XrayItemResponse
+import com.bangkit.lungcare.data.source.remote.response.CommonResponse
+import com.bangkit.lungcare.data.source.remote.response.LoginResponse
+import com.bangkit.lungcare.data.source.remote.response.XrayItemResponse
 import com.bangkit.lungcare.domain.model.Login
 import com.bangkit.lungcare.domain.model.Register
+import com.bangkit.lungcare.domain.model.XrayUpload
 import com.bangkit.lungcare.domain.model.Xray
-import com.bangkit.lungcare.domain.model.XrayItem
 
 object DataMapper {
     fun mapRegisterResponseToDomain(input: CommonResponse?) = Register(
@@ -18,13 +18,13 @@ object DataMapper {
         token = input?.token
     )
 
-    fun mapXrayResponseToDomain(input: CommonResponse) = Xray(
+    fun mapXrayResponseToDomain(input: CommonResponse) = XrayUpload(
         message = input.message
     )
 
-    fun mapXrayItemResponseToDomain(input: List<XrayItemResponse>): List<XrayItem> =
+    fun mapXrayItemResponseToDomain(input: List<XrayItemResponse>): List<Xray> =
         input.map {
-            XrayItem(
+            Xray(
                 date = it.date,
                 gscLink = it.gcsLink,
                 processResult = it.processResult

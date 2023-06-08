@@ -16,6 +16,7 @@ import com.bangkit.lungcare.R
 import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.databinding.FragmentRegisterBinding
 import com.bangkit.lungcare.domain.model.Register
+import com.bangkit.lungcare.utils.safeNavigate
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -44,7 +45,7 @@ class RegisterFragment : Fragment() {
 
     private fun setupAction() {
         binding.loginTv.setOnClickListener {
-            findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
+            findNavController().safeNavigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
         }
 
         binding.registerBtn.setOnClickListener {
@@ -99,7 +100,7 @@ class RegisterFragment : Fragment() {
     }
 
     private fun moveToLogin() {
-        findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
+        findNavController().safeNavigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
     }
 
     override fun onDestroyView() {

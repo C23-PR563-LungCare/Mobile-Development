@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bangkit.lungcare.data.remote.response.XrayItemResponse
-import com.bangkit.lungcare.data.remote.response.XrayResponse
+import com.bangkit.lungcare.data.source.remote.response.XrayItemResponse
+import com.bangkit.lungcare.data.source.remote.response.XrayResponse
 import com.bangkit.lungcare.databinding.ItemHistoryBinding
 import com.bangkit.lungcare.utils.XrayDiffCallback
 import com.bumptech.glide.Glide

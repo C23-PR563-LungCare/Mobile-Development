@@ -1,6 +1,6 @@
 package com.bangkit.lungcare.di
 
-import com.bangkit.lungcare.data.repository.XrayRepositoryImpl
+import com.bangkit.lungcare.data.XrayRepositoryImpl
 import com.bangkit.lungcare.domain.repository.XrayRepository
 import dagger.Binds
 import dagger.Module

@@ -17,15 +17,25 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.setFragmentResultListener
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.bangkit.lungcare.R
+import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.databinding.FragmentPostXrayBinding
+import com.bangkit.lungcare.domain.model.XrayUpload
+import com.bangkit.lungcare.utils.reduceFileImage
 import com.bangkit.lungcare.utils.rotateBitmap
+import com.bangkit.lungcare.utils.safeNavigate
 import com.bangkit.lungcare.utils.uriToFile
 import com.bumptech.glide.Glide
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 
-
+@AndroidEntryPoint
 class PostXrayFragment : Fragment() {
+
+    private val viewModel by viewModels<PostXrayViewModel>()
 
     private var _binding: FragmentPostXrayBinding? = null
     private val binding get() = _binding!!
@@ -60,6 +70,58 @@ class PostXrayFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         launcherPermission.launch(REQUIRED_PERMISSION.first())
+
+        binding.apply {
+
+            openCameraBtn.setOnClickListener {
+                findNavController().safeNavigate(PostXrayFragmentDirections.actionPostXrayFragmentToCameraFragment())
+            }
+
+            openGalleryBtn.setOnClickListener {
+                startGallery()
+            }
+
+        }
+
+        setFragmentListener()
+
+        setupPostAction()
+    }
+
+    private fun setupPostAction() {
+        binding.uploadBtn.setOnClickListener {
+            if (getFile != null) {
+                val compressFile = reduceFileImage(getFile as File)
+                viewModel.uploadXrayToPredict(compressFile)
+            } else {
+                showToast(getString(R.string.err_image_field))
+            }
+
+            viewModel.xrayResult.observe(viewLifecycleOwner, observerPostXray)
+        }
+    }
+
+    private val observerPostXray = Observer<Result<XrayUpload>> { result ->
+        when (result) {
+            is Result.Loading -> {
+                binding.progressbar.visibility = View.VISIBLE
+            }
+
+            is Result.Error -> {
+                binding.progressbar.visibility = View.GONE
+                showToast(result.error)
+            }
+
+            is Result.Success -> {
+                binding.progressbar.visibility = View.GONE
+
+                moveToResult()
+            }
+        }
+    }
+
+    private fun moveToResult() {
+        findNavController().safeNavigate(PostXrayFragmentDirections.actionPostXrayFragmentToDetailXrayFragment())
     }
 
     private fun startGallery() {
@@ -82,9 +144,8 @@ class PostXrayFragment : Fragment() {
 
             val isBackCamera = bundle.getBoolean(IS_BACK_CAMERA, true)
 
-            getFile = myFile
-
-            getFile?.let { file ->
+            myFile?.let { file ->
+                getFile = file
                 binding.previewIv.let {
                     Glide.with(this)
                         .load(rotateBitmap(BitmapFactory.decodeFile(file.path), isBackCamera))
@@ -99,12 +160,15 @@ class PostXrayFragment : Fragment() {
     ) { result ->
         if (result.resultCode == RESULT_OK) {
             val selectedImage = result.data?.data as Uri
-            val myFile = uriToFile(selectedImage, requireActivity())
-            getFile = result?.data?.data?.let { uriToFile(it, requireActivity()) }
 
-            binding.previewIv.let {
-                Glide.with(requireActivity()).load(myFile).into(it)
+            selectedImage.let { uri ->
+                val myFile = uriToFile(uri, requireActivity())
+                getFile = myFile
+                binding.previewIv.let {
+                    Glide.with(requireActivity()).load(myFile).into(it)
+                }
             }
+
         }
     }
 

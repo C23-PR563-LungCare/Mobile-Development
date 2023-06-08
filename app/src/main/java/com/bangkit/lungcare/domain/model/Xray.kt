@@ -1,5 +1,7 @@
 package com.bangkit.lungcare.domain.model
 
 data class Xray(
-    val message: String? = null
+    val date: String? = null,
+    val processResult: String? = null,
+    val gscLink: String? = null
 )

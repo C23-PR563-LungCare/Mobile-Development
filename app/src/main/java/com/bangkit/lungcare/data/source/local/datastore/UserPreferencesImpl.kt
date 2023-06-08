@@ -1,4 +1,4 @@
-package com.bangkit.lungcare.data.local.datastore
+package com.bangkit.lungcare.data.source.local.datastore
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences

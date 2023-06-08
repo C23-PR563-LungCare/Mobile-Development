@@ -16,8 +16,8 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/lung_48px" />
@@ -33,13 +33,15 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/toPostXrayBtn"
             app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView"
             tools:text="Scan X-ray" />
 
         <TextView
+            android:id="@+id/textView2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/headlineTv"
             app:layout_constraintStart_toStartOf="@+id/headlineTv"
             app:layout_constraintTop_toBottomOf="@+id/headlineTv"
@@ -53,9 +55,9 @@
             android:background="@null"
             android:contentDescription="@string/content_desc_to_post_xray_page"
             android:src="@drawable/ic_arrow_circle_right"
-            app:layout_constraintBottom_toBottomOf="@+id/headlineTv"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/headlineTv" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

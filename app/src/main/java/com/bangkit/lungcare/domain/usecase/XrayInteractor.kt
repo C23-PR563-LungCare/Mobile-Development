@@ -3,9 +3,9 @@ package com.bangkit.lungcare.domain.usecase
 import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.domain.model.Login
 import com.bangkit.lungcare.domain.model.Register
-import com.bangkit.lungcare.domain.model.XrayItem
 import com.bangkit.lungcare.domain.model.Xray
 import com.bangkit.lungcare.domain.model.XrayUpload
+import com.bangkit.lungcare.domain.model.XrayUploadRequest
 import com.bangkit.lungcare.domain.repository.XrayRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -21,10 +21,10 @@ class XrayInteractor @Inject constructor(private val xrayRepository: XrayReposit
     override fun login(email: String, password: String): Flow<Result<Login>> =
         xrayRepository.login(email, password)
 
-    override fun uploadXray(xray: XrayUpload): Flow<Result<Xray>> =
+    override fun uploadXray(xray: XrayUploadRequest): Flow<Result<XrayUpload>> =
         xrayRepository.uploadXray(xray)
 
-    override fun getAllXray(): Flow<Result<List<XrayItem>>> =
+    override fun getAllXray(): Flow<Result<List<Xray>>> =
         xrayRepository.getAllXray()
 
     override suspend fun saveCredential(token: String) = xrayRepository.saveCredential(token)

@@ -25,6 +25,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding?.root)
 
         setupNavView()
+
+        val homeFragmentId = navHostController.graph.startDestinationId
+        val currentHome = navHostController.currentDestination?.id == homeFragmentId
+        when {
+            !currentHome -> navHostController.navigateUp()
+        }
     }
 
     private fun setupNavView() {

@@ -15,6 +15,7 @@ import com.bangkit.lungcare.R
 import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.databinding.FragmentLoginBinding
 import com.bangkit.lungcare.domain.model.Login
+import com.bangkit.lungcare.utils.safeNavigate
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -154,7 +155,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun moveToMain() {
-        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHome())
+        findNavController().safeNavigate(LoginFragmentDirections.actionLoginFragmentToNavHome())
     }
 
     override fun onDestroyView() {
