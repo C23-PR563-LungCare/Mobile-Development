@@ -3,13 +3,12 @@ package com.bangkit.lungcare.presentation.auth.login
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.domain.model.Login
 import com.bangkit.lungcare.domain.usecase.XrayUseCase
+import com.bangkit.lungcare.data.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -32,4 +31,6 @@ class LoginViewModel @Inject constructor(private val xrayUseCase: XrayUseCase) :
             xrayUseCase.saveCredential(token)
         }
     }
+
+    fun checkCredential() = xrayUseCase.checkCredential().asLiveData()
 }

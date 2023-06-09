@@ -1,6 +1,5 @@
 package com.bangkit.lungcare.data
 
-import android.util.Log
 import com.bangkit.lungcare.data.source.local.datastore.UserPreferences
 import com.bangkit.lungcare.data.source.remote.RemoteDataSource
 import com.bangkit.lungcare.domain.model.Login
@@ -62,7 +61,6 @@ class XrayRepositoryImpl @Inject constructor(
             emit(Result.Success(result))
 
         } catch (e: Exception) {
-            Log.d("UploadXray", "uploadXray: ${e.message}")
             emit(Result.Error(e.message.toString()))
         }
     }.flowOn(Dispatchers.IO)
@@ -71,13 +69,15 @@ class XrayRepositoryImpl @Inject constructor(
         emit(Result.Loading)
         try {
             val token = userPreferences.getToken().first()
-            val response = remoteDataSource.getAllXray(token)
+            val response = remoteDataSource.getAllXray("Bearer $token")
             val result = DataMapper.mapXrayItemResponseToDomain(response.XrayResponse)
 
             emit(Result.Success(result))
+
         } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
         }
+
     }.flowOn(Dispatchers.IO)
 
     override suspend fun saveCredential(token: String) = userPreferences.saveCredential(token)

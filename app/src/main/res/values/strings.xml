@@ -6,30 +6,38 @@
     <string name="label_profile">Profile</string>
 
     <string name="headline_login_page">Log in to your account</string>
-    <string name="login">Log In</string>
-
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
     <string name="option_auth">OR</string>
-    <string name="continue_with_google">Continue with Google</string>
-
     <string name="dont_have_account">Don\'t have an account?</string>
+    <string name="register_here">Register here</string>
     <string name="already_have_account">Already have an account?</string>
-
     <string name="headline_register_page">Create your account</string>
-    <string name="signup">Sign Up</string>
-    <string name="options_register_page">Or register with</string>
-
+    <string name="register">Register</string>
     <string name="name">Name</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="forgot_password">Forgot password?</string>
+    <string name="email_not_valid">Invalid email format</string>
+    <string name="password_not_valid">Password is too short (minimum is 8 characters)</string>
 
     <string name="err_name_field">Name Can\'t be blank</string>
     <string name="err_email_field">Email Can\'t be blank</string>
     <string name="err_password_field">Password Can\'t be blank</string>
+    <string name="err_open_camera">Failed to open camera</string>
+    <string name="err_permission">Permission request denied</string>
+    <string name="err_take_picture">Failed to take picture</string>
+    <string name="err_capture_picture">Photo capture failed</string>
+    <string name="err_image_field">Picture can\'t be blank</string>
+    <string name="err_login_message">Login Failed</string>
+
+    <string name="signup_success_message">Registration successful!</string>
+    <string name="login_success_message">Login successful!</string>
 
     <string name="note_post_xray">Note: You need to upload first the X-ray image through a camera or gallery.</string>
 
     <string name="welcome_message">Hi, %1$s</string>
+    <string name="detect_your_lung_problem">Detect your lung problem</string>
 
     <string name="gallery">Select from Gallery</string>
     <string name="camera">Use Camera</string>
@@ -37,13 +45,8 @@
 
     <string name="title_menu">Scan X-ray</string>
 
-    <string name="err_open_camera">Failed to open camera</string>
-    <string name="err_permission">Permission request denied</string>
-    <string name="err_take_picture">Failed to take picture</string>
-    <string name="err_capture_picture">Photo capture failed</string>
-    <string name="err_image_field">Picture can\'t be blank</string>
 
-    <string name="signup_success_message">Registration successful!</string>
+    <string name="coming_soon">Feature not available</string>
 
     <string name="date">Date:</string>
     <string name="dummy_date">08–06–2023 06:05</string>
@@ -59,9 +62,11 @@
 
     <string name="view_more">View more</string>
 
+    <string name="language">Language</string>
+    <string name="profile_setting">Profile settings</string>
+    <string name="terms_of_service">Terms of service</string>
+
     <string name="article">Relate Articles</string>
     <string name="dummy_title_article">Tips Menjaga Kesehatan Paru-paru</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="diagnosis">Diagnosis</string>
 </resources>

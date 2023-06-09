@@ -25,22 +25,36 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding?.root)
 
         setupNavView()
-
-        val homeFragmentId = navHostController.graph.startDestinationId
-        val currentHome = navHostController.currentDestination?.id == homeFragmentId
-        when {
-            !currentHome -> navHostController.navigateUp()
-        }
     }
 
     private fun setupNavView() {
         binding?.navView?.setupWithNavController(navHostController)
 
         navHostController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.loginFragment || destination.id == R.id.registerFragment) {
-                binding?.navView?.visibility = View.GONE
-            } else {
-                binding?.navView?.visibility = View.VISIBLE
+            when (destination.id) {
+                R.id.loginFragment -> {
+                    binding?.navView?.visibility = View.GONE
+                }
+
+                R.id.registerFragment -> {
+                    binding?.navView?.visibility = View.GONE
+                }
+
+                R.id.postXrayFragment -> {
+                    binding?.navView?.visibility = View.GONE
+                }
+
+                R.id.cameraFragment -> {
+                    binding?.navView?.visibility = View.GONE
+                }
+
+                R.id.detailXrayFragment -> {
+                    binding?.navView?.visibility = View.GONE
+                }
+
+                else -> {
+                    binding?.navView?.visibility = View.VISIBLE
+                }
             }
         }
     }

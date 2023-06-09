@@ -26,7 +26,6 @@ import com.bangkit.lungcare.databinding.FragmentPostXrayBinding
 import com.bangkit.lungcare.domain.model.XrayUpload
 import com.bangkit.lungcare.utils.reduceFileImage
 import com.bangkit.lungcare.utils.rotateBitmap
-import com.bangkit.lungcare.utils.safeNavigate
 import com.bangkit.lungcare.utils.uriToFile
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
@@ -70,35 +69,36 @@ class PostXrayFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         launcherPermission.launch(REQUIRED_PERMISSION.first())
+        setFragmentListener()
 
         binding.apply {
 
             openCameraBtn.setOnClickListener {
-                findNavController().safeNavigate(PostXrayFragmentDirections.actionPostXrayFragmentToCameraFragment())
+                findNavController().navigate(PostXrayFragmentDirections.actionPostXrayFragmentToCameraFragment())
             }
 
             openGalleryBtn.setOnClickListener {
                 startGallery()
             }
 
+            uploadBtn.setOnClickListener {
+                setupPostAction()
+            }
+
         }
 
-        setFragmentListener()
-
-        setupPostAction()
     }
 
     private fun setupPostAction() {
-        binding.uploadBtn.setOnClickListener {
-            if (getFile != null) {
-                val compressFile = reduceFileImage(getFile as File)
-                viewModel.uploadXrayToPredict(compressFile)
-            } else {
-                showToast(getString(R.string.err_image_field))
-            }
-
-            viewModel.xrayResult.observe(viewLifecycleOwner, observerPostXray)
+        if (getFile != null) {
+            val compressFile = reduceFileImage(getFile as File)
+            viewModel.uploadXrayToPredict(compressFile)
+        } else {
+            showToast(getString(R.string.err_image_field))
         }
+
+        viewModel.xrayResult.observe(viewLifecycleOwner, observerPostXray)
+
     }
 
     private val observerPostXray = Observer<Result<XrayUpload>> { result ->
@@ -121,7 +121,7 @@ class PostXrayFragment : Fragment() {
     }
 
     private fun moveToResult() {
-        findNavController().safeNavigate(PostXrayFragmentDirections.actionPostXrayFragmentToDetailXrayFragment())
+        findNavController().navigate(PostXrayFragmentDirections.actionPostXrayFragmentToDetailXrayFragment())
     }
 
     private fun startGallery() {

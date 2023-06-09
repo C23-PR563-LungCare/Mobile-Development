@@ -16,8 +16,8 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/lung_48px" />
@@ -37,11 +37,12 @@
             tools:text="Scan X-ray" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/descTv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textSize="16sp"
+            android:text="@string/detect_your_lung_problem"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="@+id/headlineTv"
             app:layout_constraintStart_toStartOf="@+id/headlineTv"
             app:layout_constraintTop_toBottomOf="@+id/headlineTv"

@@ -8,13 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bangkit.lungcare.databinding.FragmentHomeBinding
-import com.bangkit.lungcare.utils.safeNavigate
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-    private val homeViewModel by viewModels<HomeViewModel>()
+    private val viewModel by viewModels<HomeViewModel>()
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -31,13 +30,10 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupAction()
-    }
-
-    private fun setupAction() {
         binding.itemHome.toPostXrayBtn.setOnClickListener {
-            findNavController().safeNavigate(HomeFragmentDirections.actionNavHomeToPostXrayFragment())
+            findNavController().navigate(HomeFragmentDirections.actionNavHomeToPostXrayFragment())
         }
+
     }
 
     override fun onDestroyView() {

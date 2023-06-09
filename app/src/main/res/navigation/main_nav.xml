@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_nav_home_to_postXrayFragment"
             app:destination="@id/postXrayFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/nav_history"
@@ -23,12 +26,19 @@
         android:id="@+id/nav_profile"
         android:name="com.bangkit.lungcare.presentation.profile.ProfileFragment"
         android:label="@string/label_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_nav_profile_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.bangkit.lungcare.presentation.auth.login.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_nav_home"
             app:destination="@id/nav_home" />
@@ -40,11 +50,11 @@
         android:id="@+id/registerFragment"
         android:name="com.bangkit.lungcare.presentation.auth.register.RegisterFragment"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" >
+        tools:layout="@layout/fragment_register">
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment"
-            app:launchSingleTop="true"
+            app:launchSingleTop="false"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -52,7 +62,7 @@
         android:id="@+id/postXrayFragment"
         android:name="com.bangkit.lungcare.presentation.home.post.PostXrayFragment"
         android:label="fragment_post_xray"
-        tools:layout="@layout/fragment_post_xray" >
+        tools:layout="@layout/fragment_post_xray">
         <action
             android:id="@+id/action_postXrayFragment_to_detailXrayFragment"
             app:destination="@id/detailXrayFragment" />
@@ -69,7 +79,7 @@
         android:id="@+id/cameraFragment"
         android:name="com.bangkit.lungcare.presentation.camera.CameraFragment"
         android:label="fragment_camera"
-        tools:layout="@layout/fragment_camera" >
+        tools:layout="@layout/fragment_camera">
         <action
             android:id="@+id/action_cameraFragment_to_postXrayFragment"
             app:destination="@id/postXrayFragment" />

@@ -4,50 +4,51 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bangkit.lungcare.data.source.remote.response.XrayItemResponse
-import com.bangkit.lungcare.data.source.remote.response.XrayResponse
 import com.bangkit.lungcare.databinding.ItemHistoryBinding
-import com.bangkit.lungcare.utils.XrayDiffCallback
+import com.bangkit.lungcare.domain.model.Xray
+import com.bangkit.lungcare.utils.DateFormatter
 import com.bumptech.glide.Glide
+import java.util.TimeZone
 
-class XrayAdapter(private val listDataXray: ArrayList<XrayItemResponse>) :
-    RecyclerView.Adapter<XrayAdapter.ListViewHolder>() {
+class XrayAdapter : ListAdapter<Xray, XrayAdapter.ListViewHolder>(DIFF_CALLBACK) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ListViewHolder(
-        ItemHistoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-    )
-
-    override fun getItemCount(): Int = listDataXray.size
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder =
+        ListViewHolder(
+            ItemHistoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        )
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val data = listDataXray[position]
-        holder.bind(data)
+        val xray = getItem(position)
+        holder.bind(xray)
     }
 
     inner class ListViewHolder(private var binding: ItemHistoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: XrayItemResponse) {
-            with(binding) {
+        fun bind(data: Xray) {
+            binding.apply {
+                dateTv.text = DateFormatter.formatData(data.date, TimeZone.getDefault().id)
+                thumbnailTv.loadImage(data.gscLink)
                 resultTv.text = data.processResult
-                thumbnailTv.loadImage(data.gcsLink)
             }
         }
+
     }
 
     private fun ImageView.loadImage(url: String?) {
-        Glide.with(this.context)
-            .load(url)
-
-            .into(this)
+        Glide.with(this).load(url).into(this)
     }
 
-    fun setListXray(newListDataXray: List<XrayItemResponse>) {
-        val diffCallback = XrayDiffCallback(listDataXray, newListDataXray)
-        val diffResult = DiffUtil.calculateDiff(diffCallback)
-        listDataXray.clear()
-        listDataXray.addAll(newListDataXray)
-        diffResult.dispatchUpdatesTo(this)
+    companion object {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Xray>() {
+            override fun areItemsTheSame(oldItem: Xray, newItem: Xray): Boolean =
+                oldItem.gscLink == newItem.gscLink
+
+            override fun areContentsTheSame(oldItem: Xray, newItem: Xray): Boolean =
+                oldItem == newItem
+
+        }
     }
 }

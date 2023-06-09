@@ -1,37 +1,24 @@
 package com.bangkit.lungcare.presentation.auth.login
 
-import android.app.Activity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.contract.ActivityResultContracts
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bangkit.lungcare.R
-import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.databinding.FragmentLoginBinding
 import com.bangkit.lungcare.domain.model.Login
-import com.bangkit.lungcare.utils.safeNavigate
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.GoogleAuthProvider
+import com.bangkit.lungcare.data.Result
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private val viewModel by viewModels<LoginViewModel>()
-
-    private lateinit var googleSignInClient: GoogleSignInClient
-    private lateinit var auth: FirebaseAuth
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
@@ -48,86 +35,47 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val gso = GoogleSignInOptions
-            .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-
-        googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
-
-        setupGoogleSignIn()
-        setupAction()
-    }
-
-    private fun setupGoogleSignIn() {
-        binding.googleLoginBtn.setOnClickListener {
-            val signInClient = googleSignInClient.signInIntent
-            resultLauncher.launch(signInClient)
-        }
-    }
-
-    private fun firebaseAuthWithGoogle(idToken: String) {
-        val credential = GoogleAuthProvider.getCredential(idToken, null)
-        auth.signInWithCredential(credential)
-            .addOnCompleteListener(requireActivity()) { task ->
-                if (task.isSuccessful) {
-                    Log.d(TAG, "signInWithCredential:success")
-                    val user = auth.currentUser
-                    updateUi(user)
-                } else {
-                    Log.d(TAG, "signInWithCredential:failure", task.exception)
-                    updateUi(null)
-                }
+        viewModel.checkCredential().observe(viewLifecycleOwner) { isLogin ->
+            if (isLogin) {
+                moveToMain()
             }
-    }
-
-    private fun updateUi(currentUser: FirebaseUser?) {
-        if (currentUser != null) {
-            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHome())
         }
-    }
 
-    private var resultLauncher = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-            try {
-                val account = task.getResult(ApiException::class.java)!!
-                Log.d(TAG, "firebaseAuthWithGoogle: ${account.id}")
-                firebaseAuthWithGoogle(account.idToken!!)
-            } catch (e: ApiException) {
-                Log.w(TAG, "Google sign in failed", e)
+        binding.apply {
+
+            loginBtn.setOnClickListener {
+                setupLogin()
+            }
+
+            goToSignupTv.setOnClickListener {
+                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
+            }
+
+            forgotPasswordTv.setOnClickListener {
+                showToast(getString(R.string.coming_soon))
             }
         }
     }
 
-    private fun setupAction() {
-        binding.signupTv.setOnClickListener {
-            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
-        }
+    private fun setupLogin() {
+        val email = binding.emailEdt.text.toString()
+        val password = binding.passwordEdt.text.toString()
 
-        binding.loginBtn.setOnClickListener {
-            val email = binding.emailEdt.text.toString()
-            val password = binding.passwordEdt.text.toString()
-
-            when {
-                email.isEmpty() -> {
-                    binding.emailEdtLayout.error = getString(R.string.err_email_field)
-                }
-
-                password.isEmpty() -> {
-                    binding.passwordEdtLayout.error = getString(R.string.err_password_field)
-                }
-
-                else -> {
-                    viewModel.login(email, password)
-                }
+        when {
+            email.isEmpty() -> {
+                binding.emailEdtLayout.error = getString(R.string.err_email_field)
             }
 
-            viewModel.loginResult.observe(viewLifecycleOwner, observerLogin)
+            password.isEmpty() -> {
+                binding.passwordEdtLayout.error = getString(R.string.err_password_field)
+            }
+
+            else -> {
+                viewModel.login(email, password)
+            }
         }
+
+        viewModel.loginResult.observe(viewLifecycleOwner, observerLogin)
     }
 
     private val observerLogin = Observer<Result<Login>>
@@ -139,6 +87,8 @@ class LoginFragment : Fragment() {
 
             is Result.Error -> {
                 binding.progressbar.visibility = View.GONE
+
+                showToast(result.error)
             }
 
             is Result.Success -> {
@@ -146,25 +96,24 @@ class LoginFragment : Fragment() {
 
                 val token = result.data.token
                 token?.let {
-                    viewModel.saveCredential(token)
+                    viewModel.saveCredential(it)
                 }
-
                 moveToMain()
             }
         }
     }
 
     private fun moveToMain() {
-        findNavController().safeNavigate(LoginFragmentDirections.actionLoginFragmentToNavHome())
+        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToNavHome())
+    }
+
+    private fun showToast(message: String?) {
+        Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    companion object {
-        const val TAG = "LoginFragment"
     }
 
 }
