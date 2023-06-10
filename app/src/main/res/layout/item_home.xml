@@ -7,46 +7,48 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    app:strokeColor="@color/blue_200">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp">
+        android:padding="16dp">
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:id="@+id/lungIv"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/lung_48px" />
+            app:srcCompat="@drawable/lung_48px"
+            app:tint="@color/blue_700"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/headlineTv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/poppins_semi_bold"
             android:text="@string/scan_xray"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/toPostXrayBtn"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/imageView"
-            tools:text="Scan X-ray" />
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/verticalGuideline"
+            app:layout_constraintStart_toEndOf="@+id/lungIv"
+            app:layout_constraintTop_toTopOf="@+id/lungIv" />
 
         <TextView
             android:id="@+id/descTv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins_regular"
             android:text="@string/detect_your_lung_problem"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="@+id/headlineTv"
             app:layout_constraintStart_toStartOf="@+id/headlineTv"
-            app:layout_constraintTop_toBottomOf="@+id/headlineTv"
-            tools:text="Detect your lung problem" />
+            app:layout_constraintTop_toBottomOf="@+id/headlineTv" />
 
         <ImageButton
             android:id="@+id/toPostXrayBtn"
@@ -58,7 +60,15 @@
             android:src="@drawable/ic_arrow_circle_right"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/blue_700" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/verticalGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.85" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

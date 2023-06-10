@@ -11,8 +11,9 @@ import kotlinx.coroutines.flow.Flow
 interface XrayRepository {
     fun register(username: String, email: String, password: String): Flow<Result<Register>>
     fun login(email: String, password: String): Flow<Result<Login>>
-    fun uploadXray(xray: XrayUploadRequest): Flow<Result<XrayUpload>>
-    fun getAllXray(): Flow<Result<List<Xray>>>
+    fun uploadXray(token: String, xray: XrayUploadRequest): Flow<Result<XrayUpload>>
+    fun getAllXray(token: String): Flow<Result<List<Xray>>>
+    fun getToken(): Flow<String>
     suspend fun saveCredential(token: String)
     suspend fun deleteCredential()
     fun checkCredential(): Flow<Boolean>

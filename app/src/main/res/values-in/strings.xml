@@ -5,18 +5,19 @@
     <string name="label_profile">Profile</string>
 
     <string name="login_to_your_account">Log in to your account</string>
-    <string name="login">Login</string>
-    <string name="logout">Logout</string>
-    <string name="or">OR</string>
-    <string name="dont_have_account">Don\'t have an account?</string>
-    <string name="register_here">Register here</string>
-    <string name="already_have_account">Already have an account?</string>
+    <string name="login">Masuk</string>
+    <string name="logout">Keluar</string>
+    <string name="or">ATAU</string>
+    <string name="dont_have_account">Tidak punya akun?</string>
+    <string name="register_here">Daftar disini</string>
+    <string name="login_here">Masuk disini</string>
+    <string name="already_have_account">Sudah punya akun?</string>
     <string name="create_your_account">Create your account</string>
-    <string name="register">Register</string>
-    <string name="name">Name</string>
+    <string name="register">Daftar</string>
+    <string name="name">Nama</string>
     <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="forgot_password">Forgot password?</string>
+    <string name="password">Kata Sandi</string>
+    <string name="forgot_password">Lupa kata sandi?</string>
     <string name="email_not_valid">Invalid email format</string>
     <string name="password_not_valid">Password is too short (minimum is 8 characters)</string>
 
@@ -30,7 +31,7 @@
     <string name="err_image_field">Picture can\'t be blank</string>
     <string name="err_login_message">Login Failed</string>
 
-    <string name="signup_success_message">Registration successful!</string>
+    <string name="signup_success_message">Registrasi berhasil!</string>
     <string name="login_success_message">Login successful!</string>
 
     <string name="body_message_post_xray">Note: You need to upload first the X-ray image through a camera or gallery.</string>

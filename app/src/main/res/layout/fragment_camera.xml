@@ -21,7 +21,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/baseline_photo_camera" />
+        app:srcCompat="@drawable/ic_photo_camera" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

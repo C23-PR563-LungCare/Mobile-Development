@@ -32,14 +32,6 @@ class MainActivity : AppCompatActivity() {
 
         navHostController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.loginFragment -> {
-                    binding?.navView?.visibility = View.GONE
-                }
-
-                R.id.registerFragment -> {
-                    binding?.navView?.visibility = View.GONE
-                }
-
                 R.id.postXrayFragment -> {
                     binding?.navView?.visibility = View.GONE
                 }

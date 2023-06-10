@@ -25,16 +25,6 @@
         android:label="@string/label_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.bangkit.lungcare.presentation.auth.login.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login"/>
-    <fragment
-        android:id="@+id/registerFragment"
-        android:name="com.bangkit.lungcare.presentation.auth.register.RegisterFragment"
-        android:label="fragment_register"
-        tools:layout="@layout/fragment_register"/>
-    <fragment
         android:id="@+id/postXrayFragment"
         android:name="com.bangkit.lungcare.presentation.home.post.PostXrayFragment"
         android:label="fragment_post_xray"

@@ -23,9 +23,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:fontFamily="@font/poppins_medium"
         android:hint="@string/article_title"
         android:textSize="18sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/posterIv"
         app:layout_constraintTop_toTopOf="@+id/posterIv"
@@ -36,21 +36,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:cardBackgroundColor="?attr/colorPrimary"
+        app:cardBackgroundColor="@color/blue_700"
         app:layout_constraintStart_toStartOf="@+id/headlineTv"
-        app:layout_constraintTop_toBottomOf="@+id/headlineTv">
+        app:layout_constraintTop_toBottomOf="@+id/headlineTv"
+        app:strokeColor="@android:color/transparent">
 
 
         <TextView
             android:id="@+id/categoryArticleTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
             android:hint="@string/article_category"
-            android:padding="4dp"
+            android:padding="2dp"
             android:textAlignment="center"
             android:textColor="@color/white"
             tools:text="@string/dummy_category_title" />
 
     </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/posterIv"
+        app:layout_constraintTop_toBottomOf="@+id/posterIv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -51,24 +51,23 @@ class XrayRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
-    override fun uploadXray(xray: XrayUploadRequest): Flow<Result<XrayUpload>> = flow {
+    override fun uploadXray(token: String, xray: XrayUploadRequest): Flow<Result<XrayUpload>> =
+        flow {
+            emit(Result.Loading)
+            try {
+                val response = remoteDataSource.uploadXray("Bearer $token", xray)
+                val result = DataMapper.mapXrayResponseToDomain(response)
+
+                emit(Result.Success(result))
+
+            } catch (e: Exception) {
+                emit(Result.Error(e.message.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+
+    override fun getAllXray(token: String): Flow<Result<List<Xray>>> = flow {
         emit(Result.Loading)
         try {
-            val token = userPreferences.getToken().first()
-            val response = remoteDataSource.uploadXray("Bearer $token", xray)
-            val result = DataMapper.mapXrayResponseToDomain(response)
-
-            emit(Result.Success(result))
-
-        } catch (e: Exception) {
-            emit(Result.Error(e.message.toString()))
-        }
-    }.flowOn(Dispatchers.IO)
-
-    override fun getAllXray(): Flow<Result<List<Xray>>> = flow {
-        emit(Result.Loading)
-        try {
-            val token = userPreferences.getToken().first()
             val response = remoteDataSource.getAllXray("Bearer $token")
             val result = DataMapper.mapXrayItemResponseToDomain(response.XrayResponse)
 
@@ -79,6 +78,8 @@ class XrayRepositoryImpl @Inject constructor(
         }
 
     }.flowOn(Dispatchers.IO)
+
+    override fun getToken(): Flow<String> = userPreferences.getToken()
 
     override suspend fun saveCredential(token: String) = userPreferences.saveCredential(token)
 

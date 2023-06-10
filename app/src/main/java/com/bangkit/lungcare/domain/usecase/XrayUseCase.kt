@@ -14,9 +14,11 @@ interface XrayUseCase {
 
     fun login(email: String, password: String): Flow<Result<Login>>
 
-    fun uploadXray(xray: XrayUploadRequest): Flow<Result<XrayUpload>>
+    fun uploadXray(token: String, xray: XrayUploadRequest): Flow<Result<XrayUpload>>
 
-    fun getAllXray(): Flow<Result<List<Xray>>>
+    fun getAllXray(token: String): Flow<Result<List<Xray>>>
+
+    fun getToken(): Flow<String>
 
     suspend fun saveCredential(token: String)
 

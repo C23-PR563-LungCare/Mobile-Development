@@ -1,8 +1,8 @@
 package com.bangkit.lungcare.data.source.remote.retrofit
 
-import com.bangkit.lungcare.data.source.remote.response.CommonResponse
+import com.bangkit.lungcare.data.source.remote.response.RegisterResponse
 import com.bangkit.lungcare.data.source.remote.response.LoginResponse
-import com.bangkit.lungcare.data.source.remote.response.XrayItemResponse
+import com.bangkit.lungcare.data.source.remote.response.UploadXrayResponse
 import com.bangkit.lungcare.data.source.remote.response.XrayResponse
 import okhttp3.MultipartBody
 import retrofit2.http.Field
@@ -20,7 +20,7 @@ interface XrayApiService {
         @Field("username") username: String,
         @Field("email") email: String,
         @Field("password") password: String
-    ): CommonResponse
+    ): RegisterResponse
 
     @FormUrlEncoded
     @POST("login")
@@ -34,7 +34,7 @@ interface XrayApiService {
     suspend fun uploadXray(
         @Header("Authorization") token: String,
         @Part file: MultipartBody.Part,
-    ): CommonResponse
+    ): UploadXrayResponse
 
     @GET("history")
     suspend fun getAll(

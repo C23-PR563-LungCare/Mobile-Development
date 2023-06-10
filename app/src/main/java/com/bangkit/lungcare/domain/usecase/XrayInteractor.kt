@@ -21,11 +21,13 @@ class XrayInteractor @Inject constructor(private val xrayRepository: XrayReposit
     override fun login(email: String, password: String): Flow<Result<Login>> =
         xrayRepository.login(email, password)
 
-    override fun uploadXray(xray: XrayUploadRequest): Flow<Result<XrayUpload>> =
-        xrayRepository.uploadXray(xray)
+    override fun uploadXray(token: String, xray: XrayUploadRequest): Flow<Result<XrayUpload>> =
+        xrayRepository.uploadXray(token, xray)
 
-    override fun getAllXray(): Flow<Result<List<Xray>>> =
-        xrayRepository.getAllXray()
+    override fun getAllXray(token: String): Flow<Result<List<Xray>>> =
+        xrayRepository.getAllXray(token)
+
+    override fun getToken(): Flow<String> = xrayRepository.getToken()
 
     override suspend fun saveCredential(token: String) = xrayRepository.saveCredential(token)
 

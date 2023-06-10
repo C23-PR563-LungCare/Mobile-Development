@@ -1,5 +1,9 @@
 package com.bangkit.lungcare.domain.model
 
 data class XrayUpload(
-    val message: String?
+    val result: String?,
+    val id: String?,
+    val gcsLink: String?,
+    val message: String?,
+    val username: String?
 )
