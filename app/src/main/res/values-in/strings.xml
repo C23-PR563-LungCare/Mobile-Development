@@ -1,6 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">LungCare</string>
-
     <string name="label_home">Home</string>
     <string name="label_history">History</string>
     <string name="label_profile">Profile</string>
@@ -18,7 +17,7 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="forgot_password">Forgot password?</string>
-    <string name="email_not_valid">Email is invalid</string>
+    <string name="email_not_valid">Invalid email format</string>
     <string name="password_not_valid">Password is too short (minimum is 8 characters)</string>
 
     <string name="err_name_field">Name Can\'t be blank</string>
@@ -73,4 +72,5 @@
 
     <string name="article">Relate Articles</string>
     <string name="diagnosis">Diagnosis</string>
+
 </resources>

@@ -1,42 +1,34 @@
 package com.bangkit.lungcare.presentation.auth.register
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.viewModels
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import com.bangkit.lungcare.R
 import com.bangkit.lungcare.data.Result
-import com.bangkit.lungcare.databinding.FragmentRegisterBinding
+import com.bangkit.lungcare.databinding.ActivityRegisterBinding
 import com.bangkit.lungcare.domain.model.Register
+import com.bangkit.lungcare.presentation.auth.login.LoginActivity
 import com.jakewharton.rxbinding2.widget.RxTextView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RegisterFragment : Fragment() {
+class RegisterActivity : AppCompatActivity() {
 
     private val viewModel by viewModels<RegisterViewModel>()
 
-    private var _binding: FragmentRegisterBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: ActivityRegisterBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        _binding = FragmentRegisterBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        supportActionBar?.hide()
 
         binding.apply {
             registerBtn.setOnClickListener {
@@ -44,7 +36,7 @@ class RegisterFragment : Fragment() {
             }
 
             goToLoginTv.setOnClickListener {
-                findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
+                startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
             }
         }
 
@@ -90,7 +82,7 @@ class RegisterFragment : Fragment() {
             }
         }
 
-        viewModel.registerResult.observe(viewLifecycleOwner, observerRegister)
+        viewModel.registerResult.observe(this, observerRegister)
     }
 
     private val observerRegister = Observer<Result<Register>> { result ->
@@ -113,7 +105,8 @@ class RegisterFragment : Fragment() {
     }
 
     private fun showEmailExistAlert(isNotValid: Boolean) {
-        binding.emailEdtLayout.error = if (isNotValid) getString(R.string.email_not_valid) else null
+        binding.emailEdtLayout.error =
+            if (isNotValid) getString(R.string.email_not_valid) else null
     }
 
     private fun showPasswordMinimalAlert(isNotValid: Boolean) {
@@ -122,15 +115,13 @@ class RegisterFragment : Fragment() {
     }
 
     private fun moveToLogin() {
-        findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
+        val intent = Intent(this, LoginActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        }
+        startActivity(intent)
     }
 
     private fun showToast(message: String?) {
-        Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }

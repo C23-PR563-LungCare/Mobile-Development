@@ -8,8 +8,8 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/posterIv"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -23,11 +23,34 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/dummy_title_article"
+        android:hint="@string/article_title"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/posterIv"
-        app:layout_constraintTop_toTopOf="@+id/posterIv" />
+        app:layout_constraintTop_toTopOf="@+id/posterIv"
+        tools:text="@string/dummy_article_title" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:cardBackgroundColor="?attr/colorPrimary"
+        app:layout_constraintStart_toStartOf="@+id/headlineTv"
+        app:layout_constraintTop_toBottomOf="@+id/headlineTv">
+
+
+        <TextView
+            android:id="@+id/categoryArticleTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/article_category"
+            android:padding="4dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            tools:text="@string/dummy_category_title" />
+
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

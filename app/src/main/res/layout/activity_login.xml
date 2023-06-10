@@ -4,44 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.auth.register.RegisterFragment">
+    tools:context=".presentation.auth.login.LoginActivity">
 
     <TextView
         android:id="@+id/headlineTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="@string/headline_register_page"
-        android:textColor="@color/blue_500"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/horizontalGuideline2" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/nameEdtLayout"
-        style="?attr/textInputFilledStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
-        app:boxBackgroundColor="@null"
-        app:errorEnabled="true"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/login_to_your_account"
+        android:textColor="@color/blue_500"
+        android:textSize="32sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headlineTv">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nameEdt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/name"
-            android:inputType="textPersonName"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toTopOf="@+id/horizontalGuideline2" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailEdtLayout"
@@ -49,20 +27,21 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
         android:hint="@string/email"
         app:boxBackgroundColor="@null"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameEdtLayout">
+        app:layout_constraintTop_toBottomOf="@+id/headlineTv">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailEdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:fontFamily="@font/poppins_regular"
             android:inputType="textEmailAddress"
             tools:ignore="SpeakableTextPresentCheck" />
 
@@ -89,44 +68,59 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:fontFamily="@font/poppins_regular"
             android:inputType="textPassword"
             tools:ignore="SpeakableTextPresentCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/forgotPasswordTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/forgot_password"
+        android:textColor="@color/blue_500"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordEdtLayout" />
+
 
     <Button
-        android:id="@+id/registerBtn"
+        android:id="@+id/loginBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
+        android:fontFamily="@font/poppins_medium"
         android:padding="14dp"
-        android:text="@string/register"
+        android:text="@string/login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEdtLayout"
+        app:layout_constraintTop_toBottomOf="@+id/forgotPasswordTv"
         app:shapeAppearance="@style/roundCorner" />
-
 
     <TextView
         android:id="@+id/footerTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/already_have_account"
-        app:layout_constraintEnd_toEndOf="@+id/registerBtn"
-        app:layout_constraintHorizontal_bias="0.30"
-        app:layout_constraintStart_toStartOf="@+id/registerBtn"
-        app:layout_constraintTop_toBottomOf="@+id/registerBtn" />
+        android:fontFamily="@font/poppins_regular"
+        android:gravity="center"
+        android:text="@string/dont_have_account"
+        app:layout_constraintEnd_toEndOf="@+id/loginBtn"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="@+id/loginBtn"
+        app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
 
     <TextView
-        android:id="@+id/goToLoginTv"
+        android:id="@+id/goToSignupTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:text="@string/login"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/register_here"
         android:textColor="@color/blue_500"
         app:layout_constraintBottom_toBottomOf="@+id/footerTv"
         app:layout_constraintStart_toEndOf="@+id/footerTv"
@@ -163,6 +157,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.15" />
+        app:layout_constraintGuide_percent="0.25" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -40,7 +40,7 @@ class ProfileFragment : Fragment() {
     private fun setupAction() {
         binding.apply {
             profileSettingBtn.setOnClickListener {
-                showToast(getString(R.string.coming_soon))
+                showToast(getString(R.string.feature_not_available))
             }
 
             languageBtn.setOnClickListener {
@@ -48,7 +48,7 @@ class ProfileFragment : Fragment() {
             }
 
             termOfServiceBtn.setOnClickListener {
-                showToast(getString(R.string.coming_soon))
+                showToast(getString(R.string.feature_not_available))
             }
 
             logoutBtn.setOnClickListener {
@@ -59,7 +59,6 @@ class ProfileFragment : Fragment() {
     }
 
     private fun moveToLogin() {
-        findNavController().navigate(ProfileFragmentDirections.actionNavProfileToLoginFragment())
     }
 
     private fun showToast(message: String) {
