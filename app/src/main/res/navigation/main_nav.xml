@@ -9,11 +9,7 @@
         android:id="@+id/nav_home"
         android:name="com.bangkit.lungcare.presentation.home.HomeFragment"
         android:label="@string/label_home"
-        tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/action_nav_home_to_postXrayFragment"
-            app:destination="@id/postXrayFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_home"/>
     <fragment
         android:id="@+id/nav_history"
         android:name="com.bangkit.lungcare.presentation.history.HistoryFragment"
@@ -24,30 +20,4 @@
         android:name="com.bangkit.lungcare.presentation.profile.ProfileFragment"
         android:label="@string/label_profile"
         tools:layout="@layout/fragment_profile" />
-    <fragment
-        android:id="@+id/postXrayFragment"
-        android:name="com.bangkit.lungcare.presentation.home.post.PostXrayFragment"
-        android:label="fragment_post_xray"
-        tools:layout="@layout/fragment_post_xray">
-        <action
-            android:id="@+id/action_postXrayFragment_to_detailXrayFragment"
-            app:destination="@id/detailXrayFragment" />
-        <action
-            android:id="@+id/action_postXrayFragment_to_cameraFragment"
-            app:destination="@id/cameraFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/detailXrayFragment"
-        android:name="com.bangkit.lungcare.presentation.home.detail.DetailXrayFragment"
-        android:label="fragment_detail_xray"
-        tools:layout="@layout/fragment_detail_xray" />
-    <fragment
-        android:id="@+id/cameraFragment"
-        android:name="com.bangkit.lungcare.presentation.camera.CameraFragment"
-        android:label="fragment_camera"
-        tools:layout="@layout/fragment_camera">
-        <action
-            android:id="@+id/action_cameraFragment_to_postXrayFragment"
-            app:destination="@id/postXrayFragment" />
-    </fragment>
 </navigation>

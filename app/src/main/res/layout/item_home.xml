@@ -21,7 +21,7 @@
             android:layout_height="50dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/lung_48px"
+            app:srcCompat="@drawable/ic_lung"
             app:tint="@color/blue_500"
             tools:ignore="ContentDescription" />
 
@@ -58,8 +58,7 @@
             android:contentDescription="@string/content_desc_to_post_xray_page"
             android:src="@drawable/ic_arrow_circle_right"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:tint="@color/blue_500" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/verticalGuideline"

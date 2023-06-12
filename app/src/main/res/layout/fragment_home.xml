@@ -4,36 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
-    tools:context=".presentation.home.HomeFragment">
+    android:padding="8dp">
 
     <TextView
-        android:id="@+id/nameTv"
+        android:id="@+id/headingNameTv"
         android:layout_width="@dimen/default_size"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_m"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="@dimen/margin_m"
         android:fontFamily="@font/poppins_semi_bold"
+        android:text="@string/name"
         android:textSize="@dimen/text_size"
-        app:layout_constraintBottom_toBottomOf="@+id/profileIv"
         app:layout_constraintEnd_toStartOf="@+id/profileIv"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/profileIv"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="Hi, Muhammad Amirul Bimantoro" />
+
+    <TextView
+        android:id="@+id/subheadingNameTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/how_are_you_today"
+        android:textColor="@color/blue_500"
+        app:layout_constraintEnd_toEndOf="@+id/headingNameTv"
+        app:layout_constraintStart_toStartOf="@+id/headingNameTv"
+        app:layout_constraintTop_toBottomOf="@+id/headingNameTv" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/profileIv"
         android:layout_width="@dimen/image_size"
         android:layout_height="@dimen/image_size"
         android:layout_marginStart="@dimen/margin_m"
-        android:layout_marginTop="@dimen/margin_m"
         android:layout_marginEnd="@dimen/margin_m"
-        android:background="@drawable/account_circle_24"
+        app:layout_constraintBottom_toBottomOf="@+id/subheadingNameTv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/nameTv"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/headingNameTv"
+        app:layout_constraintTop_toTopOf="@+id/headingNameTv"
         app:shapeAppearanceOverlay="@style/roundCorner"
-        tools:background="@tools:sample/avatars" />
+        tools:src="@tools:sample/avatars" />
 
     <include
         android:id="@+id/item_home"
@@ -45,7 +55,7 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameTv" />
+        app:layout_constraintTop_toBottomOf="@+id/subheadingNameTv" />
 
     <TextView
         android:id="@+id/headingArticleTv"
@@ -74,4 +84,3 @@
         tools:listitem="@layout/item_article" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

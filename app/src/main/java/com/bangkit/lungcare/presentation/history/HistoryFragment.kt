@@ -48,9 +48,8 @@ class HistoryFragment : Fragment() {
     }
 
     private fun populatedData(xrayAdapter: XrayAdapter) {
-        viewModel.getAllXray()
+        viewModel.getAllXray().observe(viewLifecycleOwner) { result ->
 
-        viewModel.xrayResult.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.progressbar.visibility = View.VISIBLE

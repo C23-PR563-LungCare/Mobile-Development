@@ -140,14 +140,14 @@ class PostXrayActivity : AppCompatActivity() {
     ) {
         if (it.resultCode == CAMERA_RESULT) {
             val myFile = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                it.data?.getSerializableExtra(PostXrayFragment.PICTURE_EXTRA, File::class.java)
+                it.data?.getSerializableExtra(PICTURE_EXTRA, File::class.java)
             } else {
                 @Suppress("DEPRECATION")
-                it.data?.getSerializableExtra(PostXrayFragment.PICTURE_EXTRA)
+                it.data?.getSerializableExtra(PICTURE_EXTRA)
             } as? File
 
             val isBackCamera =
-                it.data?.getBooleanExtra(PostXrayFragment.IS_BACK_CAMERA, true) as Boolean
+                it.data?.getBooleanExtra(IS_BACK_CAMERA, true) as Boolean
 
             myFile?.let { file ->
                 getFile = file

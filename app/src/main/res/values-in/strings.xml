@@ -39,6 +39,8 @@
     <string name="welcome_message">Hi, %1$s</string>
     <string name="detect_your_lung_problem">Detect your lung problem</string>
 
+    <string name="how_are_you_today">Apa kabarmu hari ini?</string>
+
     <string name="gallery">Select from Gallery</string>
     <string name="camera">Use Camera</string>
     <string name="detect">Detect X-ray</string>

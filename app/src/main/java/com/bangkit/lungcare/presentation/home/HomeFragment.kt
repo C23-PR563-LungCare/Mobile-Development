@@ -9,10 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bangkit.lungcare.R
 import com.bangkit.lungcare.adapter.ArticleAdapter
 import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.databinding.FragmentHomeBinding
-import com.bangkit.lungcare.presentation.auth.login.LoginActivity
+import com.bangkit.lungcare.presentation.home.post.PostXrayActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,10 +39,31 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.itemHome.toPostXrayBtn.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionNavHomeToPostXrayFragment())
+            val intent = Intent(requireActivity(), PostXrayActivity::class.java)
+            startActivity(intent)
         }
 
+        setupProfile()
         setupRecyclerViewData()
+    }
+
+    private fun setupProfile() {
+        viewModel.getUserProfile().observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Success -> {
+                    val profileData = result.data
+
+                    with(binding) {
+                        profileIv.setImageResource(R.drawable.account_circle)
+                        headingNameTv.text =
+                            getString(R.string.welcome_message, profileData.username)
+                    }
+                }
+
+                is Result.Loading -> {}
+                is Result.Error -> {}
+            }
+        }
     }
 
     private fun setupRecyclerViewData() {

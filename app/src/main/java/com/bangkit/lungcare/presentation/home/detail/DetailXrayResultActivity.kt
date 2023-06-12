@@ -7,7 +7,10 @@ import androidx.activity.viewModels
 import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.databinding.ActivityDetailXrayResultBinding
 import com.bangkit.lungcare.domain.model.xray.Xray
+import com.bangkit.lungcare.utils.DateFormatter
+import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.TimeZone
 
 @AndroidEntryPoint
 class DetailXrayResultActivity : AppCompatActivity() {
@@ -38,16 +41,19 @@ class DetailXrayResultActivity : AppCompatActivity() {
                 }
 
                 is Result.Success -> {
+                    binding.progressbar.visibility = View.GONE
                     val detailData = result.data
-                    // populateDetail(detailData)
+                    populateDetail(detailData)
                 }
             }
         }
     }
 
-    private fun populateDetail(detailData: List<Xray>) {
+    private fun populateDetail(detailData: Xray) {
         with(binding) {
-            // outputPredictionTv.text =
+            dateResultTv.text = DateFormatter.formatData(detailData.date, TimeZone.getDefault().id)
+            outputPredictionTv.text = detailData.processResult
+            Glide.with(this@DetailXrayResultActivity).load(detailData.gscLink).into(xrayIv)
         }
     }
 

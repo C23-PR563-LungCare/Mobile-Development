@@ -22,6 +22,8 @@
     <string name="email_not_valid">Email is invalid</string>
     <string name="password_not_valid">Password is too short (minimum is 8 characters)</string>
 
+    <string name="welcome_message" translatable="false">Hi, %1$s!</string>
+
     <string name="err_name_field">Name Can\'t be blank</string>
     <string name="err_email_field">Email Can\'t be blank</string>
     <string name="err_password_field">Password Can\'t be blank</string>
@@ -37,16 +39,17 @@
 
     <string name="body_message_post_xray">Note: You need to upload first the X-ray image through a camera or gallery.</string>
 
-    <string name="welcome_message">Hi, %1$s</string>
     <string name="detect_your_lung_problem">Detect your lung problem</string>
 
     <string name="gallery">Select from Gallery</string>
     <string name="camera">Use Camera</string>
     <string name="detect">Detect X-ray</string>
 
+    <string name="how_are_you_today">How Are you Today?</string>
+
     <string name="scan_xray">Scan X-ray</string>
 
-    <string name="prediction_result">Prediction Result</string>
+    <string name="prediction_result">Prediction Result:</string>
     <string name="result_here">Result Here</string>
 
 
