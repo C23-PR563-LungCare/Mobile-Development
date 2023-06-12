@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.lungcare.databinding.ItemArticleBinding
-import com.bangkit.lungcare.domain.model.Article
+import com.bangkit.lungcare.domain.model.article.Article
 import com.bumptech.glide.Glide
 
 class ArticleAdapter : ListAdapter<Article, ArticleAdapter.ListViewHolder>(DIFF_CALLBACK) {

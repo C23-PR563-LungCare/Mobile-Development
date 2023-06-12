@@ -4,6 +4,7 @@ import com.bangkit.lungcare.data.source.remote.response.ArticleResponse
 import com.bangkit.lungcare.data.source.remote.response.RegisterResponse
 import com.bangkit.lungcare.data.source.remote.response.LoginResponse
 import com.bangkit.lungcare.data.source.remote.response.UploadXrayResponse
+import com.bangkit.lungcare.data.source.remote.response.UserProfileResponse
 import com.bangkit.lungcare.data.source.remote.response.XrayResponse
 import com.bangkit.lungcare.data.source.remote.retrofit.XrayApiService
 import okhttp3.MediaType.Companion.toMediaType
@@ -35,7 +36,10 @@ class RemoteDataSource @Inject constructor(
     }
 
     suspend fun getAllXray(token: String): XrayResponse = apiService.getAll(token)
-
+    suspend fun getXrayById(token: String, id: String) = apiService.getXrayById(token, id)
     suspend fun getAllArticle(token: String, category: String): ArticleResponse =
         apiService.getAllArticle(token, category)
+
+    suspend fun getUserProfile(token: String): UserProfileResponse =
+        apiService.getUserProfile(token)
 }

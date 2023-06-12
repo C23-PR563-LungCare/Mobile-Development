@@ -1,4 +1,4 @@
-package com.bangkit.lungcare.domain.model
+package com.bangkit.lungcare.domain.model.article
 
 data class Article(
     val newsId: Int,

@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bangkit.lungcare.data.Result
-import com.bangkit.lungcare.domain.model.Xray
-import com.bangkit.lungcare.domain.usecase.XrayUseCase
+import com.bangkit.lungcare.domain.model.xray.Xray
+import com.bangkit.lungcare.domain.usecase.xray.XrayUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,8 +17,6 @@ class HistoryViewModel @Inject constructor(private val xrayUseCase: XrayUseCase)
     private val _xrayResult = MutableLiveData<Result<List<Xray>>>()
     val xrayResult: LiveData<Result<List<Xray>>> = _xrayResult
 
-//    private val _tokenResult = MutableLiveData<String>()
-//    val tokenResult: LiveData<String> = _tokenResult
     fun getAllXray() = viewModelScope.launch {
         xrayUseCase.getAllXray().collect {
             _xrayResult.value = it

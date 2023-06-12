@@ -1,4 +1,4 @@
-package com.bangkit.lungcare.domain.model
+package com.bangkit.lungcare.domain.model.xray
 
 data class Xray(
     val id: String,

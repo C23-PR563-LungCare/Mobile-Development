@@ -1,19 +1,15 @@
 package com.bangkit.lungcare.presentation.history
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.lungcare.adapter.XrayAdapter
 import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.databinding.FragmentHistoryBinding
-import com.bangkit.lungcare.domain.model.Xray
-import com.bangkit.lungcare.presentation.auth.login.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

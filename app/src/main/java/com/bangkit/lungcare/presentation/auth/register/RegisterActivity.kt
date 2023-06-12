@@ -12,7 +12,7 @@ import androidx.lifecycle.Observer
 import com.bangkit.lungcare.R
 import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.databinding.ActivityRegisterBinding
-import com.bangkit.lungcare.domain.model.Register
+import com.bangkit.lungcare.domain.model.user.Register
 import com.bangkit.lungcare.presentation.auth.login.LoginActivity
 import com.jakewharton.rxbinding2.widget.RxTextView
 import dagger.hilt.android.AndroidEntryPoint

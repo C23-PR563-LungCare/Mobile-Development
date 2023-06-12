@@ -20,7 +20,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "BASE_URL", '"https://lungcare-project-testing.et.r.appspot.com/"'
-        buildConfigField "String", "API_KEY", '"97c70e94f520481189c136661632431b"'
     }
 
     buildTypes {

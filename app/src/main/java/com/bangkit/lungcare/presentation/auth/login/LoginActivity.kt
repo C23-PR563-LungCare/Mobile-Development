@@ -3,22 +3,17 @@ package com.bangkit.lungcare.presentation.auth.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import com.bangkit.lungcare.R
 import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.databinding.ActivityLoginBinding
-import com.bangkit.lungcare.domain.model.Login
+import com.bangkit.lungcare.domain.model.user.Login
 import com.bangkit.lungcare.presentation.MainActivity
 import com.bangkit.lungcare.presentation.auth.register.RegisterActivity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {

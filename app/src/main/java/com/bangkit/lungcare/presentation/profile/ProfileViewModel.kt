@@ -2,14 +2,16 @@ package com.bangkit.lungcare.presentation.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bangkit.lungcare.domain.usecase.XrayUseCase
+import com.bangkit.lungcare.domain.usecase.user.UserUseCase
+import com.bangkit.lungcare.domain.usecase.xray.XrayUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ProfileViewModel @Inject constructor(private val xrayUseCase: XrayUseCase) : ViewModel() {
+class ProfileViewModel @Inject constructor(private val userUseCase: UserUseCase) :
+    ViewModel() {
     fun logout() = viewModelScope.launch {
-        xrayUseCase.deleteCredential()
+        userUseCase.deleteCredential()
     }
 }

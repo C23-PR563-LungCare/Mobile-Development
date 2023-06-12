@@ -5,11 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bangkit.lungcare.data.Result
-import com.bangkit.lungcare.domain.model.XrayUpload
-import com.bangkit.lungcare.domain.usecase.XrayUseCase
+import com.bangkit.lungcare.domain.model.xray.XrayUpload
+import com.bangkit.lungcare.domain.usecase.xray.XrayUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.io.File
 import javax.inject.Inject

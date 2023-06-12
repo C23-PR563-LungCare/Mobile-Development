@@ -18,14 +18,17 @@ import androidx.lifecycle.Observer
 import com.bangkit.lungcare.R
 import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.databinding.ActivityPostXrayBinding
-import com.bangkit.lungcare.domain.model.XrayUpload
+import com.bangkit.lungcare.domain.model.xray.XrayUpload
 import com.bangkit.lungcare.presentation.camera.CameraActivity
+import com.bangkit.lungcare.presentation.home.detail.DetailXrayResultActivity
 import com.bangkit.lungcare.utils.reduceFileImage
 import com.bangkit.lungcare.utils.rotateBitmap
 import com.bangkit.lungcare.utils.uriToFile
 import com.bumptech.glide.Glide
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 
+@AndroidEntryPoint
 class PostXrayActivity : AppCompatActivity() {
 
     private val viewModel by viewModels<PostXrayViewModel>()
@@ -109,13 +112,18 @@ class PostXrayActivity : AppCompatActivity() {
 
             is Result.Success -> {
                 binding?.progressbar?.visibility = View.GONE
-                moveToResult()
+                val predictionData = result.data.id
+                moveToResult(predictionData)
             }
         }
     }
 
-    private fun moveToResult() {
-        val intent = Intent(this)
+    private fun moveToResult(id: String?) {
+        val intent = Intent(this, DetailXrayResultActivity::class.java).apply {
+            putExtra(DetailXrayResultActivity.EXTRA_RESULT_ID, id)
+        }
+        startActivity(intent)
+
     }
 
     private fun startGallery() {
