@@ -1,9 +1,11 @@
 package com.bangkit.lungcare.utils
 
+import com.bangkit.lungcare.data.source.remote.response.ArticleItemResponse
 import com.bangkit.lungcare.data.source.remote.response.RegisterResponse
 import com.bangkit.lungcare.data.source.remote.response.LoginResponse
 import com.bangkit.lungcare.data.source.remote.response.UploadXrayResponse
 import com.bangkit.lungcare.data.source.remote.response.XrayItemResponse
+import com.bangkit.lungcare.domain.model.Article
 import com.bangkit.lungcare.domain.model.Login
 import com.bangkit.lungcare.domain.model.Register
 import com.bangkit.lungcare.domain.model.XrayUpload
@@ -15,8 +17,9 @@ object DataMapper {
     )
 
     fun mapLoginResponseToDomain(input: LoginResponse?) = Login(
-        message = input?.message,
-        token = input?.token
+        email = input?.loginResult?.email,
+        username = input?.loginResult?.username,
+        token = input?.loginResult?.token
     )
 
     fun mapXrayResponseToDomain(input: UploadXrayResponse) = XrayUpload(
@@ -34,6 +37,17 @@ object DataMapper {
                 date = it.date,
                 gscLink = it.gcsLink,
                 processResult = it.processResult
+            )
+        }
+
+    fun mapArticleItemResponseToDomain(input: List<ArticleItemResponse>): List<Article> =
+        input.map {
+            Article(
+                newsId = it.newsID,
+                newsUrl = it.newsURL,
+                imageUrl = it.imageURL,
+                title = it.title,
+                newsCategory = it.newsCategory
             )
         }
 }

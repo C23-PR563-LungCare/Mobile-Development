@@ -9,7 +9,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(private val xrayUseCase: XrayUseCase) : ViewModel() {
-
     fun logout() = viewModelScope.launch {
         xrayUseCase.deleteCredential()
     }

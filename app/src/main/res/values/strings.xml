@@ -26,7 +26,7 @@
     <string name="err_email_field">Email Can\'t be blank</string>
     <string name="err_password_field">Password Can\'t be blank</string>
     <string name="err_open_camera">Failed to open camera</string>
-    <string name="err_permission">Permission request denied</string>
+    <string name="err_permission">Permission not granted</string>
     <string name="err_take_picture">Failed to take picture</string>
     <string name="err_capture_picture">Photo capture failed</string>
     <string name="err_image_field">Picture can\'t be blank</string>
@@ -45,6 +45,9 @@
     <string name="detect">Detect X-ray</string>
 
     <string name="scan_xray">Scan X-ray</string>
+
+    <string name="prediction_result">Prediction Result</string>
+    <string name="result_here">Result Here</string>
 
 
     <string name="feature_not_available">Feature not available</string>

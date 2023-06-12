@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bangkit.lungcare.R
 import com.bangkit.lungcare.databinding.FragmentProfileBinding
+import com.bangkit.lungcare.presentation.auth.login.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -59,6 +60,11 @@ class ProfileFragment : Fragment() {
     }
 
     private fun moveToLogin() {
+        val intent = Intent(requireActivity(), LoginActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        }
+        startActivity(intent)
+        requireActivity().finish()
     }
 
     private fun showToast(message: String) {

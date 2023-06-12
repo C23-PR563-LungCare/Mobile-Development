@@ -18,17 +18,19 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.bangkit.lungcare.R
 import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.databinding.FragmentPostXrayBinding
-import com.bangkit.lungcare.domain.model.XrayUpload
 import com.bangkit.lungcare.utils.reduceFileImage
 import com.bangkit.lungcare.utils.rotateBitmap
 import com.bangkit.lungcare.utils.uriToFile
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import java.io.File
 
 @AndroidEntryPoint
@@ -82,42 +84,56 @@ class PostXrayFragment : Fragment() {
             }
 
             uploadBtn.setOnClickListener {
-                setupPostAction()
+                setupPredictionXray()
             }
 
         }
 
     }
 
-    private fun setupPostAction() {
+    private fun setupPredictionXray() {
         if (getFile != null) {
             val compressFile = reduceFileImage(getFile as File)
-            viewModel.uploadXrayToPredict(compressFile)
+            uploadXrayToPredict(compressFile)
+            observerPostXray()
         } else {
             showToast(getString(R.string.err_image_field))
         }
-
-        viewModel.xrayResult.observe(viewLifecycleOwner, observerPostXray)
-
     }
 
-    private val observerPostXray = Observer<Result<XrayUpload>> { result ->
-        when (result) {
-            is Result.Loading -> {
-                binding.progressbar.visibility = View.VISIBLE
-            }
-
-            is Result.Error -> {
-                binding.progressbar.visibility = View.GONE
-                showToast(result.error)
-            }
-
-            is Result.Success -> {
-                binding.progressbar.visibility = View.GONE
-
-                moveToResult()
+    private fun uploadXrayToPredict(compressFile: File) {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+//                viewModel.tokenResult.collect { token ->
+//                    viewModel.uploadXrayToPredict(token, compressFile)
+//                }
             }
         }
+    }
+
+    private fun observerPostXray() {
+//        lifecycleScope.launch {
+//            repeatOnLifecycle(Lifecycle.State.STARTED) {
+//                viewModel.xrayResult.collect { response ->
+//                    when (response) {
+//                        is Result.Loading -> {
+//                            binding.progressbar.visibility = View.VISIBLE
+//                        }
+//
+//                        is Result.Error -> {
+//                            binding.progressbar.visibility = View.GONE
+//                            showToast(response.error)
+//                        }
+//
+//                        is Result.Success -> {
+//                            binding.progressbar.visibility = View.GONE
+//
+//                            moveToResult()
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
 
     private fun moveToResult() {

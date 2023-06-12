@@ -1,5 +1,6 @@
 package com.bangkit.lungcare.presentation.history
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import com.bangkit.lungcare.adapter.XrayAdapter
 import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.databinding.FragmentHistoryBinding
 import com.bangkit.lungcare.domain.model.Xray
+import com.bangkit.lungcare.presentation.auth.login.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,8 +23,6 @@ class HistoryFragment : Fragment() {
 
     private var _binding: FragmentHistoryBinding? = null
     private val binding get() = _binding!!
-
-    private lateinit var adapter: XrayAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,38 +40,36 @@ class HistoryFragment : Fragment() {
     }
 
     private fun setupRecyclerViewData() {
-        adapter = XrayAdapter()
+        val xrayAdapter = XrayAdapter()
 
         binding.rvHistory.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireActivity())
+            adapter = xrayAdapter
         }
 
-        binding.apply {
-            rvHistory.adapter = adapter
-        }
-
-        viewModel.getAllXray()
-
-        viewModel.xrayResult.observe(viewLifecycleOwner, observerHistoriesXray)
-
+        populatedData(xrayAdapter)
     }
 
-    private val observerHistoriesXray = Observer<Result<List<Xray>>> { result ->
-        when (result) {
-            is Result.Loading -> {
-                binding.progressbar.visibility = View.VISIBLE
-            }
+    private fun populatedData(xrayAdapter: XrayAdapter) {
+        viewModel.getAllXray()
 
-            is Result.Error -> {
-                binding.progressbar.visibility = View.GONE
-            }
+        viewModel.xrayResult.observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Loading -> {
+                    binding.progressbar.visibility = View.VISIBLE
+                }
 
-            is Result.Success -> {
-                binding.progressbar.visibility = View.GONE
+                is Result.Error -> {
+                    binding.progressbar.visibility = View.GONE
+                }
 
-                val xrayData = result.data
-                adapter.submitList(xrayData)
+                is Result.Success -> {
+                    binding.progressbar.visibility = View.GONE
+
+                    val xrayData = result.data
+                    xrayAdapter.submitList(xrayData)
+                }
             }
         }
     }

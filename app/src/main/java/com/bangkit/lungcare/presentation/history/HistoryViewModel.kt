@@ -14,10 +14,11 @@ import javax.inject.Inject
 @HiltViewModel
 class HistoryViewModel @Inject constructor(private val xrayUseCase: XrayUseCase) : ViewModel() {
 
-    private var _xrayResult = MutableLiveData<Result<List<Xray>>>()
+    private val _xrayResult = MutableLiveData<Result<List<Xray>>>()
     val xrayResult: LiveData<Result<List<Xray>>> = _xrayResult
 
-
+//    private val _tokenResult = MutableLiveData<String>()
+//    val tokenResult: LiveData<String> = _tokenResult
     fun getAllXray() = viewModelScope.launch {
         xrayUseCase.getAllXray().collect {
             _xrayResult.value = it

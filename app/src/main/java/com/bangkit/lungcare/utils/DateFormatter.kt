@@ -5,7 +5,7 @@ import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
 object DateFormatter {
-    fun formatData(currentDate: String, targetTimeZone: String): String {
+    fun formatData(currentDate: String?, targetTimeZone: String): String {
         val instant = Instant.parse(currentDate)
         val formatter =
             DateTimeFormatter.ofPattern("dd MMM yyyy").withZone(

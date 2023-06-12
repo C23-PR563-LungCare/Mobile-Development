@@ -6,9 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.domain.model.XrayUpload
-import com.bangkit.lungcare.domain.model.XrayUploadRequest
 import com.bangkit.lungcare.domain.usecase.XrayUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.io.File
 import javax.inject.Inject
@@ -21,8 +22,7 @@ class PostXrayViewModel @Inject constructor(private val xrayUseCase: XrayUseCase
 
     fun uploadXrayToPredict(image: File) {
         viewModelScope.launch {
-            val xrayRequest = XrayUploadRequest(image)
-            xrayUseCase.uploadXray(xrayRequest).collect {
+            xrayUseCase.uploadXray(image).collect {
                 _xrayResult.value = it
             }
         }

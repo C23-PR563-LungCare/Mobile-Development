@@ -103,7 +103,6 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun showEmailExistAlert(isNotValid: Boolean) {
         binding.emailEdtLayout.error =
             if (isNotValid) getString(R.string.email_not_valid) else null

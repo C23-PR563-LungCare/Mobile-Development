@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:cardBackgroundColor="@color/blue_700"
+        app:cardBackgroundColor="@color/blue_500"
         app:layout_constraintStart_toStartOf="@+id/headlineTv"
         app:layout_constraintTop_toBottomOf="@+id/headlineTv"
         app:strokeColor="@android:color/transparent">

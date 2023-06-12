@@ -45,8 +45,10 @@
 
     <string name="scan_xray">Scan X-ray</string>
 
+    <string name="prediction_result">Scan X-ray</string>
+    <string name="result_here">Result Here</string>
 
-    <string name="feature_not_available">Feature not available</string>
+    <string name="feature_not_available">Fitur tidak tersedia</string>
 
     <string name="date">Date:</string>
     <string name="dummy_date">08–06–2023 06:05</string>

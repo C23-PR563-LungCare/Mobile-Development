@@ -1,5 +1,6 @@
 package com.bangkit.lungcare.data.source.remote.retrofit
 
+import com.bangkit.lungcare.data.source.remote.response.ArticleResponse
 import com.bangkit.lungcare.data.source.remote.response.RegisterResponse
 import com.bangkit.lungcare.data.source.remote.response.LoginResponse
 import com.bangkit.lungcare.data.source.remote.response.UploadXrayResponse
@@ -12,6 +13,7 @@ import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Path
 
 interface XrayApiService {
     @FormUrlEncoded
@@ -40,4 +42,10 @@ interface XrayApiService {
     suspend fun getAll(
         @Header("Authorization") token: String,
     ): XrayResponse
+
+    @GET("news/{category}")
+    suspend fun getAllArticle(
+        @Header("Authorization") token: String,
+        @Path("category") category: String
+    ): ArticleResponse
 }

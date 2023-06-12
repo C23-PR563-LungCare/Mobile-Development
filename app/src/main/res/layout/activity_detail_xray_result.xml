@@ -34,6 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:fontFamily="@font/poppins_regular"
         android:text="@string/date"
         android:textColor="@android:color/white"
         android:textSize="16sp"
@@ -47,6 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:layout_marginEnd="411dp"
+        android:fontFamily="@font/poppins_regular"
         android:text="@string/dummy_date"
         android:textColor="@android:color/white"
         android:textSize="16sp"
@@ -56,29 +58,33 @@
 
 
     <TextView
-        android:id="@+id/headlineTv"
+        android:id="@+id/headlinePredictionTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/diagnosis"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/prediction_result"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/horizontalGuideline" />
 
-
     <TextView
         android:id="@+id/outputPredictionTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:ellipsize="end"
+        android:fontFamily="@font/poppins_regular"
         android:maxLines="10"
-        android:text="@string/dummy_result"
-        app:layout_constraintEnd_toEndOf="@+id/headlineTv"
-        app:layout_constraintStart_toStartOf="@+id/headlineTv"
-        app:layout_constraintTop_toBottomOf="@+id/headlineTv" />
+        android:text="@string/result_here"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headlinePredictionTv" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/horizontalGuideline"
@@ -86,5 +92,31 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.45" />
+
+    <TextView
+        android:id="@+id/headlineArticleTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/article"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/outputPredictionTv" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_article"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headlineArticleTv"
+        tools:listitem="@layout/item_article" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

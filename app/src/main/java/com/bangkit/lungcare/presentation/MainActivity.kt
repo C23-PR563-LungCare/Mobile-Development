@@ -12,8 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private var _binding: ActivityMainBinding? = null
-    private val binding get() = _binding
+    private lateinit var binding: ActivityMainBinding
 
     private val navHostController by lazy {
         (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment).navController
@@ -21,38 +20,33 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding?.root)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         setupNavView()
     }
 
     private fun setupNavView() {
-        binding?.navView?.setupWithNavController(navHostController)
+        binding.navView.setupWithNavController(navHostController)
 
         navHostController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.postXrayFragment -> {
-                    binding?.navView?.visibility = View.GONE
+                    binding.navView.visibility = View.GONE
                 }
 
                 R.id.cameraFragment -> {
-                    binding?.navView?.visibility = View.GONE
+                    binding.navView.visibility = View.GONE
                 }
 
                 R.id.detailXrayFragment -> {
-                    binding?.navView?.visibility = View.GONE
+                    binding.navView.visibility = View.GONE
                 }
 
                 else -> {
-                    binding?.navView?.visibility = View.VISIBLE
+                    binding.navView.visibility = View.VISIBLE
                 }
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }
