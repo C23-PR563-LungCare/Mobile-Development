@@ -49,7 +49,7 @@
     <string name="how_are_you_today">How Are you Today?</string>
 
     <string name="prediction_result">Prediction Result:</string>
-    <string name="result_here" translatable="false">Result here</string>
+    <string name="output" translatable="false">Output</string>
     <string name="feature_not_available">Feature not available</string>
 
     <string name="date">Date:</string>

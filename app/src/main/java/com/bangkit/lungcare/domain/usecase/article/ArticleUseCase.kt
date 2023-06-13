@@ -5,5 +5,5 @@ import com.bangkit.lungcare.domain.model.article.Article
 import kotlinx.coroutines.flow.Flow
 
 interface ArticleUseCase {
-    fun getAllArticle(category: String): Flow<Result<List<Article>>>
+    fun getAllArticle(token: String, category: String): Flow<Result<List<Article>>>
 }

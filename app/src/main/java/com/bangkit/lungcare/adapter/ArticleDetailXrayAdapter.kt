@@ -6,37 +6,37 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bangkit.lungcare.databinding.ItemArticleBinding
+import com.bangkit.lungcare.databinding.ItemArticleDetailXrayBinding
 import com.bangkit.lungcare.domain.model.article.Article
 import com.bumptech.glide.Glide
 
-class ArticleDetailAdapter() :
-    ListAdapter<Article, ArticleDetailAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class ArticleDetailXrayAdapter :
+    ListAdapter<Article, ArticleDetailXrayAdapter.ListViewHolder>(DIFF_CALLBACK) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder = MyViewHolder(
-        ItemArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-    )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder =
+        ListViewHolder(
+            ItemArticleDetailXrayBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        )
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val article = getItem(position)
-        holder.bind(article)
+    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
+        val data = getItem(position)
+        holder.bind(data)
     }
 
-    inner class MyViewHolder(private var binding: ItemArticleBinding) :
+    inner class ListViewHolder(private var binding: ItemArticleDetailXrayBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: Article) {
             binding.apply {
-                headlineTv.text = data.title
-                categoryArticleTv.text = data.newsCategory
                 posterIv.loadImage(data.imageUrl)
+                headlineTv.text = data.title
             }
         }
 
     }
 
     private fun ImageView.loadImage(url: String?) {
-        Glide.with(this).load(url).into(this)
+        Glide.with(this.context).load(url).into(this)
     }
 
     companion object {
@@ -46,6 +46,7 @@ class ArticleDetailAdapter() :
 
             override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean =
                 oldItem == newItem
+
         }
     }
 }

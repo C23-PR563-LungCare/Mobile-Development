@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.domain.model.article.Article
@@ -24,23 +23,11 @@ class DetailXrayResultViewModel @Inject constructor(
 ) :
     ViewModel() {
 
-    // private val resultId = MutableLiveData<String>()
-
     private val _resultXray = MutableLiveData<Result<Xray>>()
     val resultXray: LiveData<Result<Xray>> = _resultXray
 
-    private val _articleResult = MutableLiveData<Result<List<Article>>>()
-    val articleResult: LiveData<Result<List<Article>>> = _articleResult
-
-//    fun getArticle(category: String) = viewModelScope.launch {
-//        articleUseCase.getAllArticle(category).collect {
-//            _articleResult.value = it
-//        }
-//    }
-
-//    fun setResultId(token: String, id: String) {
-//        resultId.value = id
-//    }
+    private val _resultArticle = MutableLiveData<Result<List<Article>>>()
+    val resultArticle: LiveData<Result<List<Article>>> = _resultArticle
 
     fun getResultXrayPrediction(token: String, id: String) = viewModelScope.launch {
         xrayUseCase.getResultXrayPrediction(token, id).collect {
@@ -48,11 +35,11 @@ class DetailXrayResultViewModel @Inject constructor(
         }
     }
 
-//    val detailResultXray by lazy {
-//        resultId.switchMap {
-//            xrayUseCase.getResultXrayPrediction(token, it).asLiveData()
-//        }
-//    }
+    fun getRelateArticle(token: String, category: String) = viewModelScope.launch {
+        articleUseCase.getAllArticle(token, category).collect {
+            _resultArticle.value = it
+        }
+    }
 
     fun getToken() = userUseCase.getToken().asLiveData()
 }

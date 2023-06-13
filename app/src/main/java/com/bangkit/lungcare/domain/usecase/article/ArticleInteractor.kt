@@ -8,6 +8,6 @@ import javax.inject.Inject
 
 class ArticleInteractor @Inject constructor(private val articleRepository: ArticleRepository) :
     ArticleUseCase {
-    override fun getAllArticle(category: String): Flow<Result<List<Article>>> =
-        articleRepository.getAllArticle(category)
+    override fun getAllArticle(token: String, category: String): Flow<Result<List<Article>>> =
+        articleRepository.getAllArticle(token, category)
 }

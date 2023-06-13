@@ -17,12 +17,11 @@ class ArticleRepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private val userPreferences: UserPreferences
 ) : ArticleRepository {
-    override fun getAllArticle(category: String): Flow<Result<List<Article>>> =
+    override fun getAllArticle(token: String, category: String): Flow<Result<List<Article>>> =
         flow {
             emit(Result.Loading)
             try {
-                val token = userPreferences.getToken().first()
-                val response = remoteDataSource.getAllArticle("Bearer $token", category)
+                val response = remoteDataSource.getAllArticle(token, category)
                 val result = DataMapper.mapArticleItemResponseToDomain(response.articleResponse)
 
                 emit(Result.Success(result))

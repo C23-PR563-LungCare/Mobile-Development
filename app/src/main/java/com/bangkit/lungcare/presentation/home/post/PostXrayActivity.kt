@@ -126,18 +126,19 @@ class PostXrayActivity : AppCompatActivity() {
 
             is Result.Success -> {
                 binding.progressbar.visibility = View.GONE
-                val predictionData = result.data.id
-                moveToResult(predictionData)
+                val predictionIdData = result.data.id
+                val predictionResultData = result.data.result
+                moveToResult(predictionIdData, predictionResultData)
             }
         }
     }
 
-    private fun moveToResult(id: String?) {
+    private fun moveToResult(id: String?, resultPrediction: String?) {
         val intent = Intent(this, DetailXrayResultActivity::class.java).apply {
             putExtra(DetailXrayResultActivity.EXTRA_RESULT_ID, id)
+            putExtra(DetailXrayResultActivity.EXTRA_RESULT, resultPrediction)
         }
         startActivity(intent)
-
     }
 
     private fun startGallery() {
