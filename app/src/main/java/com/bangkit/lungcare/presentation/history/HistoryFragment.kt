@@ -41,15 +41,15 @@ class HistoryFragment : Fragment() {
         binding.rvHistory.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireActivity())
-            adapter = xrayAdapter
         }
+
+        binding.rvHistory.adapter = xrayAdapter
 
         populatedData(xrayAdapter)
     }
 
     private fun populatedData(xrayAdapter: XrayAdapter) {
         viewModel.getAllXray().observe(viewLifecycleOwner) { result ->
-
             when (result) {
                 is Result.Loading -> {
                     binding.progressbar.visibility = View.VISIBLE

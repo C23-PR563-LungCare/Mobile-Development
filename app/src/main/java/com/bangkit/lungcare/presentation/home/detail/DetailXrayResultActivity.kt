@@ -43,13 +43,13 @@ class DetailXrayResultActivity : AppCompatActivity() {
                 is Result.Success -> {
                     binding.progressbar.visibility = View.GONE
                     val detailData = result.data
-                    populateDetail(detailData)
+                    populateData(detailData)
                 }
             }
         }
     }
 
-    private fun populateDetail(detailData: Xray) {
+    private fun populateData(detailData: Xray) {
         with(binding) {
             dateResultTv.text = DateFormatter.formatData(detailData.date, TimeZone.getDefault().id)
             outputPredictionTv.text = detailData.processResult

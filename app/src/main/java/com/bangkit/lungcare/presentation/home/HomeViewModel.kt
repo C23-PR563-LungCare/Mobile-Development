@@ -23,7 +23,18 @@ class HomeViewModel @Inject constructor(
     private val _articleResult = MutableLiveData<Result<List<Article>>>()
     val articleResult: LiveData<Result<List<Article>>> = _articleResult
 
-    fun getUserProfile() = userUseCase.getUserProfile().asLiveData()
+    private val _userProfileResult = MutableLiveData<Result<Profile>>()
+    val profileResult: LiveData<Result<Profile>> = _userProfileResult
+
+    init {
+        getUserProfile()
+    }
+
+    private fun getUserProfile() = viewModelScope.launch {
+        userUseCase.getUserProfile().collect {
+            _userProfileResult.value = it
+        }
+    }
 
     fun getArticle(category: String) = viewModelScope.launch {
         articleUseCase.getAllArticle(category).collect {

@@ -24,7 +24,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private var category: String = ""
+    // private var category: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,12 +43,12 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
-        setupProfile()
+        setupUserProfile()
         setupRecyclerViewData()
     }
 
-    private fun setupProfile() {
-        viewModel.getUserProfile().observe(viewLifecycleOwner) { result ->
+    private fun setupUserProfile() {
+        viewModel.profileResult.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Success -> {
                     val profileData = result.data
@@ -79,6 +79,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun populatedData(articleAdapter: ArticleAdapter) {
+        val categoryId = arguments?.getString(EXTRA_ARTICLE_CATEGORY)
+
+        categoryId?.let { viewModel.getArticle(it) }
+
         viewModel.articleResult.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
@@ -104,6 +108,7 @@ class HomeFragment : Fragment() {
     }
 
     companion object {
+        const val EXTRA_ARTICLE_CATEGORY = "extra_article_category"
         const val TAG = "HomeFragment"
     }
 }

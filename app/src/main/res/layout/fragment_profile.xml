@@ -11,9 +11,9 @@
         style="@style/Widget.Material3.Button.TextButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
         android:fontFamily="@font/poppins_regular"
         android:text="@string/profile_setting"
         android:textAlignment="textStart"
@@ -31,6 +31,8 @@
         style="@style/Widget.Material3.Button.TextButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:fontFamily="@font/poppins_regular"
         android:text="@string/language"
         android:textAlignment="textStart"
@@ -39,8 +41,8 @@
         app:icon="@drawable/ic_arrow_right"
         app:iconGravity="end"
         app:iconTint="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/profileSettingBtn"
-        app:layout_constraintStart_toStartOf="@+id/profileSettingBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileSettingBtn" />
 
     <Button
@@ -48,6 +50,8 @@
         style="@style/Widget.Material3.Button.TextButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:fontFamily="@font/poppins_regular"
         android:text="@string/terms_of_service"
         android:textAlignment="textStart"
@@ -56,8 +60,8 @@
         app:icon="@drawable/ic_arrow_right"
         app:iconGravity="end"
         app:iconTint="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/languageBtn"
-        app:layout_constraintStart_toStartOf="@+id/languageBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/languageBtn"
         tools:text="Terms of service" />
 
