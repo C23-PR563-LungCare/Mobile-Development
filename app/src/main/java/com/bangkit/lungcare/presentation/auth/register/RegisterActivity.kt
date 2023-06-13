@@ -22,11 +22,13 @@ class RegisterActivity : AppCompatActivity() {
 
     private val viewModel by viewModels<RegisterViewModel>()
 
-    private lateinit var binding: ActivityRegisterBinding
+
+    private val binding: ActivityRegisterBinding by lazy {
+        ActivityRegisterBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
 
@@ -103,6 +105,7 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun showEmailExistAlert(isNotValid: Boolean) {
         binding.emailEdtLayout.error =
             if (isNotValid) getString(R.string.email_not_valid) else null

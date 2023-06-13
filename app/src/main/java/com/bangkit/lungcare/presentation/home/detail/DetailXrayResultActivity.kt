@@ -20,10 +20,12 @@ class DetailXrayResultActivity : AppCompatActivity() {
 
     private val viewModel by viewModels<DetailXrayResultViewModel>()
 
-    private lateinit var binding: ActivityDetailXrayResultBinding
+    private val binding: ActivityDetailXrayResultBinding by lazy {
+        ActivityDetailXrayResultBinding.inflate(layoutInflater)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDetailXrayResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setupData()

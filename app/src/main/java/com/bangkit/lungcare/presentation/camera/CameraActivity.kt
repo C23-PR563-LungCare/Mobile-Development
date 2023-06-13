@@ -23,15 +23,15 @@ class CameraActivity : AppCompatActivity() {
     private var imageCapture: ImageCapture? = null
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
-    private var _binding: ActivityCameraBinding? = null
-    val binding get() = _binding
+    private val binding: ActivityCameraBinding by lazy {
+        ActivityCameraBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityCameraBinding.inflate(layoutInflater)
-        setContentView(binding?.root)
+        setContentView(binding.root)
 
-        binding?.captureBtn?.setOnClickListener {
+        binding.captureBtn.setOnClickListener {
             takePhoto()
         }
     }
@@ -88,7 +88,7 @@ class CameraActivity : AppCompatActivity() {
         cameraProviderFuture.addListener({
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
             val preview = Preview.Builder().build().also {
-                it.setSurfaceProvider(binding?.viewFinder?.surfaceProvider)
+                it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
             }
 
             imageCapture = ImageCapture.Builder().build()
@@ -110,10 +110,5 @@ class CameraActivity : AppCompatActivity() {
 
     private fun showToast(message: String?) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }

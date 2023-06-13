@@ -62,6 +62,7 @@
     <string name="content_desc_to_post_xray_page">to X-ray detection page</string>
     <string name="content_desc_image_preview">Preview image to be detect</string>
     <string name="content_desc_capture">Take photo</string>
+    <string name="content_desc_xray">X-ray image</string>
 
     <string name="view_more">View more</string>
     <string name="language">Language</string>

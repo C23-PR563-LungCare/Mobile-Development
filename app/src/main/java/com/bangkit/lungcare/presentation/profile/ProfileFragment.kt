@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.bangkit.lungcare.R
 import com.bangkit.lungcare.databinding.FragmentProfileBinding
 import com.bangkit.lungcare.presentation.auth.login.LoginActivity
@@ -20,15 +19,15 @@ class ProfileFragment : Fragment() {
 
     private val viewModel by viewModels<ProfileViewModel>()
 
-    private var _binding: FragmentProfileBinding? = null
-    private val binding get() = _binding!!
+    private val binding: FragmentProfileBinding by lazy {
+        FragmentProfileBinding.inflate(layoutInflater)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -60,19 +59,12 @@ class ProfileFragment : Fragment() {
     }
 
     private fun moveToLogin() {
-        val intent = Intent(requireActivity(), LoginActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        }
+        val intent = Intent(requireActivity(), LoginActivity::class.java)
         startActivity(intent)
         requireActivity().finish()
     }
 
     private fun showToast(message: String) {
         Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

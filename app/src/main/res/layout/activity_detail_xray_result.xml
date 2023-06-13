@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.home.detail.DetailXrayFragment">
+    tools:context=".presentation.home.detail.DetailXrayResultActivity">
 
     <ImageView
         android:id="@+id/xrayIv"
         android:layout_width="0dp"
         android:layout_height="300dp"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/content_desc_xray"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,6 +88,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/headlinePredictionTv" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_article"

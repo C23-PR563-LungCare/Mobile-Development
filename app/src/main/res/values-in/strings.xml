@@ -62,6 +62,7 @@
     <string name="content_desc_to_post_xray_page">ke halaman deteksi X-ray</string>
     <string name="content_desc_image_preview">Pratinjau gambar untuk dideteksi</string>
     <string name="content_desc_capture">Memotret</string>
+    <string name="content_desc_xray">gambar X-ray</string>
 
     <string name="view_more">Lihat Selengkapnya</string>
     <string name="language">Bahasa</string>

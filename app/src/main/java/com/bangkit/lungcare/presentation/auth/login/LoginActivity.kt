@@ -20,11 +20,12 @@ class LoginActivity : AppCompatActivity() {
 
     private val viewModel by viewModels<LoginViewModel>()
 
-    private lateinit var binding: ActivityLoginBinding
+    private val binding: ActivityLoginBinding by lazy {
+        ActivityLoginBinding.inflate(layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
 
@@ -101,7 +102,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun moveToMain() {
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        }
         startActivity(intent)
         finish()
     }

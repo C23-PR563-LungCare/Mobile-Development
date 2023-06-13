@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bangkit.lungcare.adapter.XrayAdapter
 import com.bangkit.lungcare.adapter.XrayHistoryAdapter
 import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.databinding.FragmentHistoryBinding
@@ -19,8 +18,9 @@ class HistoryFragment : Fragment() {
 
     private val viewModel by viewModels<HistoryViewModel>()
 
-    private var _binding: FragmentHistoryBinding? = null
-    private val binding get() = _binding!!
+    private val binding: FragmentHistoryBinding by lazy {
+        FragmentHistoryBinding.inflate(layoutInflater)
+    }
 
     private lateinit var adapterXray: XrayHistoryAdapter
     private val listXrayData = ArrayList<Xray>()
@@ -30,7 +30,6 @@ class HistoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentHistoryBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -91,9 +90,4 @@ class HistoryFragment : Fragment() {
 //            }
 //        }
 //    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }
