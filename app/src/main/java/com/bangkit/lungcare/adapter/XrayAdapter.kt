@@ -38,7 +38,7 @@ class XrayAdapter : ListAdapter<Xray, XrayAdapter.ListViewHolder>(DIFF_CALLBACK)
     }
 
     private fun ImageView.loadImage(url: String?) {
-        Glide.with(this).load(url).into(this)
+        Glide.with(this.context).load(url).into(this)
     }
 
     companion object {

@@ -8,8 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.lungcare.adapter.XrayAdapter
+import com.bangkit.lungcare.adapter.XrayHistoryAdapter
 import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.databinding.FragmentHistoryBinding
+import com.bangkit.lungcare.domain.model.xray.Xray
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -19,6 +21,9 @@ class HistoryFragment : Fragment() {
 
     private var _binding: FragmentHistoryBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var adapterXray: XrayHistoryAdapter
+    private val listXrayData = ArrayList<Xray>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,42 +37,60 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupRecyclerViewData()
-    }
-
-    private fun setupRecyclerViewData() {
-        val xrayAdapter = XrayAdapter()
+        adapterXray = XrayHistoryAdapter(listXrayData)
 
         binding.rvHistory.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireActivity())
         }
 
-        binding.rvHistory.adapter = xrayAdapter
+        binding.rvHistory.adapter = adapterXray
 
-        populatedData(xrayAdapter)
+        viewModel.getAllXray().observe(viewLifecycleOwner) { result ->
+            setXrayData(result)
+        }
+
     }
 
-    private fun populatedData(xrayAdapter: XrayAdapter) {
-        viewModel.getAllXray().observe(viewLifecycleOwner) { result ->
-            when (result) {
-                is Result.Loading -> {
-                    binding.progressbar.visibility = View.VISIBLE
-                }
+    private fun setXrayData(result: Result<List<Xray>>) {
+        when (result) {
+            is Result.Loading -> {
+                binding.progressbar.visibility = View.VISIBLE
+            }
 
-                is Result.Error -> {
-                    binding.progressbar.visibility = View.GONE
-                }
+            is Result.Error -> {
+                binding.progressbar.visibility = View.GONE
+            }
 
-                is Result.Success -> {
-                    binding.progressbar.visibility = View.GONE
+            is Result.Success -> {
+                binding.progressbar.visibility = View.GONE
 
-                    val xrayData = result.data
-                    xrayAdapter.submitList(xrayData)
-                }
+                val xrayData = result.data
+                adapterXray.setListXray(xrayData)
             }
         }
     }
+
+//    private fun populatedData(xrayAdapter: XrayHistoryAdapter) {
+//        viewModel.getAllXray().observe(viewLifecycleOwner) { result ->
+//            when (result) {
+//                is Result.Loading -> {
+//                    binding.progressbar.visibility = View.VISIBLE
+//                }
+//
+//                is Result.Error -> {
+//                    binding.progressbar.visibility = View.GONE
+//                }
+//
+//                is Result.Success -> {
+//                    binding.progressbar.visibility = View.GONE
+//
+//                    val xrayData = result.data
+//                    xrayAdapter.setListXray(xrayData)
+//                }
+//            }
+//        }
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()

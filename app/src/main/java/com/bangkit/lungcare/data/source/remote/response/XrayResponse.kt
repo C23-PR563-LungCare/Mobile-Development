@@ -4,6 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 data class XrayResponse(
 
-    @field:SerializedName("ListXrayResponse")
-    val XrayResponse: List<XrayItemResponse>
+    @field:SerializedName("XrayResponse")
+    val xrayResponse: List<XrayItemResponse>
 )

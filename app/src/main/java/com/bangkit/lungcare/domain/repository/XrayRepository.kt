@@ -1,9 +1,6 @@
 package com.bangkit.lungcare.domain.repository
 
 import com.bangkit.lungcare.data.Result
-import com.bangkit.lungcare.domain.model.article.Article
-import com.bangkit.lungcare.domain.model.user.Login
-import com.bangkit.lungcare.domain.model.user.Register
 import com.bangkit.lungcare.domain.model.xray.Xray
 import com.bangkit.lungcare.domain.model.xray.XrayUpload
 import kotlinx.coroutines.flow.Flow

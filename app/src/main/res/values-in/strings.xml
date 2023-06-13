@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="label_home">Home</string>
-    <string name="label_history">History</string>
-    <string name="label_profile">Profile</string>
+    <string name="label_home">Beranda</string>
+    <string name="label_history">Riwayat</string>
+    <string name="label_profile">Profil</string>
 
-    <string name="login_to_your_account">Log in to your account</string>
+    <string name="login_to_your_account">Masuk</string>
     <string name="login">Masuk</string>
     <string name="logout">Keluar</string>
     <string name="or">ATAU</string>
@@ -12,70 +12,63 @@
     <string name="register_here">Daftar disini</string>
     <string name="login_here">Masuk disini</string>
     <string name="already_have_account">Sudah punya akun?</string>
-    <string name="create_your_account">Create your account</string>
+    <string name="create_your_account">Buat Akun</string>
     <string name="register">Daftar</string>
     <string name="name">Nama</string>
     <string name="email">Email</string>
     <string name="password">Kata Sandi</string>
     <string name="forgot_password">Lupa kata sandi?</string>
-    <string name="email_not_valid">Invalid email format</string>
-    <string name="password_not_valid">Password is too short (minimum is 8 characters)</string>
-
-    <string name="err_name_field">Name Can\'t be blank</string>
-    <string name="err_email_field">Email Can\'t be blank</string>
-    <string name="err_password_field">Password Can\'t be blank</string>
-    <string name="err_open_camera">Failed to open camera</string>
-    <string name="err_permission">Permission request denied</string>
-    <string name="err_take_picture">Failed to take picture</string>
-    <string name="err_capture_picture">Photo capture failed</string>
-    <string name="err_image_field">Picture can\'t be blank</string>
-    <string name="err_login_message">Login Failed</string>
-
-    <string name="signup_success_message">Registrasi berhasil!</string>
-    <string name="login_success_message">Login successful!</string>
-
-    <string name="body_message_post_xray">Note: You need to upload first the X-ray image through a camera or gallery.</string>
+    <string name="email_not_valid">Format email tidak sesuai</string>
+    <string name="password_not_valid">Kata sandi terlalu pendek (minimal 8 karakter)</string>
 
     <string name="welcome_message">Hi, %1$s</string>
-    <string name="detect_your_lung_problem">Detect your lung problem</string>
+
+    <string name="err_name_field">Nama Tidak boleh kosong</string>
+    <string name="err_email_field">Email Tidak boleh kosong</string>
+    <string name="err_password_field">Kata Sandi Tidak boleh kosong</string>
+    <string name="err_image_field">Gambar tidak boleh kosong</string>
+    <string name="err_open_camera">Gagal membuka kamera</string>
+    <string name="err_permission">Izin tidak diberikan</string>
+    <string name="err_take_picture">Gagal mengambil gambar</string>
+    <string name="err_capture_picture">Pengambilan foto gagal</string>
+    <string name="err_login_message">Gagal masuk</string>
+
+    <string name="signup_success_message">Registrasi berhasil!</string>
+    <string name="login_success_message">Login berhasil!</string>
+
+    <string name="body_message_post_xray">Catatan: Anda perlu memasukkan terlebih dahulu gambar X-ray melalui kamera atau galeri.</string>
+    <string name="diagnosis_xray_result">Mendiagnosis hasil X-ray</string>
+
+    <string name="scan_xray">Scan X-ray</string>
+    <string name="gallery">Pilih dari Galeri</string>
+    <string name="camera">Gunakan Kamera</string>
+    <string name="detect">Deteksi X-ray</string>
+    <string name="choose_picture">Pilih gambar</string>
 
     <string name="how_are_you_today">Apa kabarmu hari ini?</string>
 
-    <string name="gallery">Select from Gallery</string>
-    <string name="camera">Use Camera</string>
-    <string name="detect">Detect X-ray</string>
-
-    <string name="scan_xray">Scan X-ray</string>
-
-    <string name="prediction_result">Scan X-ray</string>
-    <string name="result_here">Result Here</string>
+    <string name="prediction_result">Hasil Prediksi:</string>
+    <string name="result_here">Result here</string>
 
     <string name="feature_not_available">Fitur tidak tersedia</string>
 
-    <string name="date">Date:</string>
+    <string name="date">Tanggal:</string>
     <string name="dummy_date">08–06–2023 06:05</string>
-    <string name="dummy_result">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consequat mollis augue, eget lobortis eros condimentum sed. Sed iaculis nunc ante, non faucibus libero laoreet eu. Sed sodales luctus tempus. Nulla facilisi. Phasellus feugiat pellentesque elit, id suscipit mi aliquam sed. Aenean ultrices, sem condimentum dapibus pellentesque, velit nunc dapibus leo, eget fermentum augue augue at nulla. Donec tempor felis et mi convallis dapibus.</string>
-
-    <string name="choose_picture">Choose a picture</string>
-
-    <string name="placeholder_result">Result</string>
-
     <string name="dummy_article_title">Tips Menjaga Kesehatan Paru-paru</string>
     <string name="dummy_category_title">news</string>
     <string name="article_title">Title</string>
     <string name="article_category">Category</string>
 
-    <string name="content_desc_to_post_xray_page">Redirect to X-ray detection page</string>
-    <string name="content_desc_image_preview">Preview image to be detect</string>
-    <string name="content_desc_capture">Take photo</string>
+    <string name="content_desc_to_post_xray_page">ke halaman deteksi X-ray</string>
+    <string name="content_desc_image_preview">Pratinjau gambar untuk dideteksi</string>
+    <string name="content_desc_capture">Memotret</string>
 
-    <string name="view_more">View more</string>
+    <string name="view_more">Lihat Selengkapnya</string>
+    <string name="language">Bahasa</string>
+    <string name="profile_setting">Pengaturan profil</string>
+    <string name="terms_of_service">Ketentuan layanan</string>
 
-    <string name="language">Language</string>
-    <string name="profile_setting">Profile settings</string>
-    <string name="terms_of_service">Terms of service</string>
-
-    <string name="article">Relate Articles</string>
+    <string name="article">Artikel terkait</string>
     <string name="diagnosis">Diagnosis</string>
 
 </resources>

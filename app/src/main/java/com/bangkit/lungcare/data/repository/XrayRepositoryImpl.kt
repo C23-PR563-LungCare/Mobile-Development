@@ -41,7 +41,7 @@ class XrayRepositoryImpl @Inject constructor(
         try {
             val token = userPreferences.getToken().first()
             val response = remoteDataSource.getAllXray("Bearer $token")
-            val result = DataMapper.mapXrayItemResponseToDomain(response.XrayResponse)
+            val result = DataMapper.mapXrayItemResponseToDomain(response.xrayResponse)
 
             emit(Result.Success(result))
 
