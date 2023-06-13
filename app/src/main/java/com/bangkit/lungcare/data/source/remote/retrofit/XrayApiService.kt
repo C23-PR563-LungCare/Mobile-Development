@@ -52,7 +52,7 @@ interface XrayApiService {
     ): ArticleResponse
 
     @GET("detailHistory/{id}")
-    suspend fun getXrayById(
+    suspend fun getResultXrayPrediction(
         @Header("Authorization") token: String,
         @Path("id") id: String
     ): DetailXrayResponse

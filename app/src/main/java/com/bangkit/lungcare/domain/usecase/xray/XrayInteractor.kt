@@ -15,5 +15,6 @@ class XrayInteractor @Inject constructor(private val xrayRepository: XrayReposit
     override fun getAllXray(): Flow<Result<List<Xray>>> =
         xrayRepository.getAllXray()
 
-    override fun getXrayById(id: String): Flow<Result<Xray>> = xrayRepository.getXrayById(id)
+    override fun getResultXrayPrediction(token: String, id: String): Flow<Result<Xray>> =
+        xrayRepository.getResultXrayPrediction(token, id)
 }

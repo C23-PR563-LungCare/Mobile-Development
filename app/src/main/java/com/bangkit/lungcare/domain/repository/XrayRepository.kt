@@ -9,6 +9,6 @@ import java.io.File
 interface XrayRepository {
     fun uploadXray(token: String, image: File): Flow<Result<XrayUpload>>
     fun getAllXray(): Flow<Result<List<Xray>>>
-    fun getXrayById(id: String): Flow<Result<Xray>>
+    fun getResultXrayPrediction(token: String, id: String): Flow<Result<Xray>>
 
 }

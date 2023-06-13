@@ -36,7 +36,9 @@ class RemoteDataSource @Inject constructor(
     }
 
     suspend fun getAllXray(token: String): XrayResponse = apiService.getAll(token)
-    suspend fun getXrayById(token: String, id: String) = apiService.getXrayById(token, id)
+    suspend fun getResultXrayPrediction(token: String, id: String) =
+        apiService.getResultXrayPrediction(token, id)
+
     suspend fun getAllArticle(token: String, category: String): ArticleResponse =
         apiService.getAllArticle(token, category)
 

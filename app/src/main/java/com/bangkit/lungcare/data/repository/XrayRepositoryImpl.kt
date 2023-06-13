@@ -50,11 +50,10 @@ class XrayRepositoryImpl @Inject constructor(
 
     }.flowOn(Dispatchers.IO)
 
-    override fun getXrayById(id: String): Flow<Result<Xray>> = flow {
+    override fun getResultXrayPrediction(token: String, id: String): Flow<Result<Xray>> = flow {
         emit(Result.Loading)
         try {
-            val token = userPreferences.getToken().first()
-            val response = remoteDataSource.getXrayById("Bearer $token", id)
+            val response = remoteDataSource.getResultXrayPrediction(token, id)
             val result = DataMapper.mapDetailXrayResponseToDomain(response)
 
             emit(Result.Success(result))
