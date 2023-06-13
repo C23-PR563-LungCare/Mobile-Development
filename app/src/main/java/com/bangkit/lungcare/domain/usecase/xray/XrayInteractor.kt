@@ -9,8 +9,8 @@ import java.io.File
 import javax.inject.Inject
 
 class XrayInteractor @Inject constructor(private val xrayRepository: XrayRepository) : XrayUseCase {
-    override fun uploadXray(image: File): Flow<Result<XrayUpload>> =
-        xrayRepository.uploadXray(image)
+    override fun uploadXray(token: String, image: File): Flow<Result<XrayUpload>> =
+        xrayRepository.uploadXray(token, image)
 
     override fun getAllXray(): Flow<Result<List<Xray>>> =
         xrayRepository.getAllXray()

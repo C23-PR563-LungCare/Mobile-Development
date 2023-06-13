@@ -21,12 +21,11 @@ class XrayRepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private val userPreferences: UserPreferences
 ) : XrayRepository {
-    override fun uploadXray(image: File): Flow<Result<XrayUpload>> =
+    override fun uploadXray(token: String, image: File): Flow<Result<XrayUpload>> =
         flow {
             emit(Result.Loading)
             try {
-                val token = userPreferences.getToken().first()
-                val response = remoteDataSource.uploadXray("Bearer $token", image)
+                val response = remoteDataSource.uploadXray(token, image)
                 val result = DataMapper.mapXrayResponseToDomain(response)
 
                 emit(Result.Success(result))

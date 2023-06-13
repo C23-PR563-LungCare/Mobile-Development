@@ -37,7 +37,7 @@
     <string name="login_success_message">Login berhasil!</string>
 
     <string name="body_message_post_xray">Catatan: Anda perlu memasukkan terlebih dahulu gambar X-ray melalui kamera atau galeri.</string>
-    <string name="diagnosis_xray_result">Mendiagnosis hasil X-ray</string>
+    <string name="diagnosis_xray_result">Diagnosis hasil X-ray</string>
 
     <string name="scan_xray">Scan X-ray</string>
     <string name="gallery">Pilih dari Galeri</string>

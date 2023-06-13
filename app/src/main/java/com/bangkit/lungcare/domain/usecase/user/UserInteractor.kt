@@ -18,7 +18,10 @@ class UserInteractor @Inject constructor(private val userRepository: UserReposit
     override fun login(email: String, password: String): Flow<Result<Login>> =
         userRepository.login(email, password)
 
-    override fun getUserProfile(): Flow<Result<Profile>> = userRepository.getUserProfile()
+    override fun getUserProfile(token: String): Flow<Result<Profile>> =
+        userRepository.getUserProfile(token)
+
+    override fun getToken(): Flow<String> = userRepository.getToken()
 
     override suspend fun saveCredential(token: String) = userRepository.saveCredential(token)
 

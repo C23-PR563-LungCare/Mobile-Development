@@ -11,7 +11,9 @@ interface UserUseCase {
 
     fun login(email: String, password: String): Flow<Result<Login>>
 
-    fun getUserProfile(): Flow<Result<Profile>>
+    fun getUserProfile(token: String): Flow<Result<Profile>>
+
+    fun getToken(): Flow<String>
 
     suspend fun saveCredential(token: String)
 

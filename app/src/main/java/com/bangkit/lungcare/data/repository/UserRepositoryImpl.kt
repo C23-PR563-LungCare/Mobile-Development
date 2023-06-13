@@ -54,11 +54,10 @@ class UserRepositoryImpl @Inject constructor(
         }
     }.flowOn(Dispatchers.IO)
 
-    override fun getUserProfile(): Flow<Result<Profile>> = flow {
+    override fun getUserProfile(token: String): Flow<Result<Profile>> = flow {
         emit(Result.Loading)
         try {
-            val token = userPreferences.getToken().first()
-            val response = remoteDataSource.getUserProfile("Bearer $token")
+            val response = remoteDataSource.getUserProfile(token)
             val result = DataMapper.mapUserProfileResponseToDomain(response)
 
             emit(Result.Success(result))
@@ -67,6 +66,8 @@ class UserRepositoryImpl @Inject constructor(
             emit(Result.Error(e.message.toString()))
         }
     }
+
+    override fun getToken(): Flow<String> = userPreferences.getToken()
 
     override suspend fun saveCredential(token: String) = userPreferences.saveCredential(token)
 

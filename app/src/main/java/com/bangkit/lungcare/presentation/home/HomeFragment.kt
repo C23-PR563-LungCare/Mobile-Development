@@ -2,17 +2,16 @@ package com.bangkit.lungcare.presentation.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.lungcare.R
-import com.bangkit.lungcare.adapter.ArticleAdapter
 import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.databinding.FragmentHomeBinding
+import com.bangkit.lungcare.presentation.auth.login.LoginActivity
 import com.bangkit.lungcare.presentation.home.post.PostXrayActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,17 +20,15 @@ class HomeFragment : Fragment() {
 
     private val viewModel by viewModels<HomeViewModel>()
 
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
-
-    // private var category: String = ""
+    private val binding: FragmentHomeBinding by lazy {
+        FragmentHomeBinding.inflate(layoutInflater)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -43,72 +40,52 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
-        setupUserProfile()
-        setupRecyclerViewData()
+        observerToken()
     }
 
-    private fun setupUserProfile() {
-        viewModel.profileResult.observe(viewLifecycleOwner) { result ->
+    private fun observerToken() {
+        viewModel.getToken().observe(viewLifecycleOwner) { token ->
+            Log.d("HomeFragment", "getToken: $token")
+            if (token.isEmpty()) {
+                moveToLogin()
+            } else {
+                setupData("Bearer $token")
+            }
+        }
+    }
+
+    private fun setupData(token: String) {
+        // for profile
+        viewModel.getUserProfile(token)
+
+        viewModel.userProfileResult.observe(viewLifecycleOwner) { result ->
             when (result) {
+                is Result.Loading -> {}
+                is Result.Error -> {}
                 is Result.Success -> {
                     val profileData = result.data
 
-                    with(binding) {
+                    binding.apply {
                         profileIv.setImageResource(R.drawable.account_circle)
                         headingNameTv.text =
                             getString(R.string.welcome_message, profileData.username)
                     }
                 }
-
-                is Result.Loading -> {}
-                is Result.Error -> {}
             }
         }
+
+        // for article
     }
 
-    private fun setupRecyclerViewData() {
-        val articleAdapter = ArticleAdapter()
-
-        binding.rvArticles.apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(requireActivity())
-            adapter = articleAdapter
+    private fun moveToLogin() {
+        val intent = Intent(requireActivity(), LoginActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         }
-
-        populatedData(articleAdapter)
-    }
-
-    private fun populatedData(articleAdapter: ArticleAdapter) {
-        val categoryId = arguments?.getString(EXTRA_ARTICLE_CATEGORY)
-
-        categoryId?.let { viewModel.getArticle(it) }
-
-        viewModel.articleResult.observe(viewLifecycleOwner) { result ->
-            when (result) {
-                is Result.Loading -> {
-
-                }
-
-                is Result.Error -> {
-
-                }
-
-                is Result.Success -> {
-                    val articleData = result.data
-                    articleAdapter.submitList(articleData)
-                }
-            }
-        }
-    }
-
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        startActivity(intent)
+        requireActivity().finish()
     }
 
     companion object {
-        const val EXTRA_ARTICLE_CATEGORY = "extra_article_category"
-        const val TAG = "HomeFragment"
+        const val EXTRA_PREDICTION = "extra_prediction"
     }
 }

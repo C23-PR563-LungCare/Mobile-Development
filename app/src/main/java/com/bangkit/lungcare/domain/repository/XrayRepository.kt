@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import java.io.File
 
 interface XrayRepository {
-    fun uploadXray(image: File): Flow<Result<XrayUpload>>
+    fun uploadXray(token: String, image: File): Flow<Result<XrayUpload>>
     fun getAllXray(): Flow<Result<List<Xray>>>
     fun getXrayById(id: String): Flow<Result<Xray>>
 

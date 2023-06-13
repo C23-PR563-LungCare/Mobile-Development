@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -19,6 +20,7 @@ import com.bangkit.lungcare.R
 import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.databinding.ActivityPostXrayBinding
 import com.bangkit.lungcare.domain.model.xray.XrayUpload
+import com.bangkit.lungcare.presentation.auth.login.LoginActivity
 import com.bangkit.lungcare.presentation.camera.CameraActivity
 import com.bangkit.lungcare.presentation.home.detail.DetailXrayResultActivity
 import com.bangkit.lungcare.utils.reduceFileImage
@@ -33,8 +35,9 @@ class PostXrayActivity : AppCompatActivity() {
 
     private val viewModel by viewModels<PostXrayViewModel>()
 
-    private var _binding: ActivityPostXrayBinding? = null
-    private val binding get() = _binding
+    private val binding: ActivityPostXrayBinding by lazy {
+        ActivityPostXrayBinding.inflate(layoutInflater)
+    }
 
     private var getFile: File? = null
 
@@ -59,10 +62,9 @@ class PostXrayActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityPostXrayBinding.inflate(layoutInflater)
-        setContentView(binding?.root)
+        setContentView(binding.root)
 
-        binding?.apply {
+        binding.apply {
             openCameraBtn.setOnClickListener {
                 if (!allPermissionGranted()) {
                     ActivityCompat.requestPermissions(
@@ -81,37 +83,49 @@ class PostXrayActivity : AppCompatActivity() {
                 startGallery()
             }
 
-            uploadBtn.setOnClickListener {
-                setupPostXrayToPrediction()
-            }
         }
+
+        observerToken()
 
     }
 
-    private fun setupPostXrayToPrediction() {
-        if (getFile != null) {
-            val compressFile = reduceFileImage(getFile as File)
-            viewModel.uploadXrayToPredict(compressFile)
-        } else {
-            showToast(getString(R.string.err_image_field))
+    private fun observerToken() {
+        viewModel.getToken().observe(this) { token ->
+            Log.d("PostXrayActivity", "getToken: $token")
+            if (token.isEmpty()) {
+                moveToLogin()
+            } else {
+                setupPostXray("Bearer $token")
+            }
         }
+    }
 
-        viewModel.xrayResult.observe(this, observerPostXray)
+    private fun setupPostXray(token: String) {
+        binding.uploadBtn.setOnClickListener {
+            if (getFile != null) {
+                val compressFile = reduceFileImage(getFile as File)
+                viewModel.uploadXrayToPredict(token, compressFile)
+            } else {
+                showToast(getString(R.string.err_image_field))
+            }
+
+            viewModel.xrayResult.observe(this, observerPostXray)
+        }
     }
 
     private val observerPostXray = Observer<Result<XrayUpload>> { result ->
         when (result) {
             is Result.Loading -> {
-                binding?.progressbar?.visibility = View.VISIBLE
+                binding.progressbar.visibility = View.VISIBLE
             }
 
             is Result.Error -> {
-                binding?.progressbar?.visibility = View.GONE
+                binding.progressbar.visibility = View.GONE
                 showToast(result.error)
             }
 
             is Result.Success -> {
-                binding?.progressbar?.visibility = View.GONE
+                binding.progressbar.visibility = View.GONE
                 val predictionData = result.data.id
                 moveToResult(predictionData)
             }
@@ -151,7 +165,7 @@ class PostXrayActivity : AppCompatActivity() {
 
             myFile?.let { file ->
                 getFile = file
-                binding?.previewIv?.let { image ->
+                binding.previewIv.let { image ->
                     Glide.with(this)
                         .load(rotateBitmap(BitmapFactory.decodeFile(file.path), isBackCamera))
                         .into(image)
@@ -169,7 +183,7 @@ class PostXrayActivity : AppCompatActivity() {
             selectedImage.let { uri ->
                 val myFile = uriToFile(uri, this@PostXrayActivity)
                 getFile = myFile
-                binding?.previewIv?.let {
+                binding.previewIv.let {
                     Glide.with(this).load(myFile).into(it)
                 }
             }
@@ -177,13 +191,16 @@ class PostXrayActivity : AppCompatActivity() {
         }
     }
 
-    private fun showToast(message: String?) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    private fun moveToLogin() {
+        val intent = Intent(this, LoginActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        }
+        startActivity(intent)
+        finish()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
+    private fun showToast(message: String?) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     companion object {

@@ -20,4 +20,9 @@
         android:name="com.bangkit.lungcare.presentation.profile.ProfileFragment"
         android:label="@string/label_profile"
         tools:layout="@layout/fragment_profile" />
+    <activity
+        android:id="@+id/postXrayActivity"
+        android:name="com.bangkit.lungcare.presentation.home.post.PostXrayActivity"
+        android:label="activity_post_xray"
+        tools:layout="@layout/activity_post_xray" />
 </navigation>

@@ -10,19 +10,19 @@ import com.bangkit.lungcare.databinding.ItemArticleBinding
 import com.bangkit.lungcare.domain.model.article.Article
 import com.bumptech.glide.Glide
 
-class ArticleAdapter() :
-    ListAdapter<Article, ArticleAdapter.ListViewHolder>(DIFF_CALLBACK) {
+class ArticleDetailAdapter() :
+    ListAdapter<Article, ArticleDetailAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ListViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder = MyViewHolder(
         ItemArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     )
 
-    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val article = getItem(position)
         holder.bind(article)
     }
 
-    inner class ListViewHolder(private var binding: ItemArticleBinding) :
+    inner class MyViewHolder(private var binding: ItemArticleBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: Article) {
@@ -32,6 +32,7 @@ class ArticleAdapter() :
                 posterIv.loadImage(data.imageUrl)
             }
         }
+
     }
 
     private fun ImageView.loadImage(url: String?) {

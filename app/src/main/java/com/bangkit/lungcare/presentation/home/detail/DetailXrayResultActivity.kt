@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bangkit.lungcare.adapter.ArticleDetailAdapter
 import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.databinding.ActivityDetailXrayResultBinding
 import com.bangkit.lungcare.domain.model.xray.Xray
+import com.bangkit.lungcare.presentation.home.HomeFragment
 import com.bangkit.lungcare.utils.DateFormatter
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,6 +27,39 @@ class DetailXrayResultActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupData()
+        setupRelateArticle()
+    }
+
+    private fun setupRelateArticle() {
+        val articleAdapter = ArticleDetailAdapter()
+
+        binding.rvArticle.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(this@DetailXrayResultActivity)
+            adapter = articleAdapter
+        }
+
+        populatedArticle(articleAdapter)
+    }
+
+    private fun populatedArticle(adapter: ArticleDetailAdapter) {
+        viewModel.articleResult.observe(this) { result ->
+            when (result) {
+                is Result.Loading -> {
+                    binding.progressbar.visibility = View.VISIBLE
+                }
+
+                is Result.Error -> {
+                    binding.progressbar.visibility = View.GONE
+                }
+
+                is Result.Success -> {
+                    binding.progressbar.visibility = View.GONE
+                    val articleData = result.data
+                    adapter.submitList(articleData)
+                }
+            }
+        }
     }
 
     private fun setupData() {
@@ -55,6 +91,12 @@ class DetailXrayResultActivity : AppCompatActivity() {
             outputPredictionTv.text = detailData.processResult
             Glide.with(this@DetailXrayResultActivity).load(detailData.gscLink).into(xrayIv)
         }
+
+        val homeFragment = HomeFragment()
+        val bundle = Bundle()
+        bundle.putString(HomeFragment.EXTRA_PREDICTION, detailData.processResult)
+
+        homeFragment.arguments = bundle
     }
 
     companion object {
