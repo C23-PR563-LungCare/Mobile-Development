@@ -69,6 +69,7 @@
     <string name="profile_setting">Profile settings</string>
     <string name="terms_of_service">Terms of service</string>
 
-    <string name="article">Relate Articles</string>
+    <string name="article">Articles</string>
+    <string name="relate_article">Relate Articles</string>
     <string name="diagnosis">Diagnosis</string>
 </resources>

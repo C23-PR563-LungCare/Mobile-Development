@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.lungcare.R
 import com.bangkit.lungcare.adapter.ArticleAdapter
@@ -16,6 +19,10 @@ import com.bangkit.lungcare.databinding.FragmentHomeBinding
 import com.bangkit.lungcare.presentation.auth.login.LoginActivity
 import com.bangkit.lungcare.presentation.home.post.PostXrayActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -46,7 +53,7 @@ class HomeFragment : Fragment() {
 
         adapterArticle = ArticleAdapter()
 
-        binding.rvArticles.apply {
+        binding.rvArticle.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireActivity())
             adapter = adapterArticle
@@ -57,24 +64,28 @@ class HomeFragment : Fragment() {
 
     private fun observerToken() {
         viewModel.getToken().observe(viewLifecycleOwner) { token ->
-            Log.d("HomeFragment", "getToken: $token")
-            if (token.isEmpty()) {
+            if (token == "") {
                 moveToLogin()
             } else {
-                setupData("Bearer $token")
+                setupDataProfile("Bearer $token")
+                setupDataArticle("Bearer $token")
             }
         }
     }
 
-    private fun setupData(token: String) {
-        // for profile
-        viewModel.getUserProfile(token)
-
-        viewModel.userProfileResult.observe(viewLifecycleOwner) { result ->
+    private fun setupDataProfile(token: String) {
+        viewModel.getUserProfile(token).observe(viewLifecycleOwner) { result ->
             when (result) {
-                is Result.Loading -> {}
-                is Result.Error -> {}
+                is Result.Loading -> {
+                    binding.progressbar.visibility = View.VISIBLE
+                }
+
+                is Result.Error -> {
+                    binding.progressbar.visibility = View.GONE
+                }
+
                 is Result.Success -> {
+                    binding.progressbar.visibility = View.GONE
                     val profileData = result.data
 
                     binding.apply {
@@ -85,16 +96,22 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+    }
 
-        // for article
-        val category = arguments?.getString(EXTRA_CATEGORY)
-        category?.let { viewModel.getArticle(token, it) }
-        viewModel.articleResult.observe(viewLifecycleOwner) { response ->
-            when (response) {
-                is Result.Loading -> {}
-                is Result.Error -> {}
+    private fun setupDataArticle(token: String) {
+        viewModel.getArticle(token, category = "Normal").observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Loading -> {
+                    binding.progressbar.visibility = View.VISIBLE
+                }
+
+                is Result.Error -> {
+                    binding.progressbar.visibility = View.GONE
+                }
+
                 is Result.Success -> {
-                    val data = response.data
+                    binding.progressbar.visibility = View.GONE
+                    val data = result.data
                     adapterArticle.submitList(data)
                 }
             }
@@ -105,9 +122,5 @@ class HomeFragment : Fragment() {
         val intent = Intent(requireActivity(), LoginActivity::class.java)
         startActivity(intent)
         requireActivity().finish()
-    }
-
-    companion object {
-        var EXTRA_CATEGORY = "extra_category"
     }
 }
