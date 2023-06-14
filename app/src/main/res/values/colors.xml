@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="blue_700">#0051C6</color>
-    <color name="blue_500">#0068FF</color>
-    <color name="blue_200">#C6DCFF</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="gray">#cccccc</color>
-    <color name="red">#B70404</color>
     <color name="seed">#0051C6</color>
     <color name="md_theme_light_primary">#1157CC</color>
     <color name="md_theme_light_onPrimary">#FFFFFF</color>
@@ -68,4 +61,11 @@
     <color name="md_theme_dark_surfaceTint">#B2C5FF</color>
     <color name="md_theme_dark_outlineVariant">#45464F</color>
     <color name="md_theme_dark_scrim">#000000</color>
+    <color name="blue_700">#0051C6</color>
+    <color name="blue_500">#0068FF</color>
+    <color name="blue_200">#C6DCFF</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gray">#cccccc</color>
+    <color name="red">#B70404</color>
 </resources>
