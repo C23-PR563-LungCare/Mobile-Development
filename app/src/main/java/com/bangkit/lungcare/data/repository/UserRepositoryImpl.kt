@@ -10,7 +10,6 @@ import com.bangkit.lungcare.domain.repository.UserRepository
 import com.bangkit.lungcare.utils.DataMapper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject

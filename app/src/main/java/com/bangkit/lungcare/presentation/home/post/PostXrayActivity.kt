@@ -22,6 +22,7 @@ import com.bangkit.lungcare.databinding.ActivityPostXrayBinding
 import com.bangkit.lungcare.domain.model.xray.XrayUpload
 import com.bangkit.lungcare.presentation.auth.login.LoginActivity
 import com.bangkit.lungcare.presentation.camera.CameraActivity
+import com.bangkit.lungcare.presentation.home.HomeFragment
 import com.bangkit.lungcare.presentation.home.detail.DetailXrayResultActivity
 import com.bangkit.lungcare.utils.reduceFileImage
 import com.bangkit.lungcare.utils.rotateBitmap
@@ -74,13 +75,17 @@ class PostXrayActivity : AppCompatActivity() {
                     )
                 } else {
                     val intent = Intent(this@PostXrayActivity, CameraActivity::class.java)
-                    startActivity(intent)
                     launcherIntentCamera.launch(intent)
                 }
             }
 
             openGalleryBtn.setOnClickListener {
-                startGallery()
+                val intent = Intent().apply {
+                    action = Intent.ACTION_GET_CONTENT
+                    type = "image/*"
+                }
+                val chooser = Intent.createChooser(intent, getString(R.string.choose_picture))
+                launcherIntentGallery.launch(chooser)
             }
 
         }
@@ -139,15 +144,7 @@ class PostXrayActivity : AppCompatActivity() {
             putExtra(DetailXrayResultActivity.EXTRA_RESULT, resultPrediction)
         }
         startActivity(intent)
-    }
 
-    private fun startGallery() {
-        val intent = Intent().apply {
-            action = Intent.ACTION_GET_CONTENT
-            type = "image/*"
-        }
-        val chooser = Intent.createChooser(intent, getString(R.string.choose_picture))
-        launcherIntentGallery.launch(chooser)
     }
 
     private val launcherIntentCamera = registerForActivityResult(

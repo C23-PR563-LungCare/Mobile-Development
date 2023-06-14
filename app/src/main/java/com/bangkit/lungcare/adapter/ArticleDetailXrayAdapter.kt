@@ -1,5 +1,6 @@
 package com.bangkit.lungcare.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -27,6 +28,7 @@ class ArticleDetailXrayAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: Article) {
+            Log.d("ArticleDetail", "bind: $data")
             binding.apply {
                 posterIv.loadImage(data.imageUrl)
                 headlineTv.text = data.title

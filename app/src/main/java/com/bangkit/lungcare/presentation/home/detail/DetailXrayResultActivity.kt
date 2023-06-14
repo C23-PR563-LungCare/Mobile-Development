@@ -26,7 +26,7 @@ class DetailXrayResultActivity : AppCompatActivity() {
         ActivityDetailXrayResultBinding.inflate(layoutInflater)
     }
 
-    private lateinit var adapterArticleDetailXrayAdapter: ArticleDetailXrayAdapter
+    private lateinit var articleAdapter: ArticleDetailXrayAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,12 +34,12 @@ class DetailXrayResultActivity : AppCompatActivity() {
 
         observerToken()
 
-        adapterArticleDetailXrayAdapter = ArticleDetailXrayAdapter()
+        articleAdapter = ArticleDetailXrayAdapter()
 
         binding.rvArticle.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this@DetailXrayResultActivity)
-            adapter = adapterArticleDetailXrayAdapter
+            adapter = articleAdapter
         }
     }
 
@@ -79,7 +79,7 @@ class DetailXrayResultActivity : AppCompatActivity() {
             }
         }
 
-        // for relate article
+        // for article
         val result = intent.getStringExtra(EXTRA_RESULT)
         result?.let { viewModel.getRelateArticle(token, it) }
 
@@ -96,7 +96,7 @@ class DetailXrayResultActivity : AppCompatActivity() {
                 is Result.Success -> {
                     binding.progressbar.visibility = View.GONE
                     val data = response.data
-                    adapterArticleDetailXrayAdapter.submitList(data)
+                    articleAdapter.submitList(data)
                 }
             }
         }

@@ -22,16 +22,10 @@
             android:name=".presentation.home.detail.DetailXrayResultActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.home.detail.DetailXrayActivity"
-            android:exported="false" />
-        <activity
             android:name=".presentation.camera.CameraActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.home.post.PostXrayActivity"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.home.post.PostXrayAcitivty"
             android:exported="false" />
         <activity
             android:name=".presentation.auth.register.RegisterActivity"

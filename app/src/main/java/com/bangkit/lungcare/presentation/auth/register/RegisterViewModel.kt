@@ -4,9 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bangkit.lungcare.domain.model.user.Register
-import com.bangkit.lungcare.domain.usecase.xray.XrayUseCase
 import com.bangkit.lungcare.data.Result
+import com.bangkit.lungcare.domain.model.user.Register
 import com.bangkit.lungcare.domain.usecase.user.UserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
