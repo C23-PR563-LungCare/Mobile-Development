@@ -3,6 +3,9 @@
     <string name="label_home">Beranda</string>
     <string name="label_history">Riwayat</string>
     <string name="label_profile">Profil</string>
+    <string name="label_post_xray">Deteksi X-ray</string>
+    <string name="label_result_xray">Hasil</string>
+    <string name="label_detail_history">Detail Riwayat</string>
 
     <string name="login_to_your_account">Masuk</string>
     <string name="login">Masuk</string>

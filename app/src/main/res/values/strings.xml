@@ -4,6 +4,9 @@
     <string name="label_home">Home</string>
     <string name="label_history">History</string>
     <string name="label_profile">Profile</string>
+    <string name="label_post_xray">Detect X-ray</string>
+    <string name="label_result_xray">Result</string>
+    <string name="label_detail_history">Detail History</string>
 
     <string name="login_to_your_account">Log in to your account</string>
     <string name="login">Login</string>
