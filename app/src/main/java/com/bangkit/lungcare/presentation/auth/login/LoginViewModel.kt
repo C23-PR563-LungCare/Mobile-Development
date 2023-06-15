@@ -35,4 +35,6 @@ class LoginViewModel @Inject constructor(
     }
 
     fun checkCredential() = userUseCase.checkCredential().asLiveData()
+
+    fun getToken() = userUseCase.getToken().asLiveData()
 }

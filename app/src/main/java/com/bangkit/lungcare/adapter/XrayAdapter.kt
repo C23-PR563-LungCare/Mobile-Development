@@ -29,9 +29,8 @@ class XrayAdapter : ListAdapter<Xray, XrayAdapter.ListViewHolder>(DIFF_CALLBACK)
 
         fun bind(data: Xray) {
             binding.apply {
-                dateTv.text = DateFormatter.formatData(data.date, TimeZone.getDefault().id)
                 thumbnailTv.loadImage(data.gscLink)
-                resultTv.text = data.processResult
+                outputTv.text = data.processResult
             }
         }
 

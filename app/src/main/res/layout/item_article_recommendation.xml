@@ -21,7 +21,7 @@
         android:layout_width="@dimen/default_size"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/poppins_medium"
         android:hint="@string/article_title"
@@ -37,21 +37,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         app:cardBackgroundColor="@color/blue_500"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/headlineTv"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/headlineTv"
         app:layout_constraintTop_toBottomOf="@+id/headlineTv"
+        app:shapeAppearance="@style/roundCorner"
         app:strokeColor="@android:color/transparent">
 
 
         <TextView
             android:id="@+id/categoryArticleTv"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_regular"
-            android:padding="4dp"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/poppins_medium"
+            android:padding="2dp"
             android:text="@string/article_category"
             android:textAlignment="center"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            tools:text="Covid-19" />
 
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

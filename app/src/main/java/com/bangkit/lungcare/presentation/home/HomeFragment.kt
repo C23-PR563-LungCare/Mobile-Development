@@ -2,7 +2,6 @@ package com.bangkit.lungcare.presentation.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.lungcare.R
 import com.bangkit.lungcare.adapter.ArticleAdapter
-import com.bangkit.lungcare.adapter.ArticlesAdapter
 import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.databinding.FragmentHomeBinding
 import com.bangkit.lungcare.presentation.auth.login.LoginActivity
+import com.bangkit.lungcare.presentation.home.article.ArticleDetailActivity
 import com.bangkit.lungcare.presentation.home.post.PostXrayActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -45,7 +44,12 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
-        adapterArticle = ArticleAdapter()
+        adapterArticle = ArticleAdapter { article ->
+            val intent = Intent(activity, ArticleDetailActivity::class.java).apply {
+                putExtra(ArticleDetailActivity.EXTRA_DATA_ARTICLE, article)
+            }
+            startActivity(intent)
+        }
 
         binding.rvArticle.apply {
             layoutManager = LinearLayoutManager(context)
@@ -59,7 +63,6 @@ class HomeFragment : Fragment() {
 
     private fun observerToken() {
         viewModel.getToken().observe(viewLifecycleOwner) { token ->
-            Log.d(TAG, "getToken: $token")
             if (token == "") {
                 moveToLogin()
             } else {
@@ -73,14 +76,6 @@ class HomeFragment : Fragment() {
         viewModel.getUserProfile(token)
         viewModel.userProfileResult.observe(viewLifecycleOwner) { result ->
             when (result) {
-                is Result.Loading -> {
-                    binding.progressbar.visibility = View.VISIBLE
-                }
-
-                is Result.Error -> {
-                    binding.progressbar.visibility = View.GONE
-                }
-
                 is Result.Success -> {
                     binding.progressbar.visibility = View.GONE
                     val profileData = result.data
@@ -90,6 +85,14 @@ class HomeFragment : Fragment() {
                         headingNameTv.text =
                             getString(R.string.welcome_message, profileData.username)
                     }
+                }
+
+                is Result.Loading -> {
+                    binding.progressbar.visibility = View.VISIBLE
+                }
+
+                is Result.Error -> {
+                    binding.progressbar.visibility = View.GONE
                 }
             }
         }
@@ -103,18 +106,15 @@ class HomeFragment : Fragment() {
                     binding.progressbar.visibility = View.GONE
                     binding.rvArticle.visibility = View.VISIBLE
                     result.data.let {
-                        Log.d("Cek Data", "getArticle: $it")
                         adapterArticle.submitList(it)
                     }
                 }
 
                 is Result.Loading -> {
-                    Log.d("Cek Loading", "iniLoading")
                     binding.progressbar.visibility = View.VISIBLE
                 }
 
                 is Result.Error -> {
-                    Log.d("Cek Error", "iniError: ${result.error}")
                     binding.progressbar.visibility = View.GONE
                 }
             }
@@ -125,9 +125,5 @@ class HomeFragment : Fragment() {
         val intent = Intent(requireActivity(), LoginActivity::class.java)
         startActivity(intent)
         requireActivity().finish()
-    }
-
-    companion object {
-        const val TAG = "HomeFragment"
     }
 }

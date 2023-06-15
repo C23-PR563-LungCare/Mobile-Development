@@ -94,18 +94,22 @@ class DetailXrayResultActivity : AppCompatActivity() {
 
         viewModel.articleResult.observe(this) { result ->
             when (result) {
+                is Result.Success -> {
+                    binding.progressbar.visibility = View.GONE
+                    result.data.let {
+                        adapterArticle.submitList(it)
+                    }
+                }
                 is Result.Loading -> {
                     binding.progressbar.visibility = View.VISIBLE
                 }
 
                 is Result.Error -> {
+                    Log.d(TAG, "ini error")
                     binding.progressbar.visibility = View.GONE
                 }
 
-                is Result.Success -> {
-                    binding.progressbar.visibility = View.GONE
-                    val data = result.data
-                }
+
             }
         }
     }

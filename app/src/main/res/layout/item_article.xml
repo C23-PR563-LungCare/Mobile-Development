@@ -21,49 +21,25 @@
         android:layout_width="@dimen/default_size"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/poppins_medium"
-        android:hint="@string/article_title"
         android:maxLines="2"
+        android:text="@string/article_title"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/posterIv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/posterIv"
         app:layout_constraintTop_toTopOf="@+id/posterIv"
         tools:text="@string/dummy_article_title" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:cardBackgroundColor="@color/blue_500"
-        app:layout_constraintBottom_toBottomOf="@+id/posterIv"
-        app:layout_constraintStart_toStartOf="@+id/headlineTv"
-        app:layout_constraintTop_toBottomOf="@+id/headlineTv"
-        app:strokeColor="@android:color/transparent">
-
-
-        <TextView
-            android:id="@+id/categoryArticleTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_regular"
-            android:hint="@string/article_category"
-            android:padding="2dp"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            tools:text="@string/dummy_category_title" />
-
-    </com.google.android.material.card.MaterialCardView>
-
     <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/materialDivider"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/posterIv"
-        app:layout_constraintTop_toBottomOf="@+id/cardCategory" />
+        app:layout_constraintTop_toBottomOf="@+id/posterIv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

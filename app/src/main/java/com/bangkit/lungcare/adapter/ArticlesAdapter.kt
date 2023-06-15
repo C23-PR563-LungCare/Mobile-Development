@@ -43,7 +43,6 @@ class ArticlesAdapter() :
         fun bind(data: ResponseArticleItem) {
             binding.apply {
                 headlineTv.text = data.title
-                categoryArticleTv.text = data.newsCategory
                 posterIv.loadImage(data.imageURL)
             }
         }

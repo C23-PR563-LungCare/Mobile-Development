@@ -32,9 +32,8 @@ class XrayHistoryAdapter(private val listXray: ArrayList<Xray>) :
 
         fun bind(data: Xray) {
             binding.apply {
-                dateTv.text = DateFormatter.formatData(data.date, TimeZone.getDefault().id)
                 thumbnailTv.loadImage(data.gscLink)
-                resultTv.text = data.processResult
+                outputTv.text = data.processResult
             }
         }
     }

@@ -6,37 +6,46 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bangkit.lungcare.data.source.remote.response.ArticleItemResponse
+import com.bangkit.lungcare.R
 import com.bangkit.lungcare.databinding.ItemArticleBinding
 import com.bangkit.lungcare.domain.model.article.Article
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 
-class ArticleAdapter() :
+class ArticleAdapter(private val onItemClick: (Article) -> Unit) :
     ListAdapter<Article, ArticleAdapter.ListViewHolder>(DIFF_CALLBACK) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ListViewHolder(
-        ItemArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-    )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
+        val binding = ItemArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ListViewHolder(binding)
+    }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val article = getItem(position)
         holder.bind(article)
     }
 
-    inner class ListViewHolder(private var binding: ItemArticleBinding) :
+    inner class ListViewHolder(
+        private var binding: ItemArticleBinding,
+    ) :
         RecyclerView.ViewHolder(binding.root) {
-
         fun bind(data: Article) {
             binding.apply {
                 headlineTv.text = data.title
-                categoryArticleTv.text = data.newsCategory
                 posterIv.loadImage(data.imageUrl)
+
+                itemView.setOnClickListener {
+                    onItemClick(data)
+                }
             }
         }
     }
 
     private fun ImageView.loadImage(url: String?) {
-        Glide.with(this).load(url).into(this)
+        Glide.with(this.context)
+            .load(url).apply(
+                RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error)
+            ).into(this)
     }
 
     companion object {

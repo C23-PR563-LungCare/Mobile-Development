@@ -1,45 +1,41 @@
 package com.bangkit.lungcare.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bangkit.lungcare.data.source.remote.response.ArticleItemResponse
-import com.bangkit.lungcare.databinding.ItemArticleDetailXrayBinding
+import com.bangkit.lungcare.databinding.ItemArticleRecommendationBinding
 import com.bangkit.lungcare.domain.model.article.Article
 import com.bumptech.glide.Glide
 
-class ArticleDetailXrayAdapter :
-    ListAdapter<Article, ArticleDetailXrayAdapter.ListViewHolder>(DIFF_CALLBACK) {
+class ArticleRecommendationAdapter() :
+    ListAdapter<Article, ArticleRecommendationAdapter.ListViewHolder>(DIFF_CALLBACK) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder =
-        ListViewHolder(
-            ItemArticleDetailXrayBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ListViewHolder(
+        ItemArticleRecommendationBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    )
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val data = getItem(position)
-        holder.bind(data)
+        val article = getItem(position)
+        holder.bind(article)
     }
 
-    inner class ListViewHolder(private var binding: ItemArticleDetailXrayBinding) :
+    inner class ListViewHolder(private var binding: ItemArticleRecommendationBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: Article) {
             binding.apply {
-                posterIv.loadImage(data.imageUrl)
-                categoryArticleTv.text = data.newsCategory
                 headlineTv.text = data.title
+                categoryArticleTv.text = data.newsCategory
+                posterIv.loadImage(data.imageUrl)
             }
         }
-
     }
 
     private fun ImageView.loadImage(url: String?) {
-        Glide.with(this.context).load(url).into(this)
+        Glide.with(this).load(url).into(this)
     }
 
     companion object {
@@ -55,7 +51,6 @@ class ArticleDetailXrayAdapter :
                 newItem: Article
             ): Boolean =
                 oldItem == newItem
-
         }
     }
 }

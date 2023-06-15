@@ -70,6 +70,7 @@
     <string name="terms_of_service">Terms of service</string>
 
     <string name="article">Articles</string>
+    <string name="empty">No Data</string>
     <string name="relate_article">Relate Articles</string>
     <string name="diagnosis">Diagnosis</string>
 </resources>
