@@ -1,19 +1,18 @@
 package com.bangkit.lungcare.utils
 
 import androidx.recyclerview.widget.DiffUtil
-import com.bangkit.lungcare.data.source.remote.response.ArticleItemResponse
-import com.bangkit.lungcare.data.source.remote.response.ResponseArticleItem
+import com.bangkit.lungcare.domain.model.article.Article
 
 class ArticleDiffCallback(
-    private val oldArticleList: List<ResponseArticleItem>,
-    private val newArticleList: List<ResponseArticleItem>
+    private val oldArticleList: List<Article>,
+    private val newArticleList: List<Article>
 ) : DiffUtil.Callback() {
     override fun getOldListSize(): Int = oldArticleList.size
 
     override fun getNewListSize(): Int = newArticleList.size
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
-        oldArticleList[oldItemPosition].newsID == newArticleList[newItemPosition].newsID
+        oldArticleList[oldItemPosition].newsId == newArticleList[newItemPosition].newsId
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
         oldArticleList[oldItemPosition] == newArticleList[newItemPosition]

@@ -8,9 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.lungcare.databinding.ItemHistoryBinding
 import com.bangkit.lungcare.domain.model.xray.Xray
-import com.bangkit.lungcare.utils.DateFormatter
 import com.bumptech.glide.Glide
-import java.util.TimeZone
 
 class XrayAdapter : ListAdapter<Xray, XrayAdapter.ListViewHolder>(DIFF_CALLBACK) {
 

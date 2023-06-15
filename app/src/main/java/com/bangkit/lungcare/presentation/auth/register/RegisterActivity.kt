@@ -11,7 +11,6 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.bangkit.lungcare.R
 import com.bangkit.lungcare.data.Result
-import com.bangkit.lungcare.data.source.remote.response.RegisterResponse
 import com.bangkit.lungcare.databinding.ActivityRegisterBinding
 import com.bangkit.lungcare.domain.model.user.Register
 import com.bangkit.lungcare.presentation.auth.login.LoginActivity

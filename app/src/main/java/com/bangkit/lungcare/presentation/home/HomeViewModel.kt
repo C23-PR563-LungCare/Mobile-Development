@@ -6,8 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.bangkit.lungcare.data.Result
-import com.bangkit.lungcare.data.source.remote.response.ResponseArticleItem
-import com.bangkit.lungcare.data.source.remote.response.UserProfileResponse
+
 import com.bangkit.lungcare.domain.model.article.Article
 import com.bangkit.lungcare.domain.model.user.Profile
 import com.bangkit.lungcare.domain.usecase.article.ArticleUseCase

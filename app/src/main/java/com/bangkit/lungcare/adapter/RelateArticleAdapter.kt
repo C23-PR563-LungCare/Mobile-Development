@@ -6,15 +6,15 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bangkit.lungcare.databinding.ItemArticleRecommendationBinding
+import com.bangkit.lungcare.databinding.ItemRelateArticleBinding
 import com.bangkit.lungcare.domain.model.article.Article
 import com.bumptech.glide.Glide
 
-class ArticleRecommendationAdapter(private val onItemClick: (Article) -> Unit) :
-    ListAdapter<Article, ArticleRecommendationAdapter.ListViewHolder>(DIFF_CALLBACK) {
+class RelateArticleAdapter(private val onItemClick: (Article) -> Unit) :
+    ListAdapter<Article, RelateArticleAdapter.ListViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ListViewHolder(
-        ItemArticleRecommendationBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        ItemRelateArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     )
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
@@ -22,7 +22,7 @@ class ArticleRecommendationAdapter(private val onItemClick: (Article) -> Unit) :
         holder.bind(article)
     }
 
-    inner class ListViewHolder(private var binding: ItemArticleRecommendationBinding) :
+    inner class ListViewHolder(private var binding: ItemRelateArticleBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: Article) {

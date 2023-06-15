@@ -3,12 +3,10 @@ package com.bangkit.lungcare.presentation.home.detail
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bangkit.lungcare.adapter.ArticleDetailXrayAdapter
-import com.bangkit.lungcare.adapter.ArticleRecommendationAdapter
+import com.bangkit.lungcare.adapter.RelateArticleAdapter
 import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.databinding.ActivityDetailXrayResultBinding
 import com.bangkit.lungcare.domain.model.xray.Xray
@@ -28,7 +26,7 @@ class DetailXrayResultActivity : AppCompatActivity() {
         ActivityDetailXrayResultBinding.inflate(layoutInflater)
     }
 
-    private lateinit var adapterArticle: ArticleRecommendationAdapter
+    private lateinit var adapterArticle: RelateArticleAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +34,7 @@ class DetailXrayResultActivity : AppCompatActivity() {
 
         observerToken()
 
-        adapterArticle = ArticleRecommendationAdapter { article ->
+        adapterArticle = RelateArticleAdapter { article ->
             val intent = Intent(this, ArticleDetailActivity::class.java).apply {
                 putExtra(ArticleDetailActivity.EXTRA_DATA_ARTICLE, article)
             }

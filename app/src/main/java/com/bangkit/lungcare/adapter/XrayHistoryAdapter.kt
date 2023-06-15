@@ -7,10 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.lungcare.databinding.ItemHistoryBinding
 import com.bangkit.lungcare.domain.model.xray.Xray
-import com.bangkit.lungcare.utils.DateFormatter
 import com.bangkit.lungcare.utils.XrayDiffCallback
 import com.bumptech.glide.Glide
-import java.util.TimeZone
 
 class XrayHistoryAdapter(private val listXray: ArrayList<Xray>) :
     RecyclerView.Adapter<XrayHistoryAdapter.MyViewHolder>() {
