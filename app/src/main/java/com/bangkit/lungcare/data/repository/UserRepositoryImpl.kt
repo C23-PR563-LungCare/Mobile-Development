@@ -1,7 +1,7 @@
 package com.bangkit.lungcare.data.repository
 
 import com.bangkit.lungcare.data.Result
-import com.bangkit.lungcare.data.source.local.datastore.UserPreferences
+import com.bangkit.lungcare.data.source.local.datastore.UserPreferencesImpl
 import com.bangkit.lungcare.data.source.remote.RemoteDataSource
 import com.bangkit.lungcare.domain.model.user.Login
 import com.bangkit.lungcare.domain.model.user.Profile
@@ -18,52 +18,56 @@ import javax.inject.Singleton
 @Singleton
 class UserRepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
-    private val userPreferences: UserPreferences
+    private val userPreferences: UserPreferencesImpl
 ) : UserRepository {
-
     override fun register(
         username: String,
         email: String,
         password: String
-    ): Flow<Result<Register>> = flow {
-        emit(Result.Loading)
-        try {
-            val response = remoteDataSource.signup(username, email, password)
-            val result = DataMapper.mapRegisterResponseToDomain(response)
+    ): Flow<Result<Register>> {
+        return flow {
+            emit(Result.Loading)
+            try {
+                val response = remoteDataSource.signup(username, email, password)
+                val result = DataMapper.mapRegisterResponseToDomain(response)
 
 
-            emit(Result.Success(result))
+                emit(Result.Success(result))
 
-        } catch (e: Exception) {
-            emit(Result.Error(e.message.toString()))
-        }
+            } catch (e: Exception) {
+                emit(Result.Error(e.message.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
 
-    }.flowOn(Dispatchers.IO)
+    override fun login(email: String, password: String): Flow<Result<Login>> {
+        return flow {
+            emit(Result.Loading)
+            try {
+                val response = remoteDataSource.login(email, password)
+                val result = DataMapper.mapLoginResponseToDomain(response)
 
-    override fun login(email: String, password: String): Flow<Result<Login>> = flow {
-        emit(Result.Loading)
-        try {
-            val response = remoteDataSource.login(email, password)
-            val result = DataMapper.mapLoginResponseToDomain(response)
+                emit(Result.Success(result))
 
-            emit(Result.Success(result))
+            } catch (e: Exception) {
+                emit(Result.Error(e.message.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
 
-        } catch (e: Exception) {
-            emit(Result.Error(e.message.toString()))
-        }
-    }.flowOn(Dispatchers.IO)
+    override fun getUserProfile(token: String): Flow<Result<Profile>> {
+        return flow {
+            emit(Result.Loading)
+            try {
+                val response = remoteDataSource.getUserProfile(token)
+                val result = DataMapper.mapUserProfileResponseToDomain(response)
 
-    override fun getUserProfile(token: String): Flow<Result<Profile>> = flow {
-        emit(Result.Loading)
-        try {
-            val response = remoteDataSource.getUserProfile(token)
-            val result = DataMapper.mapUserProfileResponseToDomain(response)
+                emit(Result.Success(result))
 
-            emit(Result.Success(result))
-
-        } catch (e: Exception) {
-            emit(Result.Error(e.message.toString()))
-        }
+            } catch (e: Exception) {
+                emit(Result.Error(e.message.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
     }
 
     override fun getToken(): Flow<String> = userPreferences.getToken()

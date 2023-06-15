@@ -43,10 +43,16 @@ class XrayAdapter : ListAdapter<Xray, XrayAdapter.ListViewHolder>(DIFF_CALLBACK)
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Xray>() {
-            override fun areItemsTheSame(oldItem: Xray, newItem: Xray): Boolean =
+            override fun areItemsTheSame(
+                oldItem: Xray,
+                newItem: Xray
+            ): Boolean =
                 oldItem.id == newItem.id
 
-            override fun areContentsTheSame(oldItem: Xray, newItem: Xray): Boolean =
+            override fun areContentsTheSame(
+                oldItem: Xray,
+                newItem: Xray
+            ): Boolean =
                 oldItem == newItem
 
         }

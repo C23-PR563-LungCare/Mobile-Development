@@ -51,18 +51,17 @@ class HistoryFragment : Fragment() {
     private fun observerToken() {
         viewModel.getToken().observe(viewLifecycleOwner) { token ->
             Log.d("HistoryFragment", "getToken: $token")
-            if (token.isEmpty()) {
+            if (token == "") {
                 moveToLogin()
             } else {
-                setupData("Bearer $token")
+                setupListDataXray("Bearer $token")
             }
         }
     }
 
-    private fun setupData(token: String) {
+    private fun setupListDataXray(token: String) {
         viewModel.getAllXray(token)
-
-        viewModel.resultXray.observe(viewLifecycleOwner) { result ->
+        viewModel.xrayResult.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.progressbar.visibility = View.VISIBLE
@@ -74,8 +73,10 @@ class HistoryFragment : Fragment() {
 
                 is Result.Success -> {
                     binding.progressbar.visibility = View.GONE
-                    val data = result.data
-                    adapterXray.submitList(data)
+                    binding.rvHistory.visibility = View.VISIBLE
+                    result.data.let {
+                        adapterXray.submitList(it)
+                    }
                 }
             }
         }

@@ -3,6 +3,7 @@ package com.bangkit.lungcare.presentation.auth.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -92,10 +93,10 @@ class LoginActivity : AppCompatActivity() {
             is Result.Success -> {
                 binding.progressbar.visibility = View.GONE
 
-                val tokenResult = result.data.token
-                tokenResult?.let {
+                result.data.token?.let {
                     viewModel.saveCredential(it)
                 }
+                Log.d("Check Token", "getToken: ${result.data.token}")
                 moveToMain()
             }
         }

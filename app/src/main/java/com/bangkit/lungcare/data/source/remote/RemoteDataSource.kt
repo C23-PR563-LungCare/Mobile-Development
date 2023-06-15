@@ -1,11 +1,11 @@
 package com.bangkit.lungcare.data.source.remote
 
-import com.bangkit.lungcare.data.source.remote.response.ArticleResponse
+import com.bangkit.lungcare.data.source.remote.response.ArticleItemResponse
 import com.bangkit.lungcare.data.source.remote.response.RegisterResponse
 import com.bangkit.lungcare.data.source.remote.response.LoginResponse
 import com.bangkit.lungcare.data.source.remote.response.UploadXrayResponse
 import com.bangkit.lungcare.data.source.remote.response.UserProfileResponse
-import com.bangkit.lungcare.data.source.remote.response.XrayResponse
+import com.bangkit.lungcare.data.source.remote.response.XrayItemResponse
 import com.bangkit.lungcare.data.source.remote.retrofit.XrayApiService
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
@@ -35,11 +35,11 @@ class RemoteDataSource @Inject constructor(
         return apiService.uploadXray(token, imageMultipart)
     }
 
-    suspend fun getAllXray(token: String): XrayResponse = apiService.getAll(token)
+    suspend fun getAllXray(token: String): List<XrayItemResponse> = apiService.getAll(token)
     suspend fun getResultXrayPrediction(token: String, id: String) =
         apiService.getResultXrayPrediction(token, id)
 
-    suspend fun getAllArticle(token: String, category: String): ArticleResponse =
+    suspend fun getAllArticle(token: String, category: String): List<ArticleItemResponse> =
         apiService.getAllArticle(token, category)
 
     suspend fun getUserProfile(token: String): UserProfileResponse =

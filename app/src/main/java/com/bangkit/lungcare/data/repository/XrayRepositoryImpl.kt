@@ -15,15 +15,15 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class XrayRepositoryImpl @Inject constructor(
-    private val remoteDataSource: RemoteDataSource,
-) : XrayRepository {
-    override fun uploadXray(token: String, image: File): Flow<Result<XrayUpload>> =
-        flow {
+class XrayRepositoryImpl @Inject constructor(private val remoteDataSource: RemoteDataSource) :
+    XrayRepository {
+    override fun uploadXray(token: String, image: File): Flow<Result<XrayUpload>> {
+        return flow {
             emit(Result.Loading)
             try {
                 val response = remoteDataSource.uploadXray(token, image)
                 val result = DataMapper.mapXrayResponseToDomain(response)
+
 
                 emit(Result.Success(result))
 
@@ -31,30 +31,34 @@ class XrayRepositoryImpl @Inject constructor(
                 emit(Result.Error(e.message.toString()))
             }
         }.flowOn(Dispatchers.IO)
+    }
 
-    override fun getAllXray(token: String): Flow<Result<List<Xray>>> = flow {
-        emit(Result.Loading)
-        try {
-            val response = remoteDataSource.getAllXray(token)
-            val result = DataMapper.mapXrayItemResponseToDomain(response.xrayResponse)
+    override fun getAllXray(token: String): Flow<Result<List<Xray>>> {
+        return flow {
+            emit(Result.Loading)
+            try {
+                val response = remoteDataSource.getAllXray(token)
+                val result = DataMapper.mapXrayItemResponseToDomain(response)
 
-            emit(Result.Success(result))
+                emit(Result.Success(result))
 
-        } catch (e: Exception) {
-            emit(Result.Error(e.message.toString()))
-        }
+            } catch (e: Exception) {
+                emit(Result.Error(e.message.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
 
-    }.flowOn(Dispatchers.IO)
+    override fun getResultXrayPrediction(token: String, id: String): Flow<Result<Xray>> {
+        return flow {
+            emit(Result.Loading)
+            try {
+                val response = remoteDataSource.getResultXrayPrediction(token, id)
+                val result = DataMapper.mapDetailXrayResponseToDomain(response)
 
-    override fun getResultXrayPrediction(token: String, id: String): Flow<Result<Xray>> = flow {
-        emit(Result.Loading)
-        try {
-            val response = remoteDataSource.getResultXrayPrediction(token, id)
-            val result = DataMapper.mapDetailXrayResponseToDomain(response)
-
-            emit(Result.Success(result))
-        } catch (e: Exception) {
-            emit(Result.Error(e.message.toString()))
-        }
-    }.flowOn(Dispatchers.IO)
+                emit(Result.Success(result))
+            } catch (e: Exception) {
+                emit(Result.Error(e.message.toString()))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
 }

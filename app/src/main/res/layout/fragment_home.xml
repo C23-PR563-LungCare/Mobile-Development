@@ -1,97 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="8dp">
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/headingNameTv"
-        android:layout_width="@dimen/default_size"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_m"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="@dimen/margin_m"
-        android:fontFamily="@font/poppins_semi_bold"
-        android:text="@string/name"
-        android:textSize="@dimen/text_size"
-        app:layout_constraintEnd_toStartOf="@+id/profileIv"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Hi, Muhammad Amirul Bimantoro" />
-
-    <TextView
-        android:id="@+id/subheadingNameTv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_regular"
-        android:text="@string/how_are_you_today"
-        android:textColor="@color/blue_500"
-        app:layout_constraintEnd_toEndOf="@+id/headingNameTv"
-        app:layout_constraintStart_toStartOf="@+id/headingNameTv"
-        app:layout_constraintTop_toBottomOf="@+id/headingNameTv" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/profileIv"
-        android:layout_width="@dimen/image_size"
-        android:layout_height="@dimen/image_size"
-        android:layout_marginStart="@dimen/margin_m"
-        android:layout_marginEnd="@dimen/margin_m"
-        app:layout_constraintBottom_toBottomOf="@+id/subheadingNameTv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/headingNameTv"
-        app:layout_constraintTop_toTopOf="@+id/headingNameTv"
-        app:shapeAppearanceOverlay="@style/roundCorner"
-        tools:src="@tools:sample/avatars" />
-
-    <include
-        android:id="@+id/item_home"
-        layout="@layout/item_home"
-        android:layout_width="@dimen/default_size"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/subheadingNameTv" />
-
-    <TextView
-        android:id="@+id/headingArticleTv"
-        android:layout_width="@dimen/default_size"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/poppins_semi_bold"
-        android:text="@string/article"
-        android:textSize="@dimen/text_size"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_home" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvArticle"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headingArticleTv"
-        tools:listitem="@layout/item_article" />
-
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/progressbar"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:indeterminate="true"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible" />
+        android:padding="8dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/headingNameTv"
+            android:layout_width="@dimen/default_size"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_m"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/margin_m"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/name"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintEnd_toStartOf="@+id/profileIv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Hi, Muhammad Amirul Bimantoro" />
+
+        <TextView
+            android:id="@+id/subheadingNameTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/how_are_you_today"
+            android:textColor="@color/blue_500"
+            app:layout_constraintEnd_toEndOf="@+id/headingNameTv"
+            app:layout_constraintStart_toStartOf="@+id/headingNameTv"
+            app:layout_constraintTop_toBottomOf="@+id/headingNameTv" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profileIv"
+            android:layout_width="@dimen/image_size"
+            android:layout_height="@dimen/image_size"
+            android:layout_marginStart="@dimen/margin_m"
+            android:layout_marginEnd="@dimen/margin_m"
+            app:layout_constraintBottom_toBottomOf="@+id/subheadingNameTv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/headingNameTv"
+            app:layout_constraintTop_toTopOf="@+id/headingNameTv"
+            app:shapeAppearanceOverlay="@style/roundCorner"
+            tools:src="@tools:sample/avatars" />
+
+        <include
+            android:id="@+id/item_home"
+            layout="@layout/item_home"
+            android:layout_width="@dimen/default_size"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subheadingNameTv" />
+
+        <TextView
+            android:id="@+id/headingArticleTv"
+            android:layout_width="@dimen/default_size"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="@string/article"
+            android:textSize="@dimen/text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_home" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvArticle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headingArticleTv"
+            tools:listitem="@layout/item_article" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

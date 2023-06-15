@@ -1,11 +1,15 @@
 package com.bangkit.lungcare.data.source.remote.retrofit
 
+import com.bangkit.lungcare.data.source.remote.response.ArticleItemResponse
 import com.bangkit.lungcare.data.source.remote.response.ArticleResponse
 import com.bangkit.lungcare.data.source.remote.response.DetailXrayResponse
 import com.bangkit.lungcare.data.source.remote.response.RegisterResponse
 import com.bangkit.lungcare.data.source.remote.response.LoginResponse
+import com.bangkit.lungcare.data.source.remote.response.ResponseArticle
+import com.bangkit.lungcare.data.source.remote.response.ResponseArticleItem
 import com.bangkit.lungcare.data.source.remote.response.UploadXrayResponse
 import com.bangkit.lungcare.data.source.remote.response.UserProfileResponse
+import com.bangkit.lungcare.data.source.remote.response.XrayItemResponse
 import com.bangkit.lungcare.data.source.remote.response.XrayResponse
 import okhttp3.MultipartBody
 import retrofit2.http.Field
@@ -43,13 +47,13 @@ interface XrayApiService {
     @GET("history")
     suspend fun getAll(
         @Header("Authorization") token: String,
-    ): XrayResponse
+    ): List<XrayItemResponse>
 
     @GET("news/{category}")
     suspend fun getAllArticle(
         @Header("Authorization") token: String,
         @Path("category") category: String
-    ): ArticleResponse
+    ): List<ArticleItemResponse>
 
     @GET("detailHistory/{id}")
     suspend fun getResultXrayPrediction(

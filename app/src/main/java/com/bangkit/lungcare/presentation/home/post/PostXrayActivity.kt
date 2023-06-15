@@ -22,7 +22,6 @@ import com.bangkit.lungcare.databinding.ActivityPostXrayBinding
 import com.bangkit.lungcare.domain.model.xray.XrayUpload
 import com.bangkit.lungcare.presentation.auth.login.LoginActivity
 import com.bangkit.lungcare.presentation.camera.CameraActivity
-import com.bangkit.lungcare.presentation.home.HomeFragment
 import com.bangkit.lungcare.presentation.home.detail.DetailXrayResultActivity
 import com.bangkit.lungcare.utils.reduceFileImage
 import com.bangkit.lungcare.utils.rotateBitmap

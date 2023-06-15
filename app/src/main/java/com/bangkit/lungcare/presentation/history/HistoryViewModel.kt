@@ -19,12 +19,14 @@ class HistoryViewModel @Inject constructor(
     private val userUseCase: UserUseCase
 ) : ViewModel() {
 
-    private val _resultXray = MutableLiveData<Result<List<Xray>>>()
-    val resultXray: LiveData<Result<List<Xray>>> = _resultXray
+    private val _xrayResult = MutableLiveData<Result<List<Xray>>>()
+    val xrayResult: LiveData<Result<List<Xray>>> = _xrayResult
 
-    fun getAllXray(token: String) = viewModelScope.launch {
-        xrayUseCase.getAllXray(token).collect {
-            _resultXray.value = it
+    fun getAllXray(token: String) {
+        viewModelScope.launch {
+            xrayUseCase.getAllXray(token).collect {
+                _xrayResult.value = it
+            }
         }
     }
 

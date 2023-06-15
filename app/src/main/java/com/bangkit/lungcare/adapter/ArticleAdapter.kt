@@ -6,6 +6,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bangkit.lungcare.data.source.remote.response.ArticleItemResponse
 import com.bangkit.lungcare.databinding.ItemArticleBinding
 import com.bangkit.lungcare.domain.model.article.Article
 import com.bumptech.glide.Glide
@@ -40,10 +41,16 @@ class ArticleAdapter() :
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Article>() {
-            override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean =
+            override fun areItemsTheSame(
+                oldItem: Article,
+                newItem: Article
+            ): Boolean =
                 oldItem.newsId == newItem.newsId
 
-            override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean =
+            override fun areContentsTheSame(
+                oldItem: Article,
+                newItem: Article
+            ): Boolean =
                 oldItem == newItem
         }
     }

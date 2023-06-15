@@ -12,7 +12,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RegisterViewModel @Inject constructor(private val userUseCase: UserUseCase) : ViewModel() {
+class RegisterViewModel @Inject constructor(
+    private val userUseCase: UserUseCase
+) :
+    ViewModel() {
     private val _registerResult = MutableLiveData<Result<Register>>()
     val registerResult: LiveData<Result<Register>> = _registerResult
 

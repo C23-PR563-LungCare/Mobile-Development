@@ -1,6 +1,8 @@
 package com.bangkit.lungcare.di
 
 import com.bangkit.lungcare.BuildConfig
+import com.bangkit.lungcare.data.source.local.datastore.UserPreferencesImpl
+import com.bangkit.lungcare.data.source.remote.RemoteDataSource
 import com.bangkit.lungcare.data.source.remote.retrofit.XrayApiService
 import dagger.Module
 import dagger.Provides

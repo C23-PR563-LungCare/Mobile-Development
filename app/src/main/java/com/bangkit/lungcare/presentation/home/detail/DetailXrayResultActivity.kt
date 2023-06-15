@@ -26,7 +26,7 @@ class DetailXrayResultActivity : AppCompatActivity() {
         ActivityDetailXrayResultBinding.inflate(layoutInflater)
     }
 
-    private lateinit var articleAdapter: ArticleDetailXrayAdapter
+    private lateinit var adapterArticle: ArticleDetailXrayAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,34 +34,34 @@ class DetailXrayResultActivity : AppCompatActivity() {
 
         observerToken()
 
-        articleAdapter = ArticleDetailXrayAdapter()
+        adapterArticle = ArticleDetailXrayAdapter()
 
         binding.rvArticle.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this@DetailXrayResultActivity)
-            adapter = articleAdapter
+            adapter = adapterArticle
         }
     }
 
     private fun observerToken() {
         viewModel.getToken().observe(this) { token ->
             Log.d(TAG, "getToken: $token")
-            if (token.isEmpty()) {
+            if (token == "") {
                 moveToLogin()
             } else {
-                setupResult("Bearer $token")
+                setupResultXray("Bearer $token")
+                setupRelateArticle("Bearer $token")
             }
         }
     }
 
-    private fun setupResult(token: String) {
-        // for result xray
+    private fun setupResultXray(token: String) {
         val resultId = intent.getStringExtra(EXTRA_RESULT_ID)
         resultId?.let {
             viewModel.getResultXrayPrediction(token, it)
         }
 
-        viewModel.resultXray.observe(this) { result ->
+        viewModel.xrayResult.observe(this) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.progressbar.visibility = View.VISIBLE
@@ -78,29 +78,6 @@ class DetailXrayResultActivity : AppCompatActivity() {
                 }
             }
         }
-
-        // for article
-        val result = intent.getStringExtra(EXTRA_RESULT)
-        result?.let { viewModel.getRelateArticle(token, it) }
-
-        viewModel.resultArticle.observe(this) { response ->
-            when (response) {
-                is Result.Loading -> {
-                    binding.progressbar.visibility = View.VISIBLE
-                }
-
-                is Result.Error -> {
-                    binding.progressbar.visibility = View.GONE
-                }
-
-                is Result.Success -> {
-                    binding.progressbar.visibility = View.GONE
-                    val data = response.data
-                    articleAdapter.submitList(data)
-                }
-            }
-        }
-
     }
 
     private fun populateData(detailData: Xray) {
@@ -111,11 +88,34 @@ class DetailXrayResultActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupRelateArticle(token: String) {
+        val resultCategory = intent.getStringExtra(EXTRA_RESULT)
+        resultCategory?.let { viewModel.getRelateArticle(token, it) }
+
+        viewModel.articleResult.observe(this) { result ->
+            when (result) {
+                is Result.Loading -> {
+                    binding.progressbar.visibility = View.VISIBLE
+                }
+
+                is Result.Error -> {
+                    binding.progressbar.visibility = View.GONE
+                }
+
+                is Result.Success -> {
+                    binding.progressbar.visibility = View.GONE
+                    val data = result.data
+                }
+            }
+        }
+    }
+
     private fun moveToLogin() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()
     }
+
 
     companion object {
         const val TAG = "DetailXrayResult"

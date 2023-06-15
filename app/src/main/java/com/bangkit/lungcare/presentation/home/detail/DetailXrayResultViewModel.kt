@@ -19,25 +19,29 @@ import javax.inject.Inject
 class DetailXrayResultViewModel @Inject constructor(
     private val xrayUseCase: XrayUseCase,
     private val articleUseCase: ArticleUseCase,
-    private val userUseCase: UserUseCase
-) :
-    ViewModel() {
+    private val userUseCase: UserUseCase,
+) : ViewModel() {
 
-    private val _resultXray = MutableLiveData<Result<Xray>>()
-    val resultXray: LiveData<Result<Xray>> = _resultXray
+    private val _xrayResult = MutableLiveData<Result<Xray>>()
+    val xrayResult: LiveData<Result<Xray>> = _xrayResult
 
-    private val _resultArticle = MutableLiveData<Result<List<Article>>>()
-    val resultArticle: LiveData<Result<List<Article>>> = _resultArticle
+    private val _articleResult = MutableLiveData<Result<List<Article>>>()
+    val articleResult: LiveData<Result<List<Article>>> = _articleResult
 
-    fun getResultXrayPrediction(token: String, id: String) = viewModelScope.launch {
-        xrayUseCase.getResultXrayPrediction(token, id).collect {
-            _resultXray.value = it
+    fun getResultXrayPrediction(token: String, id: String) {
+        viewModelScope.launch {
+            xrayUseCase.getResultXrayPrediction(token, id).collect {
+                _xrayResult.value = it
+            }
         }
     }
 
-    fun getRelateArticle(token: String, category: String) = viewModelScope.launch {
-        articleUseCase.getAllArticle(token, category).collect {
-            _resultArticle.value = it
+
+    fun getRelateArticle(token: String, category: String) {
+        viewModelScope.launch {
+            articleUseCase.getAllArticle(token, category).collect {
+                _articleResult.value = it
+            }
         }
     }
 

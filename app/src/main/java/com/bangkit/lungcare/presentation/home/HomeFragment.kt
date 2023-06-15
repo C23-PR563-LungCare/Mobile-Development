@@ -8,21 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.lungcare.R
 import com.bangkit.lungcare.adapter.ArticleAdapter
+import com.bangkit.lungcare.adapter.ArticlesAdapter
 import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.databinding.FragmentHomeBinding
 import com.bangkit.lungcare.presentation.auth.login.LoginActivity
 import com.bangkit.lungcare.presentation.home.post.PostXrayActivity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.async
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -54,16 +48,18 @@ class HomeFragment : Fragment() {
         adapterArticle = ArticleAdapter()
 
         binding.rvArticle.apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(requireActivity())
-            adapter = adapterArticle
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(false)
         }
+
+        binding.rvArticle.adapter = adapterArticle
 
         observerToken()
     }
 
     private fun observerToken() {
         viewModel.getToken().observe(viewLifecycleOwner) { token ->
+            Log.d(TAG, "getToken: $token")
             if (token == "") {
                 moveToLogin()
             } else {
@@ -74,7 +70,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupDataProfile(token: String) {
-        viewModel.getUserProfile(token).observe(viewLifecycleOwner) { result ->
+        viewModel.getUserProfile(token)
+        viewModel.userProfileResult.observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.progressbar.visibility = View.VISIBLE
@@ -99,20 +96,26 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupDataArticle(token: String) {
-        viewModel.getArticle(token, category = "Normal").observe(viewLifecycleOwner) { result ->
+        viewModel.getAllArticle(token, category = "Normal")
+        viewModel.articleResult.observe(viewLifecycleOwner) { result ->
             when (result) {
+                is Result.Success -> {
+                    binding.progressbar.visibility = View.GONE
+                    binding.rvArticle.visibility = View.VISIBLE
+                    result.data.let {
+                        Log.d("Cek Data", "getArticle: $it")
+                        adapterArticle.submitList(it)
+                    }
+                }
+
                 is Result.Loading -> {
+                    Log.d("Cek Loading", "iniLoading")
                     binding.progressbar.visibility = View.VISIBLE
                 }
 
                 is Result.Error -> {
+                    Log.d("Cek Error", "iniError: ${result.error}")
                     binding.progressbar.visibility = View.GONE
-                }
-
-                is Result.Success -> {
-                    binding.progressbar.visibility = View.GONE
-                    val data = result.data
-                    adapterArticle.submitList(data)
                 }
             }
         }
@@ -122,5 +125,9 @@ class HomeFragment : Fragment() {
         val intent = Intent(requireActivity(), LoginActivity::class.java)
         startActivity(intent)
         requireActivity().finish()
+    }
+
+    companion object {
+        const val TAG = "HomeFragment"
     }
 }
