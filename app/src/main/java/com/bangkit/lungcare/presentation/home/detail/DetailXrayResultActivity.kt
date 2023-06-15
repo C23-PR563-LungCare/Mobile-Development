@@ -42,7 +42,6 @@ class DetailXrayResultActivity : AppCompatActivity() {
         }
 
         binding.rvArticle.apply {
-            setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this@DetailXrayResultActivity)
             adapter = adapterArticle
         }
