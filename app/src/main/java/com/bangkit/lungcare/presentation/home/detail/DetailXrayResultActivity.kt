@@ -8,10 +8,12 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.lungcare.adapter.ArticleDetailXrayAdapter
+import com.bangkit.lungcare.adapter.ArticleRecommendationAdapter
 import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.databinding.ActivityDetailXrayResultBinding
 import com.bangkit.lungcare.domain.model.xray.Xray
 import com.bangkit.lungcare.presentation.auth.login.LoginActivity
+import com.bangkit.lungcare.presentation.home.article.ArticleDetailActivity
 import com.bangkit.lungcare.utils.DateFormatter
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,7 +28,7 @@ class DetailXrayResultActivity : AppCompatActivity() {
         ActivityDetailXrayResultBinding.inflate(layoutInflater)
     }
 
-    private lateinit var adapterArticle: ArticleDetailXrayAdapter
+    private lateinit var adapterArticle: ArticleRecommendationAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +36,12 @@ class DetailXrayResultActivity : AppCompatActivity() {
 
         observerToken()
 
-        adapterArticle = ArticleDetailXrayAdapter()
+        adapterArticle = ArticleRecommendationAdapter { article ->
+            val intent = Intent(this, ArticleDetailActivity::class.java).apply {
+                putExtra(ArticleDetailActivity.EXTRA_DATA_ARTICLE, article)
+            }
+            startActivity(intent)
+        }
 
         binding.rvArticle.apply {
             setHasFixedSize(true)
@@ -45,12 +52,36 @@ class DetailXrayResultActivity : AppCompatActivity() {
 
     private fun observerToken() {
         viewModel.getToken().observe(this) { token ->
-            Log.d(TAG, "getToken: $token")
             if (token == "") {
                 moveToLogin()
             } else {
                 setupResultXray("Bearer $token")
                 setupRelateArticle("Bearer $token")
+            }
+        }
+    }
+
+    private fun setupRelateArticle(token: String) {
+        val resultCategory = intent.getStringExtra(EXTRA_RESULT)
+        resultCategory?.let { viewModel.getRelateArticle(token, it) }
+
+        viewModel.articleResult.observe(this) { result ->
+            when (result) {
+                is Result.Success -> {
+                    binding.progressbar.visibility = View.GONE
+                    binding.rvArticle.visibility = View.VISIBLE
+                    result.data.let {
+                        adapterArticle.submitList(it)
+                    }
+                }
+
+                is Result.Loading -> {
+                    binding.progressbar.visibility = View.VISIBLE
+                }
+
+                is Result.Error -> {
+                    binding.progressbar.visibility = View.GONE
+                }
             }
         }
     }
@@ -63,54 +94,30 @@ class DetailXrayResultActivity : AppCompatActivity() {
 
         viewModel.xrayResult.observe(this) { result ->
             when (result) {
-                is Result.Loading -> {
-                    binding.progressbar.visibility = View.VISIBLE
-                }
-
-                is Result.Error -> {
-                    binding.progressbar.visibility = View.GONE
-                }
-
                 is Result.Success -> {
                     binding.progressbar.visibility = View.GONE
                     val detailData = result.data
-                    populateData(detailData)
+                    populatedData(detailData)
                 }
-            }
-        }
-    }
 
-    private fun populateData(detailData: Xray) {
-        binding.apply {
-            dateResultTv.text = DateFormatter.formatData(detailData.date, TimeZone.getDefault().id)
-            outputPredictionTv.text = detailData.processResult
-            Glide.with(this@DetailXrayResultActivity).load(detailData.gscLink).into(xrayIv)
-        }
-    }
-
-    private fun setupRelateArticle(token: String) {
-        val resultCategory = intent.getStringExtra(EXTRA_RESULT)
-        resultCategory?.let { viewModel.getRelateArticle(token, it) }
-
-        viewModel.articleResult.observe(this) { result ->
-            when (result) {
-                is Result.Success -> {
-                    binding.progressbar.visibility = View.GONE
-                    result.data.let {
-                        adapterArticle.submitList(it)
-                    }
-                }
                 is Result.Loading -> {
                     binding.progressbar.visibility = View.VISIBLE
                 }
 
                 is Result.Error -> {
-                    Log.d(TAG, "ini error")
                     binding.progressbar.visibility = View.GONE
                 }
-
-
             }
+        }
+    }
+
+    private fun populatedData(detailData: Xray) {
+        with(binding) {
+            dateResultTv.text =
+                DateFormatter.formatData(detailData.date, TimeZone.getDefault().id)
+            outputPredictionTv.text = detailData.processResult
+            Glide.with(this@DetailXrayResultActivity).load(detailData.gscLink)
+                .into(xrayIv)
         }
     }
 
@@ -122,7 +129,6 @@ class DetailXrayResultActivity : AppCompatActivity() {
 
 
     companion object {
-        const val TAG = "DetailXrayResult"
         const val EXTRA_RESULT_ID = "extra_result_id"
         const val EXTRA_RESULT = "extra_result"
     }

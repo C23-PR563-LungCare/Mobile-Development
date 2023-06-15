@@ -13,6 +13,7 @@
         android:layout_marginTop="32dp"
         android:contentDescription="@string/content_desc_image_preview"
         android:scaleType="fitCenter"
+        android:padding="20dp"
         app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +29,6 @@
         android:layout_marginEnd="24dp"
         android:fontFamily="@font/poppins_regular"
         android:text="@string/body_message_post_xray"
-        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/horizontalGuideline" />

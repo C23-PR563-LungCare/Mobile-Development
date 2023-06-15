@@ -36,7 +36,6 @@ class DetailXrayResultViewModel @Inject constructor(
         }
     }
 
-
     fun getRelateArticle(token: String, category: String) {
         viewModelScope.launch {
             articleUseCase.getAllArticle(token, category).collect {

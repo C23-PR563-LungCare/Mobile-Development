@@ -2,6 +2,7 @@ package com.bangkit.lungcare.presentation.home.article
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.webkit.WebViewClient
 import androidx.activity.viewModels
 import com.bangkit.lungcare.databinding.ActivityArticleDetailBinding
@@ -22,6 +23,7 @@ class ArticleDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         articleDetail = intent.getParcelableExtra<Article>(EXTRA_DATA_ARTICLE) as Article
 
@@ -31,6 +33,15 @@ class ArticleDetailActivity : AppCompatActivity() {
 
         viewModel.setArticleData(articleDetail)
 
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressedDispatcher.onBackPressed()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     companion object {

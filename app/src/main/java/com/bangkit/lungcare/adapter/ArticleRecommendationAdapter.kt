@@ -10,7 +10,7 @@ import com.bangkit.lungcare.databinding.ItemArticleRecommendationBinding
 import com.bangkit.lungcare.domain.model.article.Article
 import com.bumptech.glide.Glide
 
-class ArticleRecommendationAdapter() :
+class ArticleRecommendationAdapter(private val onItemClick: (Article) -> Unit) :
     ListAdapter<Article, ArticleRecommendationAdapter.ListViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ListViewHolder(
@@ -30,6 +30,10 @@ class ArticleRecommendationAdapter() :
                 headlineTv.text = data.title
                 categoryArticleTv.text = data.newsCategory
                 posterIv.loadImage(data.imageUrl)
+
+                itemView.setOnClickListener {
+                    onItemClick(data)
+                }
             }
         }
     }
