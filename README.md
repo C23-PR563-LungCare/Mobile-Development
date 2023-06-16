@@ -16,7 +16,7 @@ Download APK: https://drive.google.com/file/d/1jKBW07y22U9wNQAtmnO-BRyjpwrnLyFl/
 ![Image](https://github.com/C23-PR563-LungCare/Mobile-Development/blob/master/image_2.png)
 
 
-### Dependencies
+## Dependencies
 
 ```Gradle
 dependencies {
@@ -69,7 +69,8 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:2.44"
 }
 ```
-### Clone this App
+
+## Clone this App
 
 To get started with this project, you can clone it to your local machine by running the following command:
 
