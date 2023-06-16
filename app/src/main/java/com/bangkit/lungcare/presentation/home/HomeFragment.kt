@@ -53,7 +53,6 @@ class HomeFragment : Fragment() {
 
         binding.rvArticle.apply {
             layoutManager = LinearLayoutManager(context)
-            setHasFixedSize(false)
         }
 
         binding.rvArticle.adapter = adapterArticle
@@ -81,7 +80,7 @@ class HomeFragment : Fragment() {
                     val profileData = result.data
 
                     binding.apply {
-                        profileIv.setImageResource(R.drawable.account_circle)
+                        profileIv.setImageResource(R.drawable.ic_profile)
                         headingNameTv.text =
                             getString(R.string.welcome_message, profileData.username)
                     }

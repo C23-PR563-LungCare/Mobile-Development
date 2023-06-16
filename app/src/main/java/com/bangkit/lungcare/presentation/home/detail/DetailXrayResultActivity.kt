@@ -49,36 +49,11 @@ class DetailXrayResultActivity : AppCompatActivity() {
 
     private fun observerToken() {
         viewModel.getToken().observe(this) { token ->
-            if (token == "") {
+            if (token.isEmpty()) {
                 moveToLogin()
             } else {
                 setupResultXray("Bearer $token")
                 setupRelateArticle("Bearer $token")
-            }
-        }
-    }
-
-    private fun setupRelateArticle(token: String) {
-        val resultCategory = intent.getStringExtra(EXTRA_RESULT)
-        resultCategory?.let { viewModel.getRelateArticle(token, it) }
-
-        viewModel.articleResult.observe(this) { result ->
-            when (result) {
-                is Result.Success -> {
-                    binding.progressbar.visibility = View.GONE
-                    binding.rvArticle.visibility = View.VISIBLE
-                    result.data.let {
-                        adapterArticle.submitList(it)
-                    }
-                }
-
-                is Result.Loading -> {
-                    binding.progressbar.visibility = View.VISIBLE
-                }
-
-                is Result.Error -> {
-                    binding.progressbar.visibility = View.GONE
-                }
             }
         }
     }
@@ -115,6 +90,31 @@ class DetailXrayResultActivity : AppCompatActivity() {
             outputPredictionTv.text = detailData.processResult
             Glide.with(this@DetailXrayResultActivity).load(detailData.gscLink)
                 .into(xrayIv)
+        }
+    }
+
+    private fun setupRelateArticle(token: String) {
+        val resultCategory = intent.getStringExtra(EXTRA_RESULT)
+        resultCategory?.let { viewModel.getRelateArticle(token, it) }
+
+        viewModel.articleResult.observe(this) { result ->
+            when (result) {
+                is Result.Success -> {
+                    binding.progressbar.visibility = View.GONE
+                    binding.rvArticle.visibility = View.VISIBLE
+                    result.data.let {
+                        adapterArticle.submitList(it)
+                    }
+                }
+
+                is Result.Loading -> {
+                    binding.progressbar.visibility = View.VISIBLE
+                }
+
+                is Result.Error -> {
+                    binding.progressbar.visibility = View.GONE
+                }
+            }
         }
     }
 

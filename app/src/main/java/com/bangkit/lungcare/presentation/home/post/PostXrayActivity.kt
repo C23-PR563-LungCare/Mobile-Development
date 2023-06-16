@@ -97,7 +97,6 @@ class PostXrayActivity : AppCompatActivity() {
 
     private fun observerToken() {
         viewModel.getToken().observe(this) { token ->
-            Log.d("PostXrayActivity", "getToken: $token")
             if (token.isEmpty()) {
                 moveToLogin()
             } else {
@@ -122,6 +121,7 @@ class PostXrayActivity : AppCompatActivity() {
     private val observerPostXray = Observer<Result<XrayUpload>> { result ->
         when (result) {
             is Result.Loading -> {
+                showToast(getString(R.string.processing))
                 binding.progressbar.visibility = View.VISIBLE
             }
 

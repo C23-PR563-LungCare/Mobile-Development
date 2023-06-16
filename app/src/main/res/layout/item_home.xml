@@ -6,18 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:layout_margin="8dp"
+    android:layout_margin="@dimen/margin_s"
     app:strokeColor="@color/blue_500">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="14dp">
+        android:padding="@dimen/padding_m">
 
         <ImageView
             android:id="@+id/lungIv"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_lung"
@@ -25,22 +25,22 @@
 
         <TextView
             android:id="@+id/headlineTv"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/default_size"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="@dimen/margin_s"
+            android:layout_marginEnd="@dimen/margin_m"
             android:fontFamily="@font/poppins_semi_bold"
             android:text="@string/scan_xray"
-            android:textSize="16sp"
+            android:textSize="@dimen/text_size_m"
             app:layout_constraintEnd_toStartOf="@+id/verticalGuideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lungIv" />
 
         <TextView
             android:id="@+id/descTv"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/default_size"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="@dimen/margin_m"
             android:fontFamily="@font/poppins_regular"
             android:text="@string/diagnosis_xray_result"
             app:layout_constraintEnd_toStartOf="@+id/verticalGuideline"
@@ -49,9 +49,9 @@
 
         <ImageButton
             android:id="@+id/toPostXrayBtn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="-5dp"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:layout_marginEnd="@dimen/margin_minus"
             android:background="@null"
             android:contentDescription="@string/content_desc_to_post_xray_page"
             android:src="@drawable/ic_arrow_circle_right"

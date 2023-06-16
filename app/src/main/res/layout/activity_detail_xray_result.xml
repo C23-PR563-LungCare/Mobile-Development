@@ -12,8 +12,8 @@
 
         <ImageView
             android:id="@+id/xrayIv"
-            android:layout_width="0dp"
-            android:layout_height="300dp"
+            android:layout_width="@dimen/default_size"
+            android:layout_height="@dimen/image_result_xray_size"
             android:adjustViewBounds="true"
             android:contentDescription="@string/content_desc_xray"
             android:scaleType="centerCrop"
@@ -24,9 +24,9 @@
 
         <ImageView
             android:id="@+id/backgroundIv"
-            android:layout_width="0dp"
-            android:layout_height="65dp"
-            android:background="#4D000000"
+            android:layout_width="@dimen/default_size"
+            android:layout_height="@dimen/background_date_size"
+            android:background="@color/background"
             app:layout_constraintBottom_toBottomOf="@+id/xrayIv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,11 +39,11 @@
             android:id="@+id/dateTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_margin="@dimen/margin_m"
             android:fontFamily="@font/poppins_regular"
             android:text="@string/date"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/text_size_m"
             app:layout_constraintBottom_toBottomOf="@+id/xrayIv"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/backgroundIv" />
@@ -52,12 +52,11 @@
             android:id="@+id/dateResultTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_marginEnd="411dp"
+            android:layout_margin="@dimen/margin_m"
             android:fontFamily="@font/poppins_regular"
             android:text="@string/dummy_date"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/text_size_m"
             app:layout_constraintBottom_toBottomOf="@+id/xrayIv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/backgroundIv" />
@@ -65,43 +64,43 @@
 
         <TextView
             android:id="@+id/headlinePredictionTv"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/default_size"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="@dimen/margin_m"
+            android:layout_marginTop="@dimen/margin_xl"
+            android:layout_marginEnd="@dimen/margin_m"
             android:fontFamily="@font/poppins_regular"
             android:text="@string/prediction_result"
             android:textAlignment="center"
-            android:textSize="20sp"
+            android:textSize="@dimen/text_size_xl"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/xrayIv" />
 
         <TextView
             android:id="@+id/outputPredictionTv"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/default_size"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="@dimen/margin_m"
+            android:layout_marginEnd="@dimen/margin_m"
             android:fontFamily="@font/poppins_semi_bold"
             android:text="@string/output"
             android:textAlignment="center"
-            android:textSize="20sp"
+            android:textSize="@dimen/text_size_xl"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/headlinePredictionTv" />
 
         <TextView
             android:id="@+id/headlineArticleTv"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/default_size"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            android:fontFamily="@font/poppins_semi_bold"
+            android:layout_marginStart="@dimen/margin_m"
+            android:layout_marginTop="@dimen/margin_xl"
+            android:layout_marginEnd="@dimen/margin_m"
+            android:fontFamily="@font/poppins_medium"
             android:text="@string/relate_article"
-            android:textSize="18sp"
+            android:textSize="@dimen/text_size_l"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/outputPredictionTv" />
@@ -109,10 +108,10 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_article"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/default_size"
             android:layout_height="match_parent"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="@dimen/margin_m"
+            android:layout_marginEnd="@dimen/margin_m"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -128,7 +127,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
             tools:visibility="visible" />
 
         <androidx.constraintlayout.widget.Guideline

@@ -68,4 +68,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#cccccc</color>
     <color name="red">#B70404</color>
+    <color name="background">#4D000000</color>
 </resources>

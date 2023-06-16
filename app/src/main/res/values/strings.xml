@@ -71,9 +71,10 @@
     <string name="language">Language</string>
     <string name="profile_setting">Profile settings</string>
     <string name="terms_of_service">Terms of service</string>
+    <string name="processing">Processing…</string>
 
     <string name="article">Articles</string>
-    <string name="empty">No Data</string>
+    <string name="no_data_message">No Data</string>
     <string name="relate_article">Relate Articles</string>
     <string name="diagnosis">Diagnosis</string>
 </resources>

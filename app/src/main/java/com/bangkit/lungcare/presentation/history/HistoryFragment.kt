@@ -2,13 +2,13 @@ package com.bangkit.lungcare.presentation.history
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bangkit.lungcare.R
 import com.bangkit.lungcare.adapter.XrayAdapter
 import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.databinding.FragmentHistoryBinding
@@ -50,8 +50,7 @@ class HistoryFragment : Fragment() {
 
     private fun observerToken() {
         viewModel.getToken().observe(viewLifecycleOwner) { token ->
-            Log.d("HistoryFragment", "getToken: $token")
-            if (token == "") {
+            if (token.isEmpty()) {
                 moveToLogin()
             } else {
                 setupListDataXray("Bearer $token")
@@ -73,10 +72,20 @@ class HistoryFragment : Fragment() {
 
                 is Result.Success -> {
                     binding.progressbar.visibility = View.GONE
-                    binding.rvHistory.visibility = View.VISIBLE
-                    result.data.let {
-                        adapterXray.submitList(it)
+
+                    if (result.data.isEmpty()) {
+                        with(binding) {
+                            emptyDataTv.visibility = View.VISIBLE
+                            emptyDataTv.text = getString(R.string.no_data_message)
+                            rvHistory.visibility = View.GONE
+                        }
+                    } else {
+                        binding.rvHistory.visibility = View.VISIBLE
+                        result.data.let {
+                            adapterXray.submitList(it)
+                        }
                     }
+
                 }
             }
         }

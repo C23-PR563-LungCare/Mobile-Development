@@ -6,9 +6,11 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bangkit.lungcare.R
 import com.bangkit.lungcare.databinding.ItemRelateArticleBinding
 import com.bangkit.lungcare.domain.model.article.Article
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 
 class RelateArticleAdapter(private val onItemClick: (Article) -> Unit) :
     ListAdapter<Article, RelateArticleAdapter.ListViewHolder>(DIFF_CALLBACK) {
@@ -39,7 +41,9 @@ class RelateArticleAdapter(private val onItemClick: (Article) -> Unit) :
     }
 
     private fun ImageView.loadImage(url: String?) {
-        Glide.with(this).load(url).into(this)
+        Glide.with(this.context).load(url).apply(
+            RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error)
+        ).into(this)
     }
 
     companion object {
