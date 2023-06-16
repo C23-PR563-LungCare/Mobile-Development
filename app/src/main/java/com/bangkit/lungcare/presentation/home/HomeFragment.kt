@@ -39,6 +39,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        observerToken()
+
         binding.itemHome.toPostXrayBtn.setOnClickListener {
             val intent = Intent(requireActivity(), PostXrayActivity::class.java)
             startActivity(intent)
@@ -56,13 +58,11 @@ class HomeFragment : Fragment() {
         }
 
         binding.rvArticle.adapter = adapterArticle
-
-        observerToken()
     }
 
     private fun observerToken() {
         viewModel.getToken().observe(viewLifecycleOwner) { token ->
-            if (token == "") {
+            if (token.isEmpty()) {
                 moveToLogin()
             } else {
                 setupDataProfile("Bearer $token")

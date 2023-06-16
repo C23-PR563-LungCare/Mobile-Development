@@ -30,8 +30,6 @@ class UserPreferencesImpl @Inject constructor(
         }
     }
 
-    override fun checkCredential(): Flow<Boolean> = dataStore.data.map { it[SESSION_KEY] ?: false }
-
     companion object {
         private val TOKEN_KEY = stringPreferencesKey("token")
         private val SESSION_KEY = booleanPreferencesKey("session")

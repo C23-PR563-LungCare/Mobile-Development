@@ -19,5 +19,4 @@ interface UserUseCase {
 
     suspend fun deleteCredential()
 
-    fun checkCredential(): Flow<Boolean>
 }

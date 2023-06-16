@@ -27,5 +27,4 @@ class UserInteractor @Inject constructor(private val userRepository: UserReposit
 
     override suspend fun deleteCredential() = userRepository.deleteCredential()
 
-    override fun checkCredential(): Flow<Boolean> = userRepository.checkCredential()
 }

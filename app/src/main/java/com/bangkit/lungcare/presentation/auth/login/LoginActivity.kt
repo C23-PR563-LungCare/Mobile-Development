@@ -30,15 +30,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        viewModel.checkCredential().observe(this) { isLogin ->
-            if (isLogin) {
-                val intent = Intent(this, MainActivity::class.java).apply {
-                    flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                }
-                startActivity(intent)
-                finish()
-            }
-        }
+        observerToken()
 
         binding.apply {
             loginBtn.setOnClickListener {
@@ -54,6 +46,14 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    private fun observerToken() {
+        viewModel.getToken().observe(this) { token ->
+            if (token.isNotEmpty()) {
+                moveToMain()
+            }
+        }
     }
 
     private fun setupLogin() {

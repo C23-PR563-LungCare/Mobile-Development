@@ -8,6 +8,4 @@ interface UserPreferences {
     suspend fun saveCredential(token: String)
 
     suspend fun deleteCredential()
-
-    fun checkCredential(): Flow<Boolean>
 }

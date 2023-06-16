@@ -53,6 +53,14 @@ class ProfileFragment : Fragment() {
 
             logoutBtn.setOnClickListener {
                 viewModel.logout()
+                observerToken()
+            }
+        }
+    }
+
+    private fun observerToken() {
+        viewModel.getToken().observe(viewLifecycleOwner) { token ->
+            if (token.isEmpty()) {
                 moveToLogin()
             }
         }

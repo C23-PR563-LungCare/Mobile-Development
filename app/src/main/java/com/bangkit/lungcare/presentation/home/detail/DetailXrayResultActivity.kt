@@ -1,10 +1,10 @@
 package com.bangkit.lungcare.presentation.home.detail
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.lungcare.adapter.RelateArticleAdapter
 import com.bangkit.lungcare.data.Result
@@ -88,6 +88,7 @@ class DetailXrayResultActivity : AppCompatActivity() {
             dateResultTv.text =
                 DateFormatter.formatData(detailData.date, TimeZone.getDefault().id)
             outputPredictionTv.text = detailData.processResult
+
             Glide.with(this@DetailXrayResultActivity).load(detailData.gscLink)
                 .into(xrayIv)
         }
