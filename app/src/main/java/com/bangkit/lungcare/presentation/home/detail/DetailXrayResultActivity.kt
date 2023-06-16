@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bangkit.lungcare.R
 import com.bangkit.lungcare.adapter.RelateArticleAdapter
 import com.bangkit.lungcare.data.Result
 import com.bangkit.lungcare.databinding.ActivityDetailXrayResultBinding
@@ -87,6 +89,30 @@ class DetailXrayResultActivity : AppCompatActivity() {
         with(binding) {
             dateResultTv.text =
                 DateFormatter.formatData(detailData.date, TimeZone.getDefault().id)
+
+            when (detailData.processResult) {
+                "Covid-19" -> outputPredictionTv.setTextColor(
+                    ContextCompat.getColor(
+                        this@DetailXrayResultActivity,
+                        R.color.red
+                    )
+                )
+
+                "Pneumonia" -> outputPredictionTv.setTextColor(
+                    ContextCompat.getColor(
+                        this@DetailXrayResultActivity,
+                        R.color.red
+                    )
+                )
+
+                "Normal" -> outputPredictionTv.setTextColor(
+                    ContextCompat.getColor(
+                        this@DetailXrayResultActivity,
+                        R.color.green
+                    )
+                )
+            }
+
             outputPredictionTv.text = detailData.processResult
 
             Glide.with(this@DetailXrayResultActivity).load(detailData.gscLink)

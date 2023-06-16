@@ -4,6 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -33,6 +34,29 @@ class XrayAdapter() : ListAdapter<Xray, XrayAdapter.ListViewHolder>(DIFF_CALLBAC
             binding.apply {
                 thumbnailTv.loadImage(data.gscLink)
                 outputTv.text = data.processResult
+
+                when (data.processResult) {
+                    "Covid-19" -> outputTv.setTextColor(
+                        ContextCompat.getColor(
+                            itemView.context,
+                            R.color.red
+                        )
+                    )
+
+                    "Pneumonia" -> outputTv.setTextColor(
+                        ContextCompat.getColor(
+                            itemView.context,
+                            R.color.red
+                        )
+                    )
+
+                    "Normal" -> outputTv.setTextColor(
+                        ContextCompat.getColor(
+                            itemView.context,
+                            R.color.green
+                        )
+                    )
+                }
 
                 viewMoreBtn.setOnClickListener {
                     val intent =
