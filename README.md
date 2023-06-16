@@ -15,7 +15,6 @@ Download APK: https://drive.google.com/file/d/1jKBW07y22U9wNQAtmnO-BRyjpwrnLyFl/
 ![Image](https://github.com/C23-PR563-LungCare/Mobile-Development/blob/master/image_1.png)
 ![Image](https://github.com/C23-PR563-LungCare/Mobile-Development/blob/master/image_2.png)
 
-## Development
 
 ### Dependencies
 
@@ -68,5 +67,12 @@ dependencies {
     // hilt
     implementation "com.google.dagger:hilt-android:2.44"
     kapt "com.google.dagger:hilt-android-compiler:2.44"
-    }
+}
+```
+### Clone this App
+
+To get started with this project, you can clone it to your local machine by running the following command:
+
+```bash
+$ git clone https://github.com/C23-PR563-LungCare/Mobile-Development.git
 ```
