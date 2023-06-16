@@ -12,8 +12,5 @@ Download APK: https://drive.google.com/file/d/1jKBW07y22U9wNQAtmnO-BRyjpwrnLyFl/
 
 ## Screenshots
 
-![HomePage](https://github.com/C23-PR563-LungCare/Mobile-Development/blob/master/home.png)
-![PostXrayPage](https://github.com/C23-PR563-LungCare/Mobile-Development/blob/master/post_xray.png)
-![ResultXrayPage](https://github.com/C23-PR563-LungCare/Mobile-Development/blob/master/result_xray.png)
-![HistoryPage](https://github.com/C23-PR563-LungCare/Mobile-Development/blob/master/history.png)
-![ProfilePage](https://github.com/C23-PR563-LungCare/Mobile-Development/blob/master/profile.png)
+![Image](https://github.com/C23-PR563-LungCare/Mobile-Development/blob/master/image_1.png)
+![Image](https://github.com/C23-PR563-LungCare/Mobile-Development/blob/master/image_2.png)
